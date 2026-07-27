@@ -1,0 +1,16 @@
+name: metagenomics-pipe
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.11
+  - pyyaml
+  - fastqc=0.12.*
+  - fastp=0.23.*
+  - bowtie2=2.5.*
+  - samtools=1.19.*
+  - kraken2=2.1.*
+  - bracken=2.9.*
+  - megahit=1.2.*
+  - multiqc=1.19.*
