@@ -4,13 +4,15 @@ process MULTIQC {
     publishDir "${params.outdir}/multiqc", mode: 'copy'
 
     input:
-    path('*')   // Collects all upstream diagnostic logs globally
+    path('*')           // รวบรวมไฟล์ Log จากท่อส่งต้นน้ำทั้งหมด
+    path multiqc_config // เพิ่มอินพุตสำหรับรับไฟล์คอนฟิกโดยเฉพาะ
 
     output:
     path "multiqc_report.html", emit: report
 
     script:
     """
-    multiqc . -n multiqc_report.html -c ${projectDir}/assets/multiqc_config.yaml
+    # เรียกใช้ไฟล์คอนฟิกผ่านชื่อตัวแปรอินพุตโดยตรง (ไม่ต้องมี projectDir)
+    multiqc . -n multiqc_report.html -c $multiqc_config
     """
 }
