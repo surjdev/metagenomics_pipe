@@ -1,1 +1,49 @@
+# === Nextflow / Workflow Execution ===
+.nextflow/
+.nextflow.*
+work/
+results/
+pipeline_info/
+
+# === Pixi Environment & Package Managers ===
+.pixi/
 pixi.lock
+
+# === Conda & Python Environments ===
+.venv/
+env/
+venv/
+ENV/
+pyvenv.cfg
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# === Pipeline Specific Checkpoints & Logs ===
+.checkpoints/
+*.log
+*.bowtie2out.txt
+
+# === Data & Databases (Large Files) ===
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.fasta
+*.fa
+*.fna
+*.faa
+*.bam
+*.bai
+*.paf
+*.tsv
+*.csv
+!samples.csv                # ยกเว้น samples.csv ตัวอย่างไว้เพื่อให้คนอื่นรู้โครงสร้างไฟล์
+!config.yaml                # ยกเว้น config.yaml ตัวอย่างไว้
+
+# === Operating System / IDEs ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
