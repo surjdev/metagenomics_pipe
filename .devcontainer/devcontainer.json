@@ -1,0 +1,16 @@
+{
+  "name": "Remote Pixi Dev Env",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    // Automatically installs Pixi into the remote container
+    "ghcr.io/prefix-dev/devcontainer-features/pixi:0": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "prefix-dev.pixi-vscode"
+      ]
+    }
+  },
+  "postCreateCommand": "pixi install"
+}
