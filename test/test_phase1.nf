@@ -11,11 +11,11 @@
 
 nextflow.enable.dsl = 2
 
-include { FASTQC       } from './modules/local/fastqc/main.nf'
-include { FASTP        } from './modules/local/fastp/main.nf'
-include { NANOPLOT     } from './modules/local/nanoplot/main.nf'
-include { PORECHOP_ABI } from './modules/local/porechop_abi/main.nf'
-include { FILTLONG     } from './modules/local/filtlong/main.nf'
+include { FASTQC       } from '../modules/local/fastqc/main.nf'
+include { FASTP        } from '../modules/local/fastp/main.nf'
+include { NANOPLOT     } from '../modules/local/nanoplot/main.nf'
+include { PORECHOP_ABI } from '../modules/local/porechop_abi/main.nf'
+include { FILTLONG     } from '../modules/local/filtlong/main.nf'
 
 workflow {
 

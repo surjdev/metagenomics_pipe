@@ -2,7 +2,7 @@ process FILTLONG {
     tag "$meta.id"
     label 'process_medium'
 
-    container 'quay.io/biocontainers/filtlong:0.2.1--hdfd78af_1'
+    container 'quay.io/biocontainers/filtlong:0.2.1--hdcf5f25_4'
 
     input:
     tuple val(meta), path(reads)

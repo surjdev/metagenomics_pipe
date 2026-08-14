@@ -2,7 +2,7 @@ process PORECHOP_ABI {
     tag "$meta.id"
     label 'process_medium'
 
-    container 'quay.io/biocontainers/porechop_abi:0.5.0--py39h97f88f2_0'
+    container 'quay.io/biocontainers/porechop_abi:0.5.1--py310h275bdba_0'
 
     input:
     tuple val(meta), path(reads)
