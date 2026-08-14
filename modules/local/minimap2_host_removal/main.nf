@@ -1,26 +1,39 @@
 process MINIMAP2_HOST_REMOVAL {
     tag "$meta.id"
     label 'process_high'
-    container 'quay.io/biocontainers/mulled-v2-66534bcbb7031a14fe7b132046fa8ae20b6ab76a:4d9af567ec6a4b13a17e0b5710609b5dbb37c050-0'
+
+    // Image bundles minimap2 + samtools
+    container 'quay.io/biocontainers/mulled-v2-66534bcbb7031a148b13ccdd0965fdd44c4da1bf:1679e915ddb9d6b4abda91880c4b48857d471bd-0'
 
     input:
-    tuple val(meta), path(long_reads)
-    path host_fasta
+    tuple val(meta), path(reads)
+    path  reference
 
     output:
-    tuple val(meta), path("*_clean.fastq.gz"), emit: reads
-    path "versions.yml",                       emit: versions
+    tuple val(meta), path("*_nonhost.fastq.gz"), emit: reads
+    tuple val(meta), path("*.flagstat"),          emit: stats
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    minimap2 -ax map-ont -t $task.cpus $host_fasta $long_reads \\
-        | samtools fastq -f 4 -@ $task.cpus - \\
-        | gzip > ${meta.id}_clean.fastq.gz
+    # Map long reads to host; extract unmapped reads
+    minimap2 \\
+        -ax map-ont \\
+        -t $task.cpus \\
+        ${reference} \\
+        ${reads} \\
+        | samtools sort -@ $task.cpus -o ${prefix}.host.bam
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        minimap2: \$(minimap2 --version)
-        samtools: \$(samtools --version | head -n 1 | sed 's/samtools //')
-    END_VERSIONS
+    samtools flagstat \\
+        --threads $task.cpus \\
+        ${prefix}.host.bam \\
+        > ${prefix}.flagstat
+
+    # Extract unmapped reads (flag 4 = read unmapped)
+    samtools view -f 4 -b ${prefix}.host.bam \\
+        | samtools fastq \\
+        | gzip -c > ${prefix}_nonhost.fastq.gz
+
+    rm ${prefix}.host.bam
     """
 }

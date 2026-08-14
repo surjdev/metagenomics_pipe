@@ -1,26 +1,26 @@
 process DORADO_BASECALL {
     tag "$meta.id"
-    label 'process_high'
-    container 'ontresearch/dorado:0.5.3'
+    label 'process_high_gpu'
+
+    container 'ontresearch/dorado:sha447c4e6e65ca6c79a7e24db8f78e0440a30cfa5'
 
     input:
-    tuple val(meta), path(raw_reads)
-    val(model)
+    tuple val(meta), path(pod5_dir)
 
     output:
     tuple val(meta), path("*.fastq.gz"), emit: reads
-    path "versions.yml",                 emit: versions
+    tuple val(meta), path("*.log"),      emit: log
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    dorado basecaller $model $raw_reads \\
-        --threads $task.cpus > ${meta.id}_basecalled.fastq
-        
-    gzip ${meta.id}_basecalled.fastq
+    dorado basecaller \\
+        ${params.dorado_model} \\
+        ${pod5_dir} \\
+        --device cuda:all \\
+        > ${prefix}.fastq \\
+        2> ${prefix}.dorado.log
 
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        dorado: \$(dorado -v 2>&1 | sed 's/dorado //')
-    END_VERSIONS
+    gzip ${prefix}.fastq
     """
 }

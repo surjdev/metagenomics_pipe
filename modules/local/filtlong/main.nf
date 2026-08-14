@@ -1,26 +1,22 @@
 process FILTLONG {
     tag "$meta.id"
     label 'process_medium'
-    container 'quay.io/biocontainers/filtlong:0.2.1--he4a0461_0'
+
+    container 'quay.io/biocontainers/filtlong:0.2.1--hdfd78af_1'
 
     input:
-    tuple val(meta), path(long_reads)
+    tuple val(meta), path(reads)
 
     output:
-    tuple val(meta), path("*_filtered.fastq.gz"), emit: reads
-    tuple val(meta), path("*.log"),               emit: log
-    path "versions.yml",                          emit: versions
+    tuple val(meta), path("*.filtlong.fastq.gz"), emit: reads
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     filtlong \\
-        --min_length ${params.min_loop_length ?: 1000} \\
-        --keep_percent ${params.keep_percent ?: 90} \\
-        $long_reads 2> ${meta.id}_filtlong.log | gzip > ${meta.id}_filtered.fastq.gz
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        filtlong: \$(filtlong --version | sed 's/Filtlong //')
-    END_VERSIONS
+        --min_length ${params.min_length_long} \\
+        --min_mean_q ${params.min_quality_long} \\
+        $reads \\
+        | gzip -c > ${prefix}.filtlong.fastq.gz
     """
 }

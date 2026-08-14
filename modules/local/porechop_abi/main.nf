@@ -1,26 +1,23 @@
 process PORECHOP_ABI {
     tag "$meta.id"
     label 'process_medium'
-    container 'quay.io/biocontainers/porechop_abi:0.5.0--py310h19ad5d1_1'
+
+    container 'quay.io/biocontainers/porechop_abi:0.5.0--py39h97f88f2_0'
 
     input:
-    tuple val(meta), path(long_reads)
+    tuple val(meta), path(reads)
 
     output:
-    tuple val(meta), path("*_trimmed.fastq.gz"), emit: reads
-    tuple val(meta), path("*.log"),              emit: log
-    path "versions.yml",                         emit: versions
+    tuple val(meta), path("*.porechop.fastq.gz"), emit: reads
+    tuple val(meta), path("*.log"),               emit: log
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     porechop_abi \\
-        -i $long_reads \\
-        -o ${meta.id}_trimmed.fastq.gz \\
-        --threads $task.cpus > ${meta.id}_porechop.log 2>&1
-
-    cat <<-END_VERSIONS > versions.yml
-    "${task.process}":
-        porechop_abi: \$(porechop_abi --version)
-    END_VERSIONS
+        -i $reads \\
+        -o ${prefix}.porechop.fastq.gz \\
+        --threads $task.cpus \\
+        2> ${prefix}.porechop.log
     """
 }
