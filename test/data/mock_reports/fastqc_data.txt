@@ -1,0 +1,11 @@
+##FastQC	0.12.1
+>>Basic Statistics	pass
+#Measure	Value
+Filename	sample_1.fastq.gz
+File type	Conventional base calls
+Encoding	Sanger / Illumina 1.9
+Total Sequences	1000
+Sequences flagged as poor quality	0
+Sequence length	150
+%GC	50
+>>END_MODULE

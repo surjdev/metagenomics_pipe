@@ -3,7 +3,7 @@ process BOWTIE2_HOST_REMOVAL {
     label 'process_high'
 
     // Image bundles bowtie2 + samtools
-    container 'quay.io/biocontainers/mulled-v2-ac74a7f02cebcfbc0119723e2041d6ede773a4b2:a0a54b8eeb4e6b9e9f02dc1a3979dafb5b1dd108-0'
+    container 'community.wave.seqera.io/library/bowtie2_htslib_samtools_pigz:edeb13799090a2a6'
 
     input:
     tuple val(meta), path(reads)
@@ -16,9 +16,18 @@ process BOWTIE2_HOST_REMOVAL {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
+    if [ -d "${index}" ]; then
+        idx_prefix="${index}/${params.host_index_prefix}"
+    elif [ -f "${index}" ] && [[ "${index}" == *.bt2 ]]; then
+        idx_prefix="\$(echo "${index}" | sed 's/\\.[0-9]\\.bt2//')"
+    else
+        bowtie2-build --threads $task.cpus "${index}" host_idx
+        idx_prefix="host_idx"
+    fi
+
     # Map reads to host genome; write unmapped pairs to FASTQ
     bowtie2 \\
-        -x ${index}/${params.host_index_prefix} \\
+        -x \${idx_prefix} \\
         -1 ${reads[0]} \\
         -2 ${reads[1]} \\
         --threads $task.cpus \\

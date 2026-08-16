@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hybrid Metagenomics Pipeline Flowchart</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --accent-color: #38bdf8;
+        }
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+        p.subtitle {
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+        .diagram-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+            overflow-x: auto;
+        }
+        .legend {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        .legend-badge {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Hybrid Metagenomics Pipeline Architecture</h1>
+            <p class="subtitle">Nextflow DSL2 5-Layer End-to-End Orchestration Workflow</p>
+        </header>
+
+        <div class="diagram-card">
+            <pre class="mermaid">
+flowchart TD
+    classDef input fill:#0284c7,stroke:#0369a1,color:#fff,stroke-width:2px;
+    classDef qc fill:#0d9488,stroke:#0f766e,color:#fff,stroke-width:2px;
+    classDef asm fill:#6366f1,stroke:#4f46e5,color:#fff,stroke-width:2px;
+    classDef mag fill:#8b5cf6,stroke:#7c3aed,color:#fff,stroke-width:2px;
+    classDef tax fill:#d97706,stroke:#b45309,color:#fff,stroke-width:2px;
+    classDef ann fill:#ec4899,stroke:#db2777,color:#fff,stroke-width:2px;
+    classDef rep fill:#10b981,stroke:#059669,color:#fff,stroke-width:2px;
+
+    subgraph Inputs ["Input Layer"]
+        SAMP["samplesheet.csv"]:::input
+        HOST_REF["Host Reference (GRCh38)"]:::input
+        K2_DB["Kraken 2 DB"]:::input
+    end
+
+    subgraph Phase1 ["1. Preprocessing & Host Removal"]
+        FQ_S["Illumina Short Reads"]:::input
+        FQ_L["ONT Long Reads"]:::input
+        FASTQC["FASTQC"]:::qc
+        FASTP["fastp Trimming"]:::qc
+        NANOPLOT["NanoPlot"]:::qc
+        FILTLONG["Filtlong Filtering"]:::qc
+        BOWTIE2["Bowtie2 Host Removal"]:::qc
+        MINIMAP2_HR["Minimap2 Host Removal"]:::qc
+    end
+
+    subgraph Phase2 ["2. Assembly, Polishing & QC"]
+        MEGAHIT["MEGAHIT (Short)"]:::asm
+        FLYE["Flye (Long)"]:::asm
+        OPERA["Opera-MS (Hybrid)"]:::asm
+        POLISH["Racon / NextPolish"]:::asm
+        QUAST["QUAST Assembly QC"]:::asm
+    end
+
+    subgraph Phase3 ["3. Mapping & MAG Reconstruction"]
+        MAP_SHORT["Map Short Reads (Bowtie2)"]:::mag
+        MAP_LONG["Map Long Reads (Minimap2)"]:::mag
+        DEPTH["MetaBAT2 Depth Profiling"]:::mag
+        METABAT["MetaBAT 2"]:::mag
+        MAXBIN["MaxBin 2"]:::mag
+        SEMIBIN["SemiBin 2"]:::mag
+        CONCOCT["CONCOCT"]:::mag
+        DASTOOL["DAS Tool Consensus"]:::mag
+        CATBINS["CAT_BINS Standardizer"]:::mag
+        CHECKM2["CheckM2 Quality"]:::mag
+        GUNC["GUNC Chimerism"]:::mag
+        GTDBTK["GTDB-Tk Taxonomy"]:::mag
+    end
+
+    subgraph Phase4 ["4. Assembly-Free Profiling"]
+        KRAKEN2["Kraken 2"]:::tax
+        BRACKEN["Bracken Abundance"]:::tax
+        KRONA["Krona Radial Chart"]:::tax
+        BIOM["BIOM 1.0 JSON"]:::tax
+        HUMANN3["HUMAnN 3 Pathways"]:::tax
+    end
+
+    subgraph Phase5 ["5. Annotation & Reporting"]
+        PROKKA["Prokka (CDS/tRNA/rRNA)"]:::ann
+        GENOMAD["geNomad (Plasmids/Viruses)"]:::ann
+        MULTIQC["MultiQC Dashboard"]:::rep
+        GEN_REP["Interactive Pipeline Report & Summary"]:::rep
+    end
+
+    SAMP --> FQ_S
+    SAMP --> FQ_L
+    FQ_S --> FASTQC & FASTP
+    FQ_L --> NANOPLOT --> FILTLONG
+    FASTP --> BOWTIE2
+    FILTLONG --> MINIMAP2_HR
+    HOST_REF --> BOWTIE2 & MINIMAP2_HR
+
+    BOWTIE2 --> MEGAHIT & OPERA & KRAKEN2 & HUMANN3 & MAP_SHORT
+    MINIMAP2_HR --> FLYE & OPERA & MAP_LONG
+
+    MEGAHIT & FLYE & OPERA --> POLISH --> QUAST
+    POLISH --> MAP_SHORT & MAP_LONG & PROKKA & GENOMAD
+    MAP_SHORT & MAP_LONG --> DEPTH
+
+    POLISH & DEPTH --> METABAT & MAXBIN & SEMIBIN & CONCOCT
+    METABAT & MAXBIN & SEMIBIN & CONCOCT --> DASTOOL --> CATBINS
+    CATBINS --> CHECKM2 & GUNC & GTDBTK
+
+    KRAKEN2 --> BRACKEN & KRONA & BIOM
+    K2_DB --> KRAKEN2
+
+    FASTQC & FASTP & QUAST & BOWTIE2 --> MULTIQC
+    QUAST & CATBINS & KRAKEN2 --> GEN_REP
+            </pre>
+        </div>
+
+        <div class="legend">
+            <div class="legend-item"><div class="legend-badge" style="background:#0284c7"></div> Input / Data</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#0d9488"></div> Preprocessing & Host Removal</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#6366f1"></div> Assembly & QC</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#8b5cf6"></div> MAG Reconstruction & QC</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#d97706"></div> Assembly-Free Taxonomy</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#ec4899"></div> Annotation</div>
+            <div class="legend-item"><div class="legend-badge" style="background:#10b981"></div> Reporting</div>
+        </div>
+    </div>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+            }
+        });
+    </script>
+</body>
+</html>

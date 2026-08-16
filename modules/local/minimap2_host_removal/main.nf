@@ -3,7 +3,7 @@ process MINIMAP2_HOST_REMOVAL {
     label 'process_high'
 
     // Image bundles minimap2 + samtools
-    container 'quay.io/biocontainers/mulled-v2-66534bcbb7031a148b13ccdd0965fdd44c4da1bf:1679e915ddb9d6b4abda91880c4b48857d471bd-0'
+    container 'community.wave.seqera.io/library/minimap2_samtools:b09096fc890429ce'
 
     input:
     tuple val(meta), path(reads)

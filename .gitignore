@@ -1,31 +1,47 @@
-# === Nextflow / Workflow Execution ===
+# ==============================================================================
+# .gitignore — Hybrid Metagenomics Nextflow DSL2 Pipeline
+# ==============================================================================
+
+# === Nextflow Runtime & Working Directories ===
 .nextflow/
 .nextflow.*
 work/
 results/
 pipeline_info/
+.checkpoints/
 
-# === Pixi Environment & Package Managers ===
-.pixi/
-pixi.lock
+# === Container Caches & Images ===
+*.sif
+*.img
+singularity_cache/
 
-# === Conda & Python Environments ===
-.venv/
-env/
-venv/
-ENV/
-pyvenv.cfg
-.pytest_cache/
+# === Large Reference Databases ===
+databases/*
+!databases/README.md
+!databases/download.sh
+
+# === Python & Environment Files ===
 __pycache__/
 *.py[cod]
 *$py.class
+.pytest_cache/
+.venv/
+venv/
+env/
+ENV/
+pyvenv.cfg
+.pixi/
 
-# === Pipeline Specific Checkpoints & Logs ===
-.checkpoints/
-*.log
-*.bowtie2out.txt
+# === OS & Editor Artifacts ===
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.gemini/
+*.swp
+*~
 
-# === Data & Databases (Large Files) ===
+# === General Large Sequencing & Database Data ===
 *.fastq
 *.fastq.gz
 *.fq
@@ -36,14 +52,13 @@ __pycache__/
 *.faa
 *.bam
 *.bai
+*.sam
 *.paf
-*.tsv
-*.csv
-!samples.csv                # ยกเว้น samples.csv ตัวอย่างไว้เพื่อให้คนอื่นรู้โครงสร้างไฟล์
-!config.yaml                # ยกเว้น config.yaml ตัวอย่างไว้
+*.bt2
+*.dmnd
+*.k2d
 
-# === Operating System / IDEs ===
-.DS_Store
-Thumbs.db
-.vscode/
-.idea/
+# === Explicit Whitelist for Synthetic Test Data & Manifests ===
+# (Allows out-of-the-box CI/CD and test profile execution)
+!test/data/**
+!samples.csv

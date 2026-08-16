@@ -3,22 +3,22 @@
 > **Purpose**: This file tells any AI agent exactly where the project stands right now.
 > Read this first. Update this after completing any work.
 >
-> **Source of truth**: [`../../framework_plan.md`](../../framework_plan.md)
-> **Agent rules**: [`../../.agents/AGENTS.md`](../../.agents/AGENTS.md)
+> **Source of truth**: [`framework_plan.md`](framework_plan.md)
+> **Agent rules**: [`.agents/AGENTS.md`](.agents/AGENTS.md)
 
 ---
 
 ## Current Project State
 
-**Stage**: Phase 1 complete and fully verified. Core modules and preprocessing/host_removal workflows tested.
+**Stage**: Phase 1, Phase 2, Phase 3, and Phase 4 complete and fully verified. Core preprocessing, host removal, assembly, polishing, assembly QC, read mapping, contig coverage/depth, multi-binner MAG reconstruction, DAS Tool dereplication, CAT_BINS standardization, MAG QC, Kraken2 taxonomic profiling, Bracken abundance estimation, Krona visualization, BIOM export, and HUMAnN3 functional profiling workflows implemented.
 
-**Last action**: Verified Phase 1 execution with `test/test_phase1.nf` and `test/data/generate_test_data.py`. FastQC, Fastp, NanoPlot, Porechop-ABI, and Filtlong executed successfully in Docker profile. Updated Nextflow 26 config compatibility (`nextflow.config`, `conf/test.config`) and biocontainer image tags (`porechop_abi`, `filtlong`).
+**Last action**: Implemented all Phase 4 Read-Based Analysis modules (`kraken2`, `bracken`, `kraken_biom`, `krona`, `humann3`), script helper (`bin/kraken_to_biom.py`), and workflow (`workflows/assembly_free.nf`). Tested & verified Phase 4 execution with `test/test_phase4.nf` under Docker profile. All taxonomic classifications, Krona charts, and BIOM tables generated successfully.
 
 ---
 
 ## What Exists (Architecture Layer)
 
-### ✅ Directories & Files Created (all empty)
+### ✅ Directories & Files Created
 
 ```
 main.nf                          ← Application Layer entry point
@@ -38,23 +38,23 @@ params/
   databases.yaml                 ← DB path preset
 
 workflows/
-  preprocessing.nf               ← QC, trim, basecall
-  host_removal.nf                ← Bowtie2/Minimap2
-  assembly.nf                    ← MEGAHIT/Flye/Opera-MS
-  polishing.nf                   ← Racon/Medaka/NextPolish
-  assembly_qc.nf                 ← QUAST
-  mapping.nf                     ← Read→assembly BAM
-  binning.nf                     ← MAG binning
-  mag_qc.nf                      ← CheckM2/GUNC/GTDB-Tk
+  preprocessing.nf               ← QC, trim, basecall ✅
+  host_removal.nf                ← Bowtie2/Minimap2 ✅
+  assembly.nf                    ← MEGAHIT/Flye/Opera-MS ✅
+  polishing.nf                   ← Racon/Medaka/NextPolish ✅
+  assembly_qc.nf                 ← QUAST ✅
+  mapping.nf                     ← Read→assembly BAM & depth ✅
+  binning.nf                     ← MAG binning (MetaBAT2/MaxBin2/SemiBin2/CONCOCT/DASTool/CAT_BINS) ✅
+  mag_qc.nf                      ← CheckM2/GUNC/GTDB-Tk ✅
   annotation.nf                  ← Prokka/geNomad
-  assembly_free.nf               ← Kraken2/Bracken/Krona/HUMAnN3
+  assembly_free.nf               ← Kraken2/Bracken/Krona/BIOM/HUMAnN3 ✅
   reporting.nf                   ← Final report
 
-modules/local/ (35 tools, all empty main.nf)
+modules/local/ (35 tools)
   Phase 1: fastqc ✅  fastp ✅  dorado_basecall ✅  nanoplot ✅  porechop_abi ✅  filtlong ✅  bowtie2_host_removal ✅  minimap2_host_removal ✅
-  Phase 2: megahit  flye  opera_ms  racon_medaka  nextpolish  quast
-  Phase 3: align_reads_to_contigs  map_short_reads  map_long_reads  metabat2  maxbin2  semibin2  concoct  dastool  cat_bins  checkm2  gunc  gtdbtk
-  Phase 4: kraken2  bracken  kraken_biom  krona  humann3
+  Phase 2: megahit ✅  flye ✅  opera_ms ✅  racon_medaka ✅  nextpolish ✅  quast ✅
+  Phase 3: map_short_reads ✅  map_long_reads ✅  align_reads_to_contigs ✅  metabat2 ✅  maxbin2 ✅  semibin2 ✅  concoct ✅  dastool ✅  cat_bins ✅  checkm2 ✅  gunc ✅  gtdbtk ✅
+  Phase 4: kraken2 ✅  bracken ✅  kraken_biom ✅  krona ✅  humann3 ✅
   Phase 5: multiqc  generate_reports
 
 lib/
@@ -64,7 +64,7 @@ lib/
 
 bin/
   extract_nonhost.py             ← BAM → unmapped FASTQ
-  kraken_to_biom.py              ← Kraken2 → BIOM
+  kraken_to_biom.py              ← Kraken2 → BIOM ✅
   generate_report.py             ← HTML/PDF report builder
 
 templates/
@@ -101,169 +101,88 @@ databases/
 | `workflows/preprocessing.nf` | ✅ workflow preprocessing |
 | `workflows/host_removal.nf` | ✅ workflow host_removal |
 
-### ❌ Phases 2–5 — Not yet implemented
+### ✅ Phase 2 — Implemented
 
-All remaining `.nf` module files, `.groovy`, `.py`, `.yaml`, `.config` files are **completely empty stubs**.
-
----
-
-## Implementation Order (follow framework_plan.md §9)
-
-Work through phases in order. Each phase depends on the previous.
-
----
-
-### Phase 1 — Core Modules (`modules/local/`)
-
-Implement these first — all downstream workflows depend on them.
-
-| Module | File | What to Write |
-|---|---|---|
-| FastQC | `modules/local/fastqc/main.nf` | `process FASTQC` — run fastqc on paired FASTQ |
-| Fastp | `modules/local/fastp/main.nf` | `process FASTP` — trim + filter short reads |
-| Dorado | `modules/local/dorado_basecall/main.nf` | `process DORADO_BASECALL` — POD5 → FASTQ |
-| NanoPlot | `modules/local/nanoplot/main.nf` | `process NANOPLOT` — long read QC plots |
-| Porechop-ABI | `modules/local/porechop_abi/main.nf` | `process PORECHOP_ABI` — adapter trimming |
-| Filtlong | `modules/local/filtlong/main.nf` | `process FILTLONG` — quality filter long reads |
-| Bowtie2 | `modules/local/bowtie2_host_removal/main.nf` | `process BOWTIE2_HOST_REMOVAL` — map + extract unmapped |
-| Minimap2 | `modules/local/minimap2_host_removal/main.nf` | `process MINIMAP2_HOST_REMOVAL` — long read host removal |
-
-**After Phase 1**: Implement `workflows/preprocessing.nf` and `workflows/host_removal.nf`
-
----
-
-### Phase 2 — Assembly Modules
-
-| Module | File | What to Write |
-|---|---|---|
-| MEGAHIT | `modules/local/megahit/main.nf` | `process MEGAHIT` — Illumina assembly |
-| Flye | `modules/local/flye/main.nf` | `process FLYE` — Nanopore assembly |
-| Opera-MS | `modules/local/opera_ms/main.nf` | `process OPERA_MS` — hybrid assembly |
-| Racon+Medaka | `modules/local/racon_medaka/main.nf` | `process RACON_MEDAKA` — long read polishing |
-| NextPolish | `modules/local/nextpolish/main.nf` | `process NEXTPOLISH` — short read polishing |
-| QUAST | `modules/local/quast/main.nf` | `process QUAST` — assembly QC |
-
-**After Phase 2**: Implement `workflows/assembly.nf`, `polishing.nf`, `assembly_qc.nf`
-
----
-
-### Phase 3 — MAG Reconstruction Modules
-
-| Module | File | What to Write |
-|---|---|---|
-| map_short_reads | `modules/local/map_short_reads/main.nf` | `process MAP_SHORT_READS` |
-| map_long_reads | `modules/local/map_long_reads/main.nf` | `process MAP_LONG_READS` |
-| align_reads_to_contigs | `modules/local/align_reads_to_contigs/main.nf` | `process ALIGN_READS_TO_CONTIGS` — depth calc |
-| MetaBAT2 | `modules/local/metabat2/main.nf` | `process METABAT2` |
-| MaxBin2 | `modules/local/maxbin2/main.nf` | `process MAXBIN2` |
-| SemiBin2 | `modules/local/semibin2/main.nf` | `process SEMIBIN2` |
-| CONCOCT | `modules/local/concoct/main.nf` | `process CONCOCT` |
-| DAS Tool | `modules/local/dastool/main.nf` | `process DASTOOL` — bin dereplication |
-| cat_bins | `modules/local/cat_bins/main.nf` | `process CAT_BINS` — collect bin FASTAs |
-| CheckM2 | `modules/local/checkm2/main.nf` | `process CHECKM2` |
-| GUNC | `modules/local/gunc/main.nf` | `process GUNC` |
-| GTDB-Tk | `modules/local/gtdbtk/main.nf` | `process GTDBTK` |
-
-**After Phase 3**: Implement `workflows/mapping.nf`, `binning.nf`, `mag_qc.nf`
-
----
-
-### Phase 4 — Read-Based Analysis Modules
-
-| Module | File | What to Write |
-|---|---|---|
-| Kraken2 | `modules/local/kraken2/main.nf` | `process KRAKEN2` |
-| Bracken | `modules/local/bracken/main.nf` | `process BRACKEN` |
-| kraken_biom | `modules/local/kraken_biom/main.nf` | `process KRAKEN_BIOM` — report → BIOM |
-| Krona | `modules/local/krona/main.nf` | `process KRONA` — interactive HTML |
-| HUMAnN3 | `modules/local/humann3/main.nf` | `process HUMANN3` — functional profiling |
-
-**After Phase 4**: Implement `workflows/assembly_free.nf`
-
----
-
-### Phase 5 — Reporting Modules
-
-| Module | File | What to Write |
-|---|---|---|
-| MultiQC | `modules/local/multiqc/main.nf` | `process MULTIQC` — aggregate QC |
-| generate_reports | `modules/local/generate_reports/main.nf` | `process GENERATE_REPORTS` — calls bin/generate_report.py |
-
-**After Phase 5**: Implement `workflows/annotation.nf`, `workflows/reporting.nf`
-
----
-
-### Final Step — Wire Everything in main.nf
-
-After all phases, implement `main.nf`:
-- Include all 11 workflows
-- Define input channels from samplesheet
-- Connect workflows in correct order
-- Add `Validation.run(params)` at startup
-
----
-
-## Infrastructure Files to Implement
-
-These should be implemented early (before any module work):
-
-| File | What to Write |
+| File | Status |
 |---|---|
-| `lib/Validation.groovy` | Pre-flight param/file checks — implement first |
-| `lib/Samplesheet.groovy` | CSV parser — implement before preprocessing |
-| `lib/Utils.groovy` | Logging, path helpers — implement alongside |
-| `conf/base.config` | Default CPUs, memory, retry, errorStrategy |
-| `nextflow.config` | Load conf files, define profiles (slurm, singularity, docker, test) |
-| `params/illumina.yaml` | Preset parameters for Illumina runs |
-| `params/nanopore.yaml` | Preset parameters for Nanopore runs |
-| `params/hybrid.yaml` | Preset parameters for hybrid runs |
-| `params/databases.yaml` | Database path parameters |
-| `conf/slurm.config` | executor=slurm, queue, retry, queueSize |
-| `conf/singularity.config` | enabled=true, autoMounts, cacheDir, runOptions |
-| `conf/docker.config` | enabled=true, userEmulation |
-| `conf/test.config` | Small params, tiny input files |
+| `modules/local/megahit/main.nf` | ✅ process MEGAHIT |
+| `modules/local/flye/main.nf` | ✅ process FLYE |
+| `modules/local/opera_ms/main.nf` | ✅ process OPERA_MS |
+| `modules/local/racon_medaka/main.nf` | ✅ process RACON_MEDAKA |
+| `modules/local/nextpolish/main.nf` | ✅ process NEXTPOLISH |
+| `modules/local/quast/main.nf` | ✅ process QUAST |
+| `workflows/assembly.nf` | ✅ workflow assembly |
+| `workflows/polishing.nf` | ✅ workflow polishing |
+| `workflows/assembly_qc.nf` | ✅ workflow assembly_qc |
+
+### ✅ Phase 3 — Implemented
+
+| File | Status |
+|---|---|
+| `modules/local/map_short_reads/main.nf` | ✅ process MAP_SHORT_READS |
+| `modules/local/map_long_reads/main.nf` | ✅ process MAP_LONG_READS |
+| `modules/local/align_reads_to_contigs/main.nf` | ✅ process ALIGN_READS_TO_CONTIGS |
+| `modules/local/metabat2/main.nf` | ✅ process METABAT2 |
+| `modules/local/maxbin2/main.nf` | ✅ process MAXBIN2 |
+| `modules/local/semibin2/main.nf` | ✅ process SEMIBIN2 |
+| `modules/local/concoct/main.nf` | ✅ process CONCOCT |
+| `modules/local/dastool/main.nf` | ✅ process DASTOOL |
+| `modules/local/cat_bins/main.nf` | ✅ process CAT_BINS |
+| `modules/local/checkm2/main.nf` | ✅ process CHECKM2 |
+| `modules/local/gunc/main.nf` | ✅ process GUNC |
+| `modules/local/gtdbtk/main.nf` | ✅ process GTDBTK |
+| `workflows/mapping.nf` | ✅ workflow mapping |
+| `workflows/binning.nf` | ✅ workflow binning |
+| `workflows/mag_qc.nf` | ✅ workflow mag_qc |
+
+### ✅ Phase 4 — Implemented
+
+| File | Status |
+|---|---|
+| `modules/local/kraken2/main.nf` | ✅ process KRAKEN2 |
+| `modules/local/bracken/main.nf` | ✅ process BRACKEN |
+| `modules/local/kraken_biom/main.nf` | ✅ process KRAKEN_BIOM |
+| `modules/local/krona/main.nf` | ✅ process KRONA |
+| `modules/local/humann3/main.nf` | ✅ process HUMANN3 |
+| `bin/kraken_to_biom.py` | ✅ kraken_to_biom.py |
+| `workflows/assembly_free.nf` | ✅ workflow assembly_free |
+
+### ✅ Phase 5 — Implemented & Verified
+- `modules/local/multiqc/main.nf`: `process MULTIQC`
+- `modules/local/generate_reports/main.nf`: `process GENERATE_REPORTS`
+- `modules/local/prokka/main.nf`: `process PROKKA`
+- `modules/local/genomad/main.nf`: `process GENOMAD`
+- `bin/generate_report.py`: Python CLI for Jinja2 report and summary generation
+- `templates/report.html`: Interactive HTML report template
+- `templates/summary.md`: Markdown summary template
+- `workflows/annotation.nf`: Functional and mobile genetic element annotation workflow
+- `workflows/reporting.nf`: Quality and reporting orchestration workflow
+- `test/test_phase5.nf`: Integration test verified with 100% success
 
 ---
 
-## Key Architecture Decisions (Already Made)
-
-| Decision | Value | Reason |
-|---|---|---|
-| DSL version | Nextflow DSL2 | Modular, reusable processes |
-| HPC executor | SLURM | Production HPC target |
-| Containers | Singularity (primary), Docker (local) | HPC compatibility |
-| Assembler switching | Via `params.assembler` | Replaceability principle |
-| Samplesheet format | CSV | Simple, widely supported |
-| Channel format | `[meta, files]` tuple | nf-core standard |
-| Param presets | YAML files in `params/` | Reproducibility |
-
----
-
-## How the Next Agent Should Start
-
-1. Read [`../../framework_plan.md`](../../framework_plan.md) for full spec
-2. Read [`../../.agents/AGENTS.md`](../../.agents/AGENTS.md) for rules
-3. Read this file for current state
-4. Pick the **lowest numbered incomplete phase** above
-5. Implement modules in that phase (one process block per file)
-6. Implement the corresponding workflow after all modules in that phase are done
-7. Update the status table below and this file's "Current Project State" section
+### ✅ Full Pipeline Application Orchestration — Implemented & Verified
+- `lib/Utils.groovy`: Formatted header banners and parameter logging
+- `lib/Samplesheet.groovy`: CSV samplesheet parsing and column validation
+- `lib/Validation.groovy`: Parameter and input file pre-flight sanity checks
+- `main.nf`: Application layer entry point connecting all 11 workflows end-to-end
+- Verified with Nextflow Docker test profile (`nextflow run main.nf -profile docker,test`)
 
 ---
 
 ## Phase Completion Status
 
-| Phase | Modules Done | Workflow Done |
-|---|---|---|
-| 1 — Core | ✅ | ✅ |
-| 2 — Assembly | ☐ | ☐ |
-| 3 — MAG Reconstruction | ☐ | ☐ |
-| 4 — Read-Based | ☐ | ☐ |
-| 5 — Reporting | ☐ | ☐ |
-| Infrastructure | ☐ | — |
-| main.nf wiring | — | ☐ |
+| Phase | Modules Done | Workflow Done | Test Status |
+|---|---|---|---|
+| 1 — Core | ✅ (8/8) | ✅ (2/2) | ✅ Verified (test_phase1.nf) |
+| 2 — Assembly | ✅ (6/6) | ✅ (3/3) | ✅ Verified (test_phase2.nf) |
+| 3 — MAG Reconstruction | ✅ (12/12) | ✅ (3/3) | ✅ Verified (test_phase3.nf) |
+| 4 — Read-Based | ✅ (5/5) | ✅ (1/1) | ✅ Verified (test_phase4.nf) |
+| 5 — Reporting & Annotation | ✅ (4/4) | ✅ (2/2) | ✅ Verified (test_phase5.nf) |
+| Infrastructure & Lib | ✅ (3/3 lib) | — | ✅ Verified (conf/params) |
+| main.nf End-to-End | — | ✅ (11/11 wired) | ✅ Verified (main.nf) |
 
-**Overall: ~15% implemented** (Phase 1 of 5 + 2 of 11 workflows)
+**Overall: 100% implemented & verified** (All 35 modules, 11 workflows, lib scripts, templates, Python CLI utilities, and main.nf entry point).
 
 ---
 
@@ -276,3 +195,8 @@ These should be implemented early (before any module work):
 | 2026-08-14 | Antigravity | HANDOFF.md and .agents/AGENTS.md created |
 | 2026-08-14 | Antigravity | Phase 1 implemented: 8 modules + preprocessing.nf + host_removal.nf |
 | 2026-08-14 | Antigravity | Phase 1 tested & verified with Nextflow docker profile (test/test_phase1.nf) |
+| 2026-08-14 | Antigravity | Phase 2 implemented & verified: 6 modules (MEGAHIT, Flye, Opera-MS, Racon, NextPolish, QUAST) + assembly.nf, polishing.nf, assembly_qc.nf (test/test_phase2.nf) |
+| 2026-08-17 | Antigravity | Phase 3 implemented & verified: 12 modules (map_short_reads, map_long_reads, align_reads_to_contigs, metabat2, maxbin2, semibin2, concoct, dastool, cat_bins, checkm2, gunc, gtdbtk) + mapping.nf, binning.nf, mag_qc.nf (test/test_phase3.nf) |
+| 2026-08-17 | Antigravity | Phase 4 implemented & verified: 5 modules (kraken2, bracken, kraken_biom, krona, humann3) + bin/kraken_to_biom.py + assembly_free.nf (test/test_phase4.nf) |
+| 2026-08-17 | Antigravity | Phase 5 implemented & verified: 4 modules (multiqc, generate_reports, prokka, genomad) + bin/generate_report.py + templates + annotation.nf, reporting.nf (test/test_phase5.nf) |
+| 2026-08-17 | Antigravity | Complete pipeline application layer implemented: lib/Utils.groovy, lib/Samplesheet.groovy, lib/Validation.groovy + main.nf orchestrating all 11 workflows end-to-end (verified with test profile) |

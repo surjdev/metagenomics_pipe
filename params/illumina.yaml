@@ -1,0 +1,13 @@
+# params/illumina.yaml — Illumina Short-Read Preset
+min_quality: 20
+min_length: 50
+assembler: megahit
+run_polishing: true
+polisher: nextpolish
+min_contig_len_binning: 1500
+run_metabat2: true
+run_maxbin2: true
+run_semibin2: false
+run_concoct: false
+run_dastool: true
+dastool_threshold: 0.5

@@ -18,20 +18,27 @@ def rand_seq(n):
 def rand_qual(n, min_q=30, max_q=40):
     return ''.join(chr(random.randint(min_q, max_q) + 33) for _ in range(n))
 
-def write_fastq_gz(path, n_reads=500, read_len=150):
+def generate_synthetic_genome(genome_len=30000):
+    return rand_seq(genome_len)
+
+def write_fastq_gz(path, genome, n_reads=1000, read_len=150):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    glen = len(genome)
     with gzip.open(path, 'wt') as f:
         for i in range(n_reads):
-            seq  = rand_seq(read_len)
+            start = random.randint(0, glen - read_len - 1)
+            seq  = genome[start:start+read_len]
             qual = rand_qual(read_len)
             f.write(f'@read{i}\n{seq}\n+\n{qual}\n')
     print(f'  Written: {path}  ({n_reads} reads x {read_len} bp)')
 
-def write_long_fastq_gz(path, n_reads=100, read_len=5000):
+def write_long_fastq_gz(path, genome, n_reads=300, read_len=3000):
     os.makedirs(os.path.dirname(path), exist_ok=True)
+    glen = len(genome)
     with gzip.open(path, 'wt') as f:
         for i in range(n_reads):
-            seq  = rand_seq(read_len)
+            start = random.randint(0, glen - read_len - 1)
+            seq  = genome[start:start+read_len]
             qual = rand_qual(read_len, 20, 35)
             f.write(f'@long_read{i}\n{seq}\n+\n{qual}\n')
     print(f'  Written: {path}  ({n_reads} reads x {read_len} bp)')
@@ -62,10 +69,11 @@ long_reads  = os.path.join(base, 'tiny_nanopore',  'sample1_long.fastq.gz')
 host_ref    = os.path.join(base, 'tiny_databases', 'host_ref.fasta')
 samplesheet = os.path.join(base, 'samplesheet.csv')
 
-print('Generating Phase 1 test data...')
-write_fastq_gz(illumina_r1)
-write_fastq_gz(illumina_r2)
-write_long_fastq_gz(long_reads)
+print('Generating synthetic test data...')
+genome = generate_synthetic_genome(30000)
+write_fastq_gz(illumina_r1, genome)
+write_fastq_gz(illumina_r2, genome)
+write_long_fastq_gz(long_reads, genome)
 write_fasta(host_ref)
 write_samplesheet(samplesheet, illumina_r1, illumina_r2, long_reads)
 print('Done.')

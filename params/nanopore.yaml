@@ -1,0 +1,18 @@
+# params/nanopore.yaml — Nanopore Long-Read Preset
+min_quality_long: 10
+min_length_long: 1000
+run_basecalling: false
+run_porechop: true
+run_filtlong: true
+assembler: flye
+flye_mode: --nano-hq
+run_polishing: true
+polisher: racon
+min_contig_len_binning: 2000
+run_metabat2: true
+run_maxbin2: false
+run_semibin2: true
+semibin_environment: global
+run_concoct: false
+run_dastool: false
+dastool_threshold: 0.5

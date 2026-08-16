@@ -1,10 +1,10 @@
-include { FASTQC        } from '../modules/local/fastqc/main.nf'
-include { FASTP         } from '../modules/local/fastp/main.nf'
-include { NANOPLOT      } from '../modules/local/nanoplot/main.nf'
-include { DORADO_BASECALL } from '../modules/local/dorado_basecall/main.nf'
-include { PORECHOP_ABI  } from '../modules/local/porechop_abi/main.nf'
-include { FILTLONG      } from '../modules/local/filtlong/main.nf'
-include { MULTIQC       } from '../modules/local/multiqc/main.nf'
+include { FASTQC           } from '../modules/local/fastqc/main.nf'
+include { FASTP            } from '../modules/local/fastp/main.nf'
+include { NANOPLOT         } from '../modules/local/nanoplot/main.nf'
+include { DORADO_BASECALL  } from '../modules/local/dorado_basecall/main.nf'
+include { PORECHOP_ABI     } from '../modules/local/porechop_abi/main.nf'
+include { FILTLONG         } from '../modules/local/filtlong/main.nf'
+include { MULTIQC as MULTIQC_PREPROCESS } from '../modules/local/multiqc/main.nf'
 
 workflow preprocessing {
 
@@ -18,12 +18,12 @@ workflow preprocessing {
     // ── Short reads ──────────────────────────────────────────────────────────
     // Run FastQC on raw short reads
     FASTQC ( ch_short_reads )
-    ch_qc_reports = ch_qc_reports.mix( FASTQC.out.zip )
+    ch_qc_reports = ch_qc_reports.mix( FASTQC.out.zip.map { meta, zip -> zip } )
 
     // Trim adapters and filter by quality/length
     FASTP ( ch_short_reads )
     ch_clean_short = FASTP.out.reads
-    ch_qc_reports  = ch_qc_reports.mix( FASTP.out.json )
+    ch_qc_reports  = ch_qc_reports.mix( FASTP.out.json.map { meta, json -> json } )
 
     // ── Long reads ───────────────────────────────────────────────────────────
     // Optional basecalling (only when starting from raw POD5/FAST5)
@@ -36,7 +36,7 @@ workflow preprocessing {
 
     // Long read quality statistics
     NANOPLOT ( ch_basecalled )
-    ch_qc_reports = ch_qc_reports.mix( NANOPLOT.out.txt )
+    ch_qc_reports = ch_qc_reports.mix( NANOPLOT.out.txt.map { meta, txt -> txt } )
 
     // Optional adapter trimming for long reads
     if ( params.run_porechop ) {
@@ -54,12 +54,8 @@ workflow preprocessing {
         ch_clean_long = ch_trimmed_long
     }
 
-    // ── QC Aggregation ───────────────────────────────────────────────────────
-    MULTIQC ( ch_qc_reports.collect() )
-
     emit:
     short_reads  = ch_clean_short        // [ meta, [ fq1, fq2 ] ]
     long_reads   = ch_clean_long         // [ meta, fastq ]
     qc_reports   = ch_qc_reports
-    multiqc_html = MULTIQC.out.html
 }

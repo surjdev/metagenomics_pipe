@@ -1,0 +1,2 @@
+sample,fastq_1,fastq_2,long_reads,platform
+SAMPLE001,/home/surj/Workspace/metagenomics-pipeline/test/data/tiny_illumina/sample1_R1.fastq.gz,/home/surj/Workspace/metagenomics-pipeline/test/data/tiny_illumina/sample1_R2.fastq.gz,/home/surj/Workspace/metagenomics-pipeline/test/data/tiny_nanopore/sample1_long.fastq.gz,hybrid

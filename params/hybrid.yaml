@@ -1,0 +1,19 @@
+# params/hybrid.yaml — Hybrid Short + Long Read Preset
+min_quality: 20
+min_length: 50
+min_quality_long: 10
+min_length_long: 1000
+run_basecalling: false
+run_porechop: true
+run_filtlong: true
+assembler: opera_ms
+run_polishing: true
+polisher: nextpolish
+min_contig_len_binning: 1500
+run_metabat2: true
+run_maxbin2: true
+run_semibin2: true
+semibin_environment: global
+run_concoct: true
+run_dastool: true
+dastool_threshold: 0.5

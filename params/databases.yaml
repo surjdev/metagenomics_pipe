@@ -1,0 +1,10 @@
+# params/databases.yaml — Reference Database Paths Preset
+host_genome: null
+host_index_prefix: host
+checkm2_db: null
+gunc_db: null
+gtdbtk_db: null
+kraken2_db: null
+humann3_nucleotide_db: null
+humann3_protein_db: null
+genomad_db: null
