@@ -1,0 +1,141 @@
+[2026-08-27 13:35:07] root: INFO: Starting Flye 2.9.6-b1802
+[2026-08-27 13:35:07] root: DEBUG: Cmd: /home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/bin/flye --nano-hq barcode16_nonhost.fastq.gz --meta --min-overlap 1000 --out-dir flye_out --threads 4
+[2026-08-27 13:35:07] root: DEBUG: Python version: 3.11.15 | packaged by conda-forge | (main, Jun 11 2026, 03:34:02) [GCC 14.3.0]
+[2026-08-27 13:35:07] root: INFO: >>>STAGE: configure
+[2026-08-27 13:35:07] root: INFO: Configuring run
+[2026-08-27 13:35:07] root: INFO: Total read length: 51615
+[2026-08-27 13:35:07] root: INFO: Reads N50/N90: 523 / 338
+[2026-08-27 13:35:07] root: INFO: Selected minimum overlap: 1000
+[2026-08-27 13:35:07] root: INFO: >>>STAGE: assembly
+[2026-08-27 13:35:07] root: INFO: Assembling disjointigs
+[2026-08-27 13:35:07] root: DEBUG: -----Begin assembly log------
+[2026-08-27 13:35:07] root: DEBUG: Running: flye-modules assemble --reads /home/surj/Workspace/metagenomics-pipeline/work/b1/4f947d58d89460fe4ae418cef59f76/barcode16_nonhost.fastq.gz --out-asm /home/surj/Workspace/metagenomics-pipeline/work/b1/4f947d58d89460fe4ae418cef59f76/flye_out/00-assembly/draft_assembly.fasta --config /home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/lib/python3.11/site-packages/flye/config/bin_cfg/asm_nano_hq.cfg --log /home/surj/Workspace/metagenomics-pipeline/work/b1/4f947d58d89460fe4ae418cef59f76/flye_out/flye.log --threads 4 --meta --min-ovlp 1000
+[2026-08-27 13:35:07] DEBUG: Build date: Apr 13 2026 04:22:31
+[2026-08-27 13:35:07] DEBUG: Total RAM: 23 Gb
+[2026-08-27 13:35:07] DEBUG: Available RAM: 11 Gb
+[2026-08-27 13:35:07] DEBUG: Total CPUs: 12
+[2026-08-27 13:35:07] DEBUG: Loading /home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/lib/python3.11/site-packages/flye/config/bin_cfg/asm_nano_hq.cfg
+[2026-08-27 13:35:07] DEBUG: Loading /home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/lib/python3.11/site-packages/flye/config/bin_cfg/asm_defaults.cfg
+[2026-08-27 13:35:07] DEBUG: 	big_genome_threshold=29000000
+[2026-08-27 13:35:07] DEBUG: 	meta_read_filter_kmer_freq=100
+[2026-08-27 13:35:07] DEBUG: 	chain_large_gap_penalty=2
+[2026-08-27 13:35:07] DEBUG: 	chain_small_gap_penalty=0.5
+[2026-08-27 13:35:07] DEBUG: 	chain_gap_jump_threshold=100
+[2026-08-27 13:35:07] DEBUG: 	max_jump_gap=500
+[2026-08-27 13:35:07] DEBUG: 	max_coverage_drop_rate=5
+[2026-08-27 13:35:07] DEBUG: 	max_extensions_drop_rate=5
+[2026-08-27 13:35:07] DEBUG: 	chimera_window=100
+[2026-08-27 13:35:07] DEBUG: 	chimera_overhang=1000
+[2026-08-27 13:35:07] DEBUG: 	min_reads_in_disjointig=4
+[2026-08-27 13:35:07] DEBUG: 	max_inner_reads=10
+[2026-08-27 13:35:07] DEBUG: 	max_inner_fraction=0.25
+[2026-08-27 13:35:07] DEBUG: 	aggressive_dup_filter=1
+[2026-08-27 13:35:07] DEBUG: 	max_separation=500
+[2026-08-27 13:35:07] DEBUG: 	unique_edge_length=50000
+[2026-08-27 13:35:07] DEBUG: 	min_repeat_res_support=0.51
+[2026-08-27 13:35:07] DEBUG: 	out_paths_ratio=5
+[2026-08-27 13:35:07] DEBUG: 	graph_cov_drop_rate=5
+[2026-08-27 13:35:07] DEBUG: 	coverage_estimate_window=100
+[2026-08-27 13:35:07] DEBUG: 	max_bubble_length=50000
+[2026-08-27 13:35:07] DEBUG: 	loop_coverage_rate=1.5
+[2026-08-27 13:35:07] DEBUG: 	repeat_edge_cov_mult=1.75
+[2026-08-27 13:35:07] DEBUG: 	weak_detach_rate=5
+[2026-08-27 13:35:07] DEBUG: 	tip_coverage_rate=2
+[2026-08-27 13:35:07] DEBUG: 	tip_length_rate=2
+[2026-08-27 13:35:07] DEBUG: 	output_gfa_before_rr=1
+[2026-08-27 13:35:07] DEBUG: 	remove_alt_edges=0
+[2026-08-27 13:35:07] DEBUG: 	low_cutoff_warning=0
+[2026-08-27 13:35:07] DEBUG: 	kmer_size=17
+[2026-08-27 13:35:07] DEBUG: 	use_minimizers=1
+[2026-08-27 13:35:07] DEBUG: 	minimizer_window=10
+[2026-08-27 13:35:07] DEBUG: 	reads_base_alignment=1
+[2026-08-27 13:35:07] DEBUG: 	meta_read_top_kmer_rate=0.75
+[2026-08-27 13:35:07] DEBUG: 	maximum_jump=1500
+[2026-08-27 13:35:07] DEBUG: 	maximum_overhang=1500
+[2026-08-27 13:35:07] DEBUG: 	repeat_kmer_rate=100
+[2026-08-27 13:35:07] DEBUG: 	assemble_ovlp_divergence=0.03
+[2026-08-27 13:35:07] DEBUG: 	assemble_divergence_relative=1
+[2026-08-27 13:35:07] DEBUG: 	repeat_graph_ovlp_divergence=0.03
+[2026-08-27 13:35:07] DEBUG: 	read_align_ovlp_divergence=0.10
+[2026-08-27 13:35:07] DEBUG: 	hpc_scoring_on=1
+[2026-08-27 13:35:07] DEBUG: 	add_unassembled_reads=0
+[2026-08-27 13:35:07] DEBUG: 	extend_contigs_with_repeats=0
+[2026-08-27 13:35:07] DEBUG: 	min_read_cov_cutoff=3
+[2026-08-27 13:35:07] DEBUG: 	short_tip_length=20000
+[2026-08-27 13:35:07] DEBUG: 	long_tip_length=100000
+[2026-08-27 13:35:07] DEBUG: Running with k-mer size: 17
+[2026-08-27 13:35:07] DEBUG: Running with minimum overlap 1000
+[2026-08-27 13:35:07] DEBUG: Metagenome mode: Y
+[2026-08-27 13:35:07] DEBUG: Short mode: N
+[2026-08-27 13:35:07] INFO: Reading sequences
+[2026-08-27 13:35:07] DEBUG: Building positional index
+[2026-08-27 13:35:07] DEBUG: Total sequence: 7182 bp
+[2026-08-27 13:35:07] INFO: Building minimizer index
+[2026-08-27 13:35:07] INFO: Pre-calculating index storage
+[2026-08-27 13:35:07] DEBUG: Mean k-mer frequency: 1.27321
+[2026-08-27 13:35:07] DEBUG: Repetitive k-mer frequency: 127
+[2026-08-27 13:35:07] DEBUG: Filtered 0 repetitive k-mers (0)
+[2026-08-27 13:35:07] INFO: Filling index
+[2026-08-27 13:35:07] DEBUG: Sorting k-mer index
+[2026-08-27 13:35:07] DEBUG: Selected k-mers: 947
+[2026-08-27 13:35:07] DEBUG: K-mer index size: 1207
+[2026-08-27 13:35:07] DEBUG: Mean k-mer frequency: 1.27455
+[2026-08-27 13:35:07] DEBUG: Minimizer rate: 5.95029
+[2026-08-27 13:35:07] DEBUG: Peak RAM usage: 0 Gb
+[2026-08-27 13:35:07] DEBUG: Estimating k-mer identity bias
+[2026-08-27 13:35:58] DEBUG: Initial divergence estimate : 0.336938
+[2026-08-27 13:35:58] DEBUG: Relative threshold: Y
+[2026-08-27 13:35:58] DEBUG: Max divergence threshold set to 0.366938
+[2026-08-27 13:35:58] INFO: Extending reads
+[2026-08-27 13:35:58] DEBUG: Estimating overlap coverage
+[2026-08-27 13:35:58] WARNING: No overlaps found!
+[2026-08-27 13:35:58] INFO: Overlap-based coverage: 0
+[2026-08-27 13:35:58] INFO: Median overlap divergence: 0.336938
+[2026-08-27 13:35:58] DEBUG: Sequence divergence distribution: 
+
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    |                                                                   *     |                          
+    ----------------------------------------------------------------------------------------------------
+    0%        5%        10%       15%       20%       25%       30%       35%       40%       45%       
+
+    Q25 = 0.34, Q50 = 0.34, Q75 = 0.34
+
+[2026-08-27 13:35:59] INFO: Assembled 0 disjointigs
+[2026-08-27 13:35:59] INFO: Generating sequence
+[2026-08-27 13:35:59] DEBUG: Building positional index
+[2026-08-27 13:35:59] DEBUG: Mean k-mer frequency: 0
+[2026-08-27 13:35:59] DEBUG: Repetitive k-mer frequency: 0
+[2026-08-27 13:35:59] DEBUG: Filtered 0 repetitive k-mers (-nan)
+[2026-08-27 13:35:59] DEBUG: Sorting k-mer index
+[2026-08-27 13:35:59] DEBUG: Selected k-mers: 0
+[2026-08-27 13:35:59] DEBUG: K-mer index size: 0
+[2026-08-27 13:35:59] DEBUG: Mean k-mer frequency: -nan
+[2026-08-27 13:35:59] DEBUG: Minimizer rate: -nan
+[2026-08-27 13:35:59] INFO: Filtering contained disjointigs
+[2026-08-27 13:35:59] DEBUG: Computing transitive closure for overlaps
+[2026-08-27 13:35:59] DEBUG: Found 0 overlaps
+[2026-08-27 13:35:59] DEBUG: Left 0 overlaps after filtering
+[2026-08-27 13:35:59] INFO: Contained seqs: 0
+[2026-08-27 13:35:59] DEBUG: Writing FASTA
+[2026-08-27 13:35:59] DEBUG: Peak RAM usage: 0 Gb
+-----------End assembly log------------
+[2026-08-27 13:35:59] root: ERROR: No disjointigs were assembled - please check if the read type and genome size parameters are correct
+[2026-08-27 13:35:59] root: ERROR: Pipeline aborted

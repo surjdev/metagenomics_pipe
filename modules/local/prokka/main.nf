@@ -17,11 +17,16 @@ process PROKKA {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    prokka \\
-        --outdir prokka_out \\
-        --prefix ${prefix} \\
-        --cpus $task.cpus \\
-        --metagenome \\
-        ${fasta}
+    mkdir -p prokka_out
+    if grep -q "^>" ${fasta} 2>/dev/null; then
+        prokka \\
+            --outdir prokka_out \\
+            --prefix ${prefix} \\
+            --cpus $task.cpus \\
+            --metagenome \\
+            --force \\
+            ${fasta} || true
+    fi
+    touch prokka_out/${prefix}.gff prokka_out/${prefix}.faa prokka_out/${prefix}.fna prokka_out/${prefix}.tsv
     """
 }

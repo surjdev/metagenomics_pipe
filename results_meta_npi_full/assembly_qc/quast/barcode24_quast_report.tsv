@@ -1,0 +1,23 @@
+Assembly	barcode24.flye
+# contigs (>= 0 bp)	7
+# contigs (>= 1000 bp)	6
+# contigs (>= 5000 bp)	3
+# contigs (>= 10000 bp)	0
+# contigs (>= 25000 bp)	0
+# contigs (>= 50000 bp)	0
+Total length (>= 0 bp)	32441
+Total length (>= 1000 bp)	31734
+Total length (>= 5000 bp)	24519
+Total length (>= 10000 bp)	0
+Total length (>= 25000 bp)	0
+Total length (>= 50000 bp)	0
+# contigs	7
+Largest contig	8934
+Total length	32441
+GC (%)	39.94
+N50	8090
+N90	2117
+auN	6837.9
+L50	2
+L90	5
+# N's per 100 kbp	0.00

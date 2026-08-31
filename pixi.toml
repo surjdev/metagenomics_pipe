@@ -1,37 +1,123 @@
-[project]
+[workspace]
 name = "metagenomics-pipeline"
 version = "0.1.0"
-description = "Hybrid Short/Long-Read Metagenomics Pipeline"
-authors = ["Your Name <your-email@example.com>"]
+description = "Hybrid Short/Long-Read Metagenomics Pipeline & Bioinformatic Playground"
+authors = ["Surj Dev <surj@example.com>"]
 channels = ["conda-forge", "bioconda"]
-platforms = ["linux-64", "osx-64", "osx-arm64"]
+platforms = ["linux-64"]
 
+# ==============================================================================
+# Default / Primary Interactive Playground Environment
+# Contains common QC, preprocessing, mapping, assembly, binning & profiling tools
+# ==============================================================================
 [dependencies]
-# --- Core Runtimes & Dev Tools (Section 1) ---
+# --- Core Orchestration & Development ---
 nextflow = ">=23.10"
-openjdk = ">=17"     # Java 17+ runtime required by Nextflow
-nf-core = "*"        # Recommended for linting and schema validation
+openjdk = ">=17"
+nf-core = "*"
 
-# --- Python Helper Script Environment (Section 8) ---
-python = "3.11.*"
+# --- Python Helper Script Environment ---
+python = ">=3.10,<3.12"
 pandas = "*"
-biom-format = "*"    # Required for handling BIOM tables
+biopython = "*"
+pyyaml = "*"
+jinja2 = "*"
+biom-format = "*"
+scipy = "*"
 
-# --- R Helper Script Environment (Section 8) ---
-r-base = ">=4.4"
-bioconductor-phyloseq = "*"
+# --- Phase 1: Quality Control & Preprocessing ---
+fastqc = ">=0.12"
+fastp = ">=0.23"
+nanoplot = ">=1.42"
+filtlong = ">=0.2"
+porechop = ">=0.2.4"
+multiqc = ">=1.19"
+
+# --- Phase 1 & 3: Host Removal, Alignment & BAM Processing ---
+bowtie2 = ">=2.5"
+minimap2 = ">=2.26"
+samtools = ">=1.19"
+bedtools = ">=2.31"
+
+# --- Phase 2: Assembly, Polishing & Assembly QC ---
+megahit = ">=1.2"
+flye = ">=2.9"
+racon = ">=1.5"
+quast = ">=5.2"
+
+# --- Phase 3: Primary MAG Binning ---
+metabat2 = ">=2.15"
+maxbin2 = ">=2.2"
+concoct = ">=1.1"
+das_tool = ">=1.1.6"
+
+# --- Phase 4: Read-Based Taxonomic Profiling & Visualization ---
+kraken2 = ">=2.1"
+bracken = ">=2.9"
+kraken-biom = ">=1.2"
+krona = ">=2.8"
+
+# ==============================================================================
+# Isolated Feature Environments for Specialized / Heavy Tools
+# (Isolated to avoid dependency & Python/Perl/CUDA version conflicts)
+# ==============================================================================
+
+[feature.checkm2.dependencies]
+checkm2 = ">=1.0.2"
+python = "3.8.*"
+
+[feature.gunc.dependencies]
+gunc = ">=1.0.5"
+
+[feature.gtdbtk.dependencies]
+gtdbtk = ">=2.3.2"
+
+[feature.semibin.dependencies]
+semibin = ">=2.0"
+
+[feature.prokka.dependencies]
+prokka = ">=1.14"
+
+[feature.genomad.dependencies]
+genomad = ">=1.8"
+
+[feature.humann.dependencies]
+humann = ">=3.8"
+python = "3.10.*"
+
+[feature.r-env.dependencies]
+r-base = ">=4.3"
 r-vegan = "*"
 r-ggplot2 = "*"
+bioconductor-phyloseq = "*"
 
+# ==============================================================================
+# Environment Definitions
+# ==============================================================================
+[environments]
+default = []
+checkm2 = { features = ["checkm2"], no-default-feature = true }
+gunc = { features = ["gunc"], no-default-feature = true }
+gtdbtk = { features = ["gtdbtk"], no-default-feature = true }
+semibin = { features = ["semibin"], no-default-feature = true }
+prokka = { features = ["prokka"], no-default-feature = true }
+genomad = { features = ["genomad"], no-default-feature = true }
+humann = { features = ["humann"], no-default-feature = true }
+r-env = { features = ["r-env"], no-default-feature = true }
+
+# ==============================================================================
+# Tasks for Pipeline Execution & Playground Verification
+# ==============================================================================
 [tasks]
-# Context-aware environment shell entry
-shell = "bash"
-
-# Section 9: Validate subworkflow DAGs quickly before running tools
+# Pipeline Tasks
+test = "nextflow run main.nf -profile docker,test -resume"
+test-phase1 = "nextflow run test/test_phase1.nf -profile docker"
+test-phase2 = "nextflow run test/test_phase2.nf -profile docker"
+test-phase3 = "nextflow run test/test_phase3.nf -profile docker"
+test-phase4 = "nextflow run test/test_phase4.nf -profile docker"
+test-phase5 = "nextflow run test/test_phase5.nf -profile docker"
 stub-run = "nextflow run main.nf -stub-run"
-
-# Section 9: Run with the tiny test dataset and Docker
-test = "nextflow run main.nf -profile test,docker -resume"
-
-# Section 10: Run the primary workflow (update parameters as needed)
 run-workflow = "nextflow run main.nf -profile docker -resume --outdir results"
+
+# Playground Verification Tasks
+check-tools = "fastqc --version && fastp --version && nanoplot --version && filtlong --version && bowtie2 --version && minimap2 --version && samtools --version && megahit --version && flye --version && quast --version && metabat2 -h && kraken2 --version && bracken -v && multiqc --version"

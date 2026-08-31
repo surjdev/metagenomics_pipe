@@ -1,0 +1,3 @@
+[2026-08-30 20:44:59,067] multiqc.core.version_check                         [WARNING]  MultiQC Version v1.35 now available!
+[2026-08-30 20:44:59,068] multiqc.core.file_search                           [INFO   ]  Search path: /home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b
+[2026-08-30 20:44:59,112] multiqc.modules.nanostat.nanostat                  [INFO   ]  Found 17 reports

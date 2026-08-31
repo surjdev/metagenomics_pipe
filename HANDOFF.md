@@ -200,3 +200,4 @@ databases/
 | 2026-08-17 | Antigravity | Phase 4 implemented & verified: 5 modules (kraken2, bracken, kraken_biom, krona, humann3) + bin/kraken_to_biom.py + assembly_free.nf (test/test_phase4.nf) |
 | 2026-08-17 | Antigravity | Phase 5 implemented & verified: 4 modules (multiqc, generate_reports, prokka, genomad) + bin/generate_report.py + templates + annotation.nf, reporting.nf (test/test_phase5.nf) |
 | 2026-08-17 | Antigravity | Complete pipeline application layer implemented: lib/Utils.groovy, lib/Samplesheet.groovy, lib/Validation.groovy + main.nf orchestrating all 11 workflows end-to-end (verified with test profile) |
+| 2026-08-26 | Antigravity | Initiated Meta_NPI Nanopore testing: Built Phase 1 & 2 (PLAN_TEST_Meta_NPI.md, MEMORY_HANDOFF_TEST_Meta_NPI.md, bin/generate_samplesheet_meta_npi.py, conf/meta_npi.config, samplesheet_meta_npi_smoke.csv, samplesheet_meta_npi_full.csv, main.nf long-read profiling routing, DAG preview verified) |

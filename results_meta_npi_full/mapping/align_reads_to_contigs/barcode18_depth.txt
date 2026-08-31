@@ -1,0 +1,2 @@
+contigName	contigLen	totalAvgDepth	barcode18_long.sorted	barcode18_long.sorted-var
+dummy	100	0	0	0

@@ -1,0 +1,23 @@
+Assembly	barcode22.flye
+# contigs (>= 0 bp)	4
+# contigs (>= 1000 bp)	3
+# contigs (>= 5000 bp)	0
+# contigs (>= 10000 bp)	0
+# contigs (>= 25000 bp)	0
+# contigs (>= 50000 bp)	0
+Total length (>= 0 bp)	10732
+Total length (>= 1000 bp)	10147
+Total length (>= 5000 bp)	0
+Total length (>= 10000 bp)	0
+Total length (>= 25000 bp)	0
+Total length (>= 50000 bp)	0
+# contigs	4
+Largest contig	3633
+Total length	10732
+GC (%)	38.13
+N50	3418
+N90	3096
+auN	3243.5
+L50	2
+L90	3
+# N's per 100 kbp	0.00

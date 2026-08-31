@@ -1,0 +1,9 @@
+ContigName	ClusterId
+contig_1	0
+contig_11	0
+contig_12	0
+contig_13	0
+contig_14	0
+contig_2	0
+contig_3	0
+contig_6	0

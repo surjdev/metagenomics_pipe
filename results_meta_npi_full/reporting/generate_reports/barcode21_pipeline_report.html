@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metagenomics Pipeline Report — barcode21</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #334155;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-green: #4ade80;
+            --accent-amber: #fbbf24;
+            --accent-purple: #c084fc;
+            --border: #475569;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .meta-tag {
+            background: var(--bg-secondary);
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+        .card h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+        .card .value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        .card .subtext {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            margin-top: 0.25rem;
+        }
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .section-title::before {
+            content: "";
+            display: inline-block;
+            width: 4px;
+            height: 1.2rem;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+        th, td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        th {
+            background: var(--bg-card);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-success { background: rgba(74, 222, 128, 0.2); color: var(--accent-green); }
+        .badge-info { background: rgba(56, 189, 248, 0.2); color: var(--accent); }
+        footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1>Metagenomics Pipeline Report — barcode21</h1>
+                <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem;">
+                    Reproducible Nextflow DSL2 Workflow Execution Summary
+                </p>
+            </div>
+            <div class="meta-tag">Generated: 2026-08-30</div>
+        </header>
+
+        <!-- KPI Metrics Grid -->
+        <div class="grid">
+            <div class="card">
+                <h3>Total Samples</h3>
+                <div class="value">1</div>
+                <div class="subtext">Processed Successfully</div>
+            </div>
+            <div class="card">
+                <h3>Assembled Contigs</h3>
+                <div class="value">9</div>
+                <div class="subtext">N50: 16575 bp</div>
+            </div>
+            <div class="card">
+                <h3>Reconstructed MAGs</h3>
+                <div class="value">2</div>
+                <div class="subtext">2 High Quality</div>
+            </div>
+            <div class="card">
+                <h3>Classified Taxa</h3>
+                <div class="value">1</div>
+                <div class="subtext">Kraken2 / Bracken</div>
+            </div>
+        </div>
+
+        <!-- Sample Details Table -->
+        <div class="section-title">Sample Metrics & Assembly Summary</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Sample ID</th>
+                    <th>Platform</th>
+                    <th>Reads (Clean)</th>
+                    <th>Contigs</th>
+                    <th>Assembly Length (bp)</th>
+                    <th>N50</th>
+                    <th>Bins</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td style="font-weight: 600; color: var(--accent);">barcode21</td>
+                    <td>hybrid</td>
+                    <td>1,000 paired / 300 long</td>
+                    <td>9</td>
+                    <td>98965</td>
+                    <td>16575</td>
+                    <td>2</td>
+                    <td><span class="badge badge-success">Completed</span></td>
+                </tr>
+                
+            </tbody>
+        </table>
+
+        <!-- Pipeline Workflow Stages Summary -->
+        <div class="section-title">Workflow Execution Breakdown</div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Stage</th>
+                    <th>Workflow</th>
+                    <th>Tools Executed</th>
+                    <th>Output Artifacts</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Stage 1</strong></td>
+                    <td>Preprocessing & Host Removal</td>
+                    <td>FastQC, Fastp, NanoPlot, Bowtie2, Minimap2</td>
+                    <td>Clean microbial FASTQ, QC reports</td>
+                </tr>
+                <tr>
+                    <td><strong>Stage 2</strong></td>
+                    <td>Assembly & Polishing</td>
+                    <td>MEGAHIT, Flye, Opera-MS, NextPolish, QUAST</td>
+                    <td>Assembled & polished contigs, QUAST QC</td>
+                </tr>
+                <tr>
+                    <td><strong>Stage 3</strong></td>
+                    <td>MAG Reconstruction & QC</td>
+                    <td>MetaBAT2, MaxBin2, SemiBin2, CONCOCT, DAS Tool, CAT_BINS, CheckM2</td>
+                    <td>Reconstructed MAGs, depth tables, CheckM2 metrics</td>
+                </tr>
+                <tr>
+                    <td><strong>Stage 4</strong></td>
+                    <td>Read-Based Taxonomic Profiling</td>
+                    <td>Kraken2, Bracken, Krona, BIOM, HUMAnN3</td>
+                    <td>Taxonomy report, BIOM matrices, Krona charts</td>
+                </tr>
+                <tr>
+                    <td><strong>Stage 5</strong></td>
+                    <td>Functional Annotation & Reporting</td>
+                    <td>Prokka, geNomad, MultiQC, Report Generator</td>
+                    <td>GFF/FAA annotations, MultiQC HTML, Final Summary</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            Hybrid Metagenomics Nextflow DSL2 Framework &bull; Designed for HPC & Local Execution
+        </footer>
+    </div>
+</body>
+</html>

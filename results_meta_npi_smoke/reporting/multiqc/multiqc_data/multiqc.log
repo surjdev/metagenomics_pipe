@@ -1,0 +1,2 @@
+[2026-08-27 13:36:04,198] multiqc.core.file_search                           [INFO   ]  Search path: /home/surj/Workspace/metagenomics-pipeline/work/6c/5aa6f1e131e76bb18c702be5b6720c
+[2026-08-27 13:36:04,235] multiqc.modules.nanostat.nanostat                  [INFO   ]  Found 2 reports

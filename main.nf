@@ -93,7 +93,8 @@ workflow {
     mag_qc( binning.out.bins_dir )
 
     // ── 9. Read-Based Taxonomic & Functional Profiling ────────────────────────
-    assembly_free( ch_clean_short )
+    ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
+    assembly_free( ch_profiling_reads )
 
     // ── 10. Functional & Structural Annotation ────────────────────────────────
     annotation( polishing.out.contigs )

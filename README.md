@@ -273,6 +273,8 @@ Configure your database paths in `params/databases.yaml`.
 
 ## 📖 Detailed Documentation
 
+- [🇹🇭 คู่มือการเรียนรู้โครงการและเจาะลึก 35 เครื่องมือชีวสารสนเทศ (Comprehensive Guide in Thai)](docs/PROJECT_COMPREHENSIVE_GUIDE_TH.md) — คู่มือภาษาไทยฉบับสมบูรณ์ พร้อมภาพประกอบ อุปมาอุปไมย และการทำงานของทุกเครื่องมือสำหรับผู้เริ่มต้น
+- [🤝 คู่มือปฏิบัติการแบบจับมือทำบนทุกสภาพแวดล้อม (Step-by-Step Deployment Guide in Thai)](docs/STEP_BY_STEP_DEPLOYMENT_GUIDE_TH.md) — ไกด์ไลน์สอนทีละขั้นตอน ติดตั้ง ตั้งค่า ใส่ไฟล์ และรันบน Local (Pixi/Conda), Docker, Singularity และ HPC SLURM
 - [Quickstart Guide](docs/quickstart.md) — Step-by-step tutorial for your first run.
 - [Installation Guide](docs/installation.md) — Dependencies, container engines, and SLURM setup.
 - [Code Architecture](docs/architecture.md) — In-depth guide to the 5 layers, DSL2 workflows, and channel dataflows.

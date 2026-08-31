@@ -1,0 +1,2192 @@
+{
+    "report_data_sources": {
+        "NanoStat": {
+            "all_sections": {
+                "barcode22.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode22.NanoStats.txt",
+                "barcode11.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode11.NanoStats.txt",
+                "barcode13.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode13.NanoStats.txt",
+                "barcode21.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode21.NanoStats.txt",
+                "barcode19.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode19.NanoStats.txt",
+                "barcode12.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode12.NanoStats.txt",
+                "barcode16.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode16.NanoStats.txt",
+                "barcode17.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode17.NanoStats.txt",
+                "barcode20.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode20.NanoStats.txt",
+                "barcode09.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode09.NanoStats.txt",
+                "barcode23.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode23.NanoStats.txt",
+                "barcode15.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode15.NanoStats.txt",
+                "barcode14.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode14.NanoStats.txt",
+                "barcode01.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode01.NanoStats.txt",
+                "barcode24.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode24.NanoStats.txt",
+                "barcode18.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode18.NanoStats.txt",
+                "barcode02.NanoStats": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b/barcode02.NanoStats.txt"
+            }
+        }
+    },
+    "report_general_stats_data": [],
+    "report_general_stats_headers": [],
+    "report_multiqc_command": "/home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/bin/multiqc . --force",
+    "report_plot_data": {
+        "nanostat_fastq_stats_table": {
+            "id": "nanostat_fastq_stats_table",
+            "anchor": "nanostat_fastq_stats_table",
+            "plot_type": "violin",
+            "layout": {
+                "autosize": true,
+                "colorway": [
+                    "#7cb5ec",
+                    "#434348",
+                    "#90ed7d",
+                    "#f7a35c",
+                    "#8085e9",
+                    "#f15c80",
+                    "#e4d354",
+                    "#2b908f",
+                    "#f45b5b",
+                    "#91e8e1"
+                ],
+                "font": {
+                    "family": "'Lucida Grande', 'Open Sans', verdana, arial, sans-serif"
+                },
+                "height": 500,
+                "hoverlabel": {
+                    "namelength": -1
+                },
+                "margin": {
+                    "b": 40,
+                    "l": 60,
+                    "pad": 0,
+                    "r": 15,
+                    "t": 50
+                },
+                "modebar": {
+                    "activecolor": "rgba(0, 0, 0, 1)",
+                    "bgcolor": "rgba(0, 0, 0, 0)",
+                    "color": "rgba(0, 0, 0, 0.5)"
+                },
+                "paper_bgcolor": "white",
+                "plot_bgcolor": "white",
+                "showlegend": false,
+                "title": {
+                    "font": {
+                        "size": 20
+                    },
+                    "text": "NanoStat fastq",
+                    "x": 0.5,
+                    "xanchor": "center"
+                },
+                "xaxis": {
+                    "automargin": false,
+                    "color": "rgba(0,0,0,0.3)",
+                    "gridcolor": "rgba(0,0,0,0.1)",
+                    "tickfont": {
+                        "color": "rgba(0,0,0,0.5)",
+                        "size": 9
+                    },
+                    "zerolinecolor": "rgba(0,0,0,0.1)"
+                },
+                "yaxis": {
+                    "automargin": true,
+                    "color": "rgba(0,0,0,0.3)",
+                    "gridcolor": "rgba(0,0,0,0.1)",
+                    "tickfont": {
+                        "color": "rgba(0,0,0,0.5)",
+                        "size": 9
+                    },
+                    "zerolinecolor": "rgba(0,0,0,0.1)"
+                },
+                "violingap": 0,
+                "grid": {
+                    "columns": 1,
+                    "roworder": "top to bottom",
+                    "ygap": 0.4
+                }
+            },
+            "datasets": [
+                {
+                    "plot_id": "nanostat_fastq_stats_table",
+                    "label": "1",
+                    "uid": "nanostat_fastq_stats_table",
+                    "dconfig": {
+                        "ylab": "",
+                        "title": "NanoStat fastq<br><sup>17 samples</sup>"
+                    },
+                    "layout": {
+                        "title": {
+                            "text": "NanoStat fastq<br><sup>17 samples</sup>"
+                        },
+                        "xaxis": {
+                            "hoverformat": null,
+                            "ticksuffix": "",
+                            "title": {
+                                "text": null
+                            },
+                            "rangemode": "normal",
+                            "autorangeoptions": {
+                                "clipmin": null,
+                                "clipmax": null,
+                                "minallowed": null,
+                                "maxallowed": null
+                            }
+                        },
+                        "yaxis": {
+                            "hoverformat": null,
+                            "ticksuffix": "",
+                            "title": {
+                                "text": ""
+                            },
+                            "rangemode": "normal",
+                            "autorangeoptions": {
+                                "clipmin": null,
+                                "clipmax": null,
+                                "minallowed": null,
+                                "maxallowed": null
+                            }
+                        }
+                    },
+                    "trace_params": {
+                        "hovertemplate": "<b>%{text}</b>: %{x}<extra></extra>",
+                        "orientation": "h",
+                        "box": {
+                            "visible": true
+                        },
+                        "meanline": {
+                            "visible": true
+                        },
+                        "fillcolor": "#b5b5b5",
+                        "line": {
+                            "width": 2,
+                            "color": "#b5b5b5"
+                        },
+                        "opacity": 0.5,
+                        "points": false,
+                        "hoveron": "points"
+                    },
+                    "pct_range": {
+                        "xaxis": {
+                            "min": 0,
+                            "max": 100
+                        },
+                        "yaxis": {
+                            "min": 0,
+                            "max": 100
+                        }
+                    },
+                    "n_samples": 17,
+                    "metrics": [
+                        "nanostat-Median_read_length_fastq",
+                        "nanostat-Mean_read_length_fastq",
+                        "nanostat-Read_length_N50_fastq",
+                        "nanostat-Median_read_quality_fastq",
+                        "nanostat-Mean_read_quality_fastq",
+                        "nanostat-Number_of_reads_fastq",
+                        "nanostat-Total_bases_fastq"
+                    ],
+                    "header_by_metric": {
+                        "nanostat-Median_read_length_fastq": {
+                            "title": "Median length",
+                            "description": "Median read length (bp)",
+                            "suffix": " bp",
+                            "dmin": 0,
+                            "dmax": 3848.9,
+                            "hidden": false,
+                            "xaxis": {
+                                "ticksuffix": " bp",
+                                "tickvals": null,
+                                "range": [
+                                    -19.244500000000002,
+                                    3868.2407225
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Mean_read_length_fastq": {
+                            "title": "Mean length",
+                            "description": "Mean read length (bp)",
+                            "suffix": " bp",
+                            "dmin": 0,
+                            "dmax": 3848.9,
+                            "hidden": true,
+                            "xaxis": {
+                                "ticksuffix": " bp",
+                                "tickvals": null,
+                                "range": [
+                                    -19.244500000000002,
+                                    3868.2407225
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Read_length_N50_fastq": {
+                            "title": "Read N50",
+                            "description": "Read length N50",
+                            "suffix": " bp",
+                            "dmin": 0,
+                            "dmax": 9260.0,
+                            "hidden": false,
+                            "xaxis": {
+                                "ticksuffix": " bp",
+                                "tickvals": null,
+                                "range": [
+                                    -46.300000000000004,
+                                    9306.5315
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Median_read_quality_fastq": {
+                            "title": "Median Qual",
+                            "description": "Median read quality (Phred scale)",
+                            "suffix": "",
+                            "dmin": 0,
+                            "dmax": 15.7,
+                            "hidden": false,
+                            "xaxis": {
+                                "ticksuffix": null,
+                                "tickvals": null,
+                                "range": [
+                                    -0.0785,
+                                    15.7788925
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Mean_read_quality_fastq": {
+                            "title": "Mean Qual",
+                            "description": "Mean read quality (Phred scale)",
+                            "suffix": "",
+                            "dmin": 0,
+                            "dmax": 15.7,
+                            "hidden": true,
+                            "xaxis": {
+                                "ticksuffix": null,
+                                "tickvals": null,
+                                "range": [
+                                    -0.0785,
+                                    15.7788925
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Number_of_reads_fastq": {
+                            "title": "# Reads (K)",
+                            "description": "Number of reads (thousands)",
+                            "suffix": " K",
+                            "dmin": 0.0,
+                            "dmax": 8.807,
+                            "hidden": false,
+                            "xaxis": {
+                                "ticksuffix": " K",
+                                "tickvals": null,
+                                "range": [
+                                    -0.044035000000000005,
+                                    8.851255175
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        },
+                        "nanostat-Total_bases_fastq": {
+                            "title": "Total Bases (Mb)",
+                            "description": "Total bases (millions)",
+                            "suffix": " Mb",
+                            "dmin": 0.0,
+                            "dmax": 22.888489,
+                            "hidden": false,
+                            "xaxis": {
+                                "ticksuffix": " Mb",
+                                "tickvals": null,
+                                "range": [
+                                    -0.114442445,
+                                    23.003503657225
+                                ]
+                            },
+                            "show_only_outliers": false,
+                            "show_points": true,
+                            "namespace": "",
+                            "color": null,
+                            "hoverformat": ".2f"
+                        }
+                    },
+                    "violin_value_by_sample_by_metric": {
+                        "nanostat-Median_read_length_fastq": {
+                            "barcode22.NanoStats": 1059.5,
+                            "barcode11.NanoStats": 143.0,
+                            "barcode13.NanoStats": 180.0,
+                            "barcode21.NanoStats": 1385.0,
+                            "barcode19.NanoStats": 1767.0,
+                            "barcode12.NanoStats": 188.0,
+                            "barcode16.NanoStats": 185.0,
+                            "barcode17.NanoStats": 170.0,
+                            "barcode20.NanoStats": 1464.0,
+                            "barcode09.NanoStats": 252.0,
+                            "barcode23.NanoStats": 1568.0,
+                            "barcode15.NanoStats": 143.0,
+                            "barcode14.NanoStats": 173.5,
+                            "barcode01.NanoStats": 1402.0,
+                            "barcode24.NanoStats": 1457.0,
+                            "barcode18.NanoStats": 415.0,
+                            "barcode02.NanoStats": 166.5
+                        },
+                        "nanostat-Mean_read_length_fastq": {
+                            "barcode22.NanoStats": 2480.8,
+                            "barcode11.NanoStats": 235.7,
+                            "barcode13.NanoStats": 273.3,
+                            "barcode21.NanoStats": 3114.1,
+                            "barcode19.NanoStats": 3848.9,
+                            "barcode12.NanoStats": 224.3,
+                            "barcode16.NanoStats": 241.2,
+                            "barcode17.NanoStats": 258.4,
+                            "barcode20.NanoStats": 2926.2,
+                            "barcode09.NanoStats": 408.3,
+                            "barcode23.NanoStats": 3126.5,
+                            "barcode15.NanoStats": 243.9,
+                            "barcode14.NanoStats": 222.2,
+                            "barcode01.NanoStats": 2598.9,
+                            "barcode24.NanoStats": 3166.3,
+                            "barcode18.NanoStats": 1373.4,
+                            "barcode02.NanoStats": 480.5
+                        },
+                        "nanostat-Read_length_N50_fastq": {
+                            "barcode22.NanoStats": 6124.0,
+                            "barcode11.NanoStats": 357.0,
+                            "barcode13.NanoStats": 395.0,
+                            "barcode21.NanoStats": 7374.0,
+                            "barcode19.NanoStats": 9260.0,
+                            "barcode12.NanoStats": 333.0,
+                            "barcode16.NanoStats": 308.0,
+                            "barcode17.NanoStats": 418.0,
+                            "barcode20.NanoStats": 6511.0,
+                            "barcode09.NanoStats": 843.0,
+                            "barcode23.NanoStats": 6844.0,
+                            "barcode15.NanoStats": 344.0,
+                            "barcode14.NanoStats": 297.0,
+                            "barcode01.NanoStats": 5355.0,
+                            "barcode24.NanoStats": 7589.0,
+                            "barcode18.NanoStats": 4927.0,
+                            "barcode02.NanoStats": 2085.0
+                        },
+                        "nanostat-Median_read_quality_fastq": {
+                            "barcode22.NanoStats": 14.9,
+                            "barcode11.NanoStats": 11.5,
+                            "barcode13.NanoStats": 12.4,
+                            "barcode21.NanoStats": 15.1,
+                            "barcode19.NanoStats": 15.4,
+                            "barcode12.NanoStats": 11.7,
+                            "barcode16.NanoStats": 12.2,
+                            "barcode17.NanoStats": 11.1,
+                            "barcode20.NanoStats": 15.7,
+                            "barcode09.NanoStats": 14.9,
+                            "barcode23.NanoStats": 15.2,
+                            "barcode15.NanoStats": 11.7,
+                            "barcode14.NanoStats": 12.0,
+                            "barcode01.NanoStats": 15.6,
+                            "barcode24.NanoStats": 14.8,
+                            "barcode18.NanoStats": 13.0,
+                            "barcode02.NanoStats": 11.1
+                        },
+                        "nanostat-Mean_read_quality_fastq": {
+                            "barcode22.NanoStats": 12.3,
+                            "barcode11.NanoStats": 10.5,
+                            "barcode13.NanoStats": 11.3,
+                            "barcode21.NanoStats": 12.9,
+                            "barcode19.NanoStats": 13.0,
+                            "barcode12.NanoStats": 10.4,
+                            "barcode16.NanoStats": 10.7,
+                            "barcode17.NanoStats": 9.6,
+                            "barcode20.NanoStats": 13.3,
+                            "barcode09.NanoStats": 12.1,
+                            "barcode23.NanoStats": 12.9,
+                            "barcode15.NanoStats": 10.5,
+                            "barcode14.NanoStats": 10.8,
+                            "barcode01.NanoStats": 13.3,
+                            "barcode24.NanoStats": 12.4,
+                            "barcode18.NanoStats": 11.2,
+                            "barcode02.NanoStats": 9.7
+                        },
+                        "nanostat-Number_of_reads_fastq": {
+                            "barcode22.NanoStats": 4.38,
+                            "barcode11.NanoStats": 0.092,
+                            "barcode13.NanoStats": 0.127,
+                            "barcode21.NanoStats": 6.921,
+                            "barcode19.NanoStats": 3.779,
+                            "barcode12.NanoStats": 0.133,
+                            "barcode16.NanoStats": 0.41400000000000003,
+                            "barcode17.NanoStats": 0.105,
+                            "barcode20.NanoStats": 6.15,
+                            "barcode09.NanoStats": 0.003,
+                            "barcode23.NanoStats": 5.95,
+                            "barcode15.NanoStats": 0.146,
+                            "barcode14.NanoStats": 0.32,
+                            "barcode01.NanoStats": 8.807,
+                            "barcode24.NanoStats": 3.0340000000000003,
+                            "barcode18.NanoStats": 5.4990000000000006,
+                            "barcode02.NanoStats": 0.008
+                        },
+                        "nanostat-Total_bases_fastq": {
+                            "barcode22.NanoStats": 10.866,
+                            "barcode11.NanoStats": 0.021682,
+                            "barcode13.NanoStats": 0.034714,
+                            "barcode21.NanoStats": 21.552715,
+                            "barcode19.NanoStats": 14.54496,
+                            "barcode12.NanoStats": 0.02983,
+                            "barcode16.NanoStats": 0.099877,
+                            "barcode17.NanoStats": 0.027132,
+                            "barcode20.NanoStats": 17.996316,
+                            "barcode09.NanoStats": 0.001225,
+                            "barcode23.NanoStats": 18.602954999999998,
+                            "barcode15.NanoStats": 0.035608,
+                            "barcode14.NanoStats": 0.071104,
+                            "barcode01.NanoStats": 22.888489,
+                            "barcode24.NanoStats": 9.606655,
+                            "barcode18.NanoStats": 7.552079999999999,
+                            "barcode02.NanoStats": 0.0038439999999999998
+                        }
+                    },
+                    "scatter_value_by_sample_by_metric": {
+                        "nanostat-Median_read_length_fastq": {},
+                        "nanostat-Mean_read_length_fastq": {},
+                        "nanostat-Read_length_N50_fastq": {},
+                        "nanostat-Median_read_quality_fastq": {},
+                        "nanostat-Mean_read_quality_fastq": {},
+                        "nanostat-Number_of_reads_fastq": {},
+                        "nanostat-Total_bases_fastq": {}
+                    },
+                    "all_samples": [
+                        "barcode01.NanoStats",
+                        "barcode02.NanoStats",
+                        "barcode09.NanoStats",
+                        "barcode11.NanoStats",
+                        "barcode12.NanoStats",
+                        "barcode13.NanoStats",
+                        "barcode14.NanoStats",
+                        "barcode15.NanoStats",
+                        "barcode16.NanoStats",
+                        "barcode17.NanoStats",
+                        "barcode18.NanoStats",
+                        "barcode19.NanoStats",
+                        "barcode20.NanoStats",
+                        "barcode21.NanoStats",
+                        "barcode22.NanoStats",
+                        "barcode23.NanoStats",
+                        "barcode24.NanoStats"
+                    ],
+                    "scatter_trace_params": {
+                        "mode": "markers",
+                        "marker": {
+                            "size": 4,
+                            "color": "#0b79e6"
+                        },
+                        "showlegend": false,
+                        "hovertemplate": "<b>%{text}</b>: %{x}<extra></extra>",
+                        "hoverlabel": {
+                            "bgcolor": "white"
+                        }
+                    }
+                }
+            ],
+            "pconfig": {
+                "id": "nanostat_fastq_stats_table",
+                "title": "NanoStat fastq",
+                "anchor": null,
+                "table_title": null,
+                "height": null,
+                "width": null,
+                "square": false,
+                "logswitch": false,
+                "logswitch_active": false,
+                "logswitch_label": "Log10",
+                "cpswitch": true,
+                "cpswitch_c_active": true,
+                "cpswitch_counts_label": "Counts",
+                "cpswitch_percent_label": "Percentages",
+                "xLog": null,
+                "yLog": null,
+                "xlog": false,
+                "ylog": false,
+                "data_labels": [],
+                "xTitle": null,
+                "yTitle": null,
+                "xlab": null,
+                "ylab": null,
+                "xsuffix": null,
+                "ysuffix": null,
+                "tt_suffix": null,
+                "xLabFormat": null,
+                "yLabFormat": null,
+                "xLabelFormat": null,
+                "yLabelFormat": null,
+                "xlab_format": null,
+                "ylab_format": null,
+                "tt_label": null,
+                "xDecimals": null,
+                "yDecimals": null,
+                "decimalPlaces": null,
+                "x_decimals": null,
+                "y_decimals": null,
+                "tt_decimals": null,
+                "xmin": null,
+                "xmax": null,
+                "ymin": null,
+                "ymax": null,
+                "xFloor": null,
+                "xCeiling": null,
+                "yFloor": null,
+                "yCeiling": null,
+                "x_clipmin": null,
+                "x_clipmax": null,
+                "y_clipmin": null,
+                "y_clipmax": null,
+                "save_data_file": true,
+                "showlegend": null,
+                "xMinRange": null,
+                "yMinRange": null,
+                "x_minrange": null,
+                "y_minrange": null,
+                "xPlotBands": null,
+                "yPlotBands": null,
+                "xPlotLines": null,
+                "yPlotLines": null,
+                "x_bands": null,
+                "y_bands": null,
+                "x_lines": null,
+                "y_lines": null,
+                "namespace": "NanoStat",
+                "save_file": false,
+                "raw_data_fn": null,
+                "defaultsort": null,
+                "sortRows": true,
+                "sort_rows": true,
+                "only_defined_headers": true,
+                "col1_header": "Sample Name",
+                "no_beeswarm": false,
+                "no_violin": false,
+                "scale": "GnBu",
+                "min": null
+            },
+            "add_log_tab": false,
+            "add_pct_tab": false,
+            "l_active": false,
+            "p_active": false,
+            "pct_axis_update": {
+                "ticksuffix": "%",
+                "hoverformat": ".1f"
+            },
+            "axis_controlled_by_switches": [],
+            "square": false,
+            "flat": false,
+            "defer_render": false,
+            "violin_height": 70,
+            "extra_height": 63,
+            "no_violin": false,
+            "show_table": true,
+            "show_table_by_default": true,
+            "n_samples": 17,
+            "main_table_dt": {
+                "id": "nanostat_fastq_stats_table",
+                "anchor": "nanostat_fastq_stats_table_table",
+                "pconfig": {
+                    "id": "nanostat_fastq_stats_table",
+                    "title": "NanoStat fastq",
+                    "anchor": null,
+                    "table_title": null,
+                    "height": null,
+                    "width": null,
+                    "square": false,
+                    "logswitch": false,
+                    "logswitch_active": false,
+                    "logswitch_label": "Log10",
+                    "cpswitch": true,
+                    "cpswitch_c_active": true,
+                    "cpswitch_counts_label": "Counts",
+                    "cpswitch_percent_label": "Percentages",
+                    "xLog": null,
+                    "yLog": null,
+                    "xlog": false,
+                    "ylog": false,
+                    "data_labels": [],
+                    "xTitle": null,
+                    "yTitle": null,
+                    "xlab": null,
+                    "ylab": null,
+                    "xsuffix": null,
+                    "ysuffix": null,
+                    "tt_suffix": null,
+                    "xLabFormat": null,
+                    "yLabFormat": null,
+                    "xLabelFormat": null,
+                    "yLabelFormat": null,
+                    "xlab_format": null,
+                    "ylab_format": null,
+                    "tt_label": null,
+                    "xDecimals": null,
+                    "yDecimals": null,
+                    "decimalPlaces": null,
+                    "x_decimals": null,
+                    "y_decimals": null,
+                    "tt_decimals": null,
+                    "xmin": null,
+                    "xmax": null,
+                    "ymin": null,
+                    "ymax": null,
+                    "xFloor": null,
+                    "xCeiling": null,
+                    "yFloor": null,
+                    "yCeiling": null,
+                    "x_clipmin": null,
+                    "x_clipmax": null,
+                    "y_clipmin": null,
+                    "y_clipmax": null,
+                    "save_data_file": true,
+                    "showlegend": null,
+                    "xMinRange": null,
+                    "yMinRange": null,
+                    "x_minrange": null,
+                    "y_minrange": null,
+                    "xPlotBands": null,
+                    "yPlotBands": null,
+                    "xPlotLines": null,
+                    "yPlotLines": null,
+                    "x_bands": null,
+                    "y_bands": null,
+                    "x_lines": null,
+                    "y_lines": null,
+                    "namespace": "NanoStat",
+                    "save_file": false,
+                    "raw_data_fn": null,
+                    "defaultsort": null,
+                    "sortRows": true,
+                    "sort_rows": true,
+                    "only_defined_headers": true,
+                    "col1_header": "Sample Name",
+                    "no_beeswarm": false,
+                    "no_violin": false,
+                    "scale": "GnBu",
+                    "min": null
+                },
+                "sections": [
+                    {
+                        "column_by_key": {
+                            "Median read length_fastq": {
+                                "rid": "nanostat-Median_read_length_fastq",
+                                "title": "Median length",
+                                "description": "Median read length (bp)",
+                                "scale": "BuPu",
+                                "hidden": false,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 3848.9,
+                                "min": null,
+                                "dmin": 0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "nucleotides",
+                                "tt_decimals": null,
+                                "suffix": " bp",
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Mean read length_fastq": {
+                                "rid": "nanostat-Mean_read_length_fastq",
+                                "title": "Mean length",
+                                "description": "Mean read length (bp)",
+                                "scale": "Purples",
+                                "hidden": true,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 3848.9,
+                                "min": null,
+                                "dmin": 0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "nucleotides",
+                                "tt_decimals": null,
+                                "suffix": " bp",
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Read length N50_fastq": {
+                                "rid": "nanostat-Read_length_N50_fastq",
+                                "title": "Read N50",
+                                "description": "Read length N50",
+                                "scale": "RdPu",
+                                "hidden": false,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 9260.0,
+                                "min": null,
+                                "dmin": 0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": null,
+                                "tt_decimals": null,
+                                "suffix": " bp",
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Median read quality_fastq": {
+                                "rid": "nanostat-Median_read_quality_fastq",
+                                "title": "Median Qual",
+                                "description": "Median read quality (Phred scale)",
+                                "scale": "RdYlGn",
+                                "hidden": false,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 15.7,
+                                "min": null,
+                                "dmin": 0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "phred_score",
+                                "tt_decimals": null,
+                                "suffix": null,
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Mean read quality_fastq": {
+                                "rid": "nanostat-Mean_read_quality_fastq",
+                                "title": "Mean Qual",
+                                "description": "Mean read quality (Phred scale)",
+                                "scale": "PiYG",
+                                "hidden": true,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 15.7,
+                                "min": null,
+                                "dmin": 0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "phred_score",
+                                "tt_decimals": null,
+                                "suffix": null,
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Number of reads_fastq": {
+                                "rid": "nanostat-Number_of_reads_fastq",
+                                "title": "# Reads (K)",
+                                "description": "Number of reads (thousands)",
+                                "scale": "YlGn",
+                                "hidden": false,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 8.807,
+                                "min": 0.0,
+                                "dmin": 0.0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "long_read_count",
+                                "tt_decimals": null,
+                                "suffix": " K",
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            },
+                            "Total bases_fastq": {
+                                "rid": "nanostat-Total_bases_fastq",
+                                "title": "Total Bases (Mb)",
+                                "description": "Total bases (millions)",
+                                "scale": "BrBG",
+                                "hidden": false,
+                                "placement": 1000.0,
+                                "namespace": "",
+                                "colour": null,
+                                "color": null,
+                                "max": null,
+                                "dmax": 22.888489,
+                                "min": 0.0,
+                                "dmin": 0.0,
+                                "ceiling": null,
+                                "floor": null,
+                                "minRange": null,
+                                "minrange": null,
+                                "shared_key": "base_count",
+                                "tt_decimals": null,
+                                "suffix": " Mb",
+                                "cond_formatting_colours": [
+                                    {
+                                        "blue": "#337ab7"
+                                    },
+                                    {
+                                        "lbue": "#5bc0de"
+                                    },
+                                    {
+                                        "pass": "#5cb85c"
+                                    },
+                                    {
+                                        "warn": "#f0ad4e"
+                                    },
+                                    {
+                                        "fail": "#d9534f"
+                                    }
+                                ],
+                                "cond_formatting_rules": {},
+                                "bgcols": {},
+                                "bars_zero_centrepoint": false
+                            }
+                        },
+                        "rows_by_sgroup": {
+                            "barcode22.NanoStats": [
+                                {
+                                    "sample": "barcode22.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 2480.8,
+                                        "Mean read quality_fastq": 12.3,
+                                        "Median read length_fastq": 1059.5,
+                                        "Median read quality_fastq": 14.9,
+                                        "Number of reads_fastq": 4.38,
+                                        "Read length N50_fastq": 6124.0,
+                                        "Total bases_fastq": 10.866
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "2,481",
+                                        "Mean read quality_fastq": "12.3",
+                                        "Median read length_fastq": "1,060",
+                                        "Median read quality_fastq": "14.9",
+                                        "Number of reads_fastq": "4.4",
+                                        "Read length N50_fastq": "6,124",
+                                        "Total bases_fastq": "10.9"
+                                    }
+                                }
+                            ],
+                            "barcode11.NanoStats": [
+                                {
+                                    "sample": "barcode11.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 235.7,
+                                        "Mean read quality_fastq": 10.5,
+                                        "Median read length_fastq": 143.0,
+                                        "Median read quality_fastq": 11.5,
+                                        "Number of reads_fastq": 0.092,
+                                        "Read length N50_fastq": 357.0,
+                                        "Total bases_fastq": 0.021682
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "236",
+                                        "Mean read quality_fastq": "10.5",
+                                        "Median read length_fastq": "143",
+                                        "Median read quality_fastq": "11.5",
+                                        "Number of reads_fastq": "0.1",
+                                        "Read length N50_fastq": "357",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode13.NanoStats": [
+                                {
+                                    "sample": "barcode13.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 273.3,
+                                        "Mean read quality_fastq": 11.3,
+                                        "Median read length_fastq": 180.0,
+                                        "Median read quality_fastq": 12.4,
+                                        "Number of reads_fastq": 0.127,
+                                        "Read length N50_fastq": 395.0,
+                                        "Total bases_fastq": 0.034714
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "273",
+                                        "Mean read quality_fastq": "11.3",
+                                        "Median read length_fastq": "180",
+                                        "Median read quality_fastq": "12.4",
+                                        "Number of reads_fastq": "0.1",
+                                        "Read length N50_fastq": "395",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode21.NanoStats": [
+                                {
+                                    "sample": "barcode21.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 3114.1,
+                                        "Mean read quality_fastq": 12.9,
+                                        "Median read length_fastq": 1385.0,
+                                        "Median read quality_fastq": 15.1,
+                                        "Number of reads_fastq": 6.921,
+                                        "Read length N50_fastq": 7374.0,
+                                        "Total bases_fastq": 21.552715
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "3,114",
+                                        "Mean read quality_fastq": "12.9",
+                                        "Median read length_fastq": "1,385",
+                                        "Median read quality_fastq": "15.1",
+                                        "Number of reads_fastq": "6.9",
+                                        "Read length N50_fastq": "7,374",
+                                        "Total bases_fastq": "21.6"
+                                    }
+                                }
+                            ],
+                            "barcode19.NanoStats": [
+                                {
+                                    "sample": "barcode19.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 3848.9,
+                                        "Mean read quality_fastq": 13.0,
+                                        "Median read length_fastq": 1767.0,
+                                        "Median read quality_fastq": 15.4,
+                                        "Number of reads_fastq": 3.779,
+                                        "Read length N50_fastq": 9260.0,
+                                        "Total bases_fastq": 14.54496
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "3,849",
+                                        "Mean read quality_fastq": "13.0",
+                                        "Median read length_fastq": "1,767",
+                                        "Median read quality_fastq": "15.4",
+                                        "Number of reads_fastq": "3.8",
+                                        "Read length N50_fastq": "9,260",
+                                        "Total bases_fastq": "14.5"
+                                    }
+                                }
+                            ],
+                            "barcode12.NanoStats": [
+                                {
+                                    "sample": "barcode12.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 224.3,
+                                        "Mean read quality_fastq": 10.4,
+                                        "Median read length_fastq": 188.0,
+                                        "Median read quality_fastq": 11.7,
+                                        "Number of reads_fastq": 0.133,
+                                        "Read length N50_fastq": 333.0,
+                                        "Total bases_fastq": 0.02983
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "224",
+                                        "Mean read quality_fastq": "10.4",
+                                        "Median read length_fastq": "188",
+                                        "Median read quality_fastq": "11.7",
+                                        "Number of reads_fastq": "0.1",
+                                        "Read length N50_fastq": "333",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode16.NanoStats": [
+                                {
+                                    "sample": "barcode16.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 241.2,
+                                        "Mean read quality_fastq": 10.7,
+                                        "Median read length_fastq": 185.0,
+                                        "Median read quality_fastq": 12.2,
+                                        "Number of reads_fastq": 0.41400000000000003,
+                                        "Read length N50_fastq": 308.0,
+                                        "Total bases_fastq": 0.099877
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "241",
+                                        "Mean read quality_fastq": "10.7",
+                                        "Median read length_fastq": "185",
+                                        "Median read quality_fastq": "12.2",
+                                        "Number of reads_fastq": "0.4",
+                                        "Read length N50_fastq": "308",
+                                        "Total bases_fastq": "0.1"
+                                    }
+                                }
+                            ],
+                            "barcode17.NanoStats": [
+                                {
+                                    "sample": "barcode17.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 258.4,
+                                        "Mean read quality_fastq": 9.6,
+                                        "Median read length_fastq": 170.0,
+                                        "Median read quality_fastq": 11.1,
+                                        "Number of reads_fastq": 0.105,
+                                        "Read length N50_fastq": 418.0,
+                                        "Total bases_fastq": 0.027132
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "258",
+                                        "Mean read quality_fastq": "9.6",
+                                        "Median read length_fastq": "170",
+                                        "Median read quality_fastq": "11.1",
+                                        "Number of reads_fastq": "0.1",
+                                        "Read length N50_fastq": "418",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode20.NanoStats": [
+                                {
+                                    "sample": "barcode20.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 2926.2,
+                                        "Mean read quality_fastq": 13.3,
+                                        "Median read length_fastq": 1464.0,
+                                        "Median read quality_fastq": 15.7,
+                                        "Number of reads_fastq": 6.15,
+                                        "Read length N50_fastq": 6511.0,
+                                        "Total bases_fastq": 17.996316
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "2,926",
+                                        "Mean read quality_fastq": "13.3",
+                                        "Median read length_fastq": "1,464",
+                                        "Median read quality_fastq": "15.7",
+                                        "Number of reads_fastq": "6.2",
+                                        "Read length N50_fastq": "6,511",
+                                        "Total bases_fastq": "18.0"
+                                    }
+                                }
+                            ],
+                            "barcode09.NanoStats": [
+                                {
+                                    "sample": "barcode09.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 408.3,
+                                        "Mean read quality_fastq": 12.1,
+                                        "Median read length_fastq": 252.0,
+                                        "Median read quality_fastq": 14.9,
+                                        "Number of reads_fastq": 0.003,
+                                        "Read length N50_fastq": 843.0,
+                                        "Total bases_fastq": 0.001225
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "408",
+                                        "Mean read quality_fastq": "12.1",
+                                        "Median read length_fastq": "252",
+                                        "Median read quality_fastq": "14.9",
+                                        "Number of reads_fastq": "0.0",
+                                        "Read length N50_fastq": "843",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode23.NanoStats": [
+                                {
+                                    "sample": "barcode23.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 3126.5,
+                                        "Mean read quality_fastq": 12.9,
+                                        "Median read length_fastq": 1568.0,
+                                        "Median read quality_fastq": 15.2,
+                                        "Number of reads_fastq": 5.95,
+                                        "Read length N50_fastq": 6844.0,
+                                        "Total bases_fastq": 18.602954999999998
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "3,126",
+                                        "Mean read quality_fastq": "12.9",
+                                        "Median read length_fastq": "1,568",
+                                        "Median read quality_fastq": "15.2",
+                                        "Number of reads_fastq": "6.0",
+                                        "Read length N50_fastq": "6,844",
+                                        "Total bases_fastq": "18.6"
+                                    }
+                                }
+                            ],
+                            "barcode15.NanoStats": [
+                                {
+                                    "sample": "barcode15.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 243.9,
+                                        "Mean read quality_fastq": 10.5,
+                                        "Median read length_fastq": 143.0,
+                                        "Median read quality_fastq": 11.7,
+                                        "Number of reads_fastq": 0.146,
+                                        "Read length N50_fastq": 344.0,
+                                        "Total bases_fastq": 0.035608
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "244",
+                                        "Mean read quality_fastq": "10.5",
+                                        "Median read length_fastq": "143",
+                                        "Median read quality_fastq": "11.7",
+                                        "Number of reads_fastq": "0.1",
+                                        "Read length N50_fastq": "344",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ],
+                            "barcode14.NanoStats": [
+                                {
+                                    "sample": "barcode14.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 222.2,
+                                        "Mean read quality_fastq": 10.8,
+                                        "Median read length_fastq": 173.5,
+                                        "Median read quality_fastq": 12.0,
+                                        "Number of reads_fastq": 0.32,
+                                        "Read length N50_fastq": 297.0,
+                                        "Total bases_fastq": 0.071104
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "222",
+                                        "Mean read quality_fastq": "10.8",
+                                        "Median read length_fastq": "174",
+                                        "Median read quality_fastq": "12.0",
+                                        "Number of reads_fastq": "0.3",
+                                        "Read length N50_fastq": "297",
+                                        "Total bases_fastq": "0.1"
+                                    }
+                                }
+                            ],
+                            "barcode01.NanoStats": [
+                                {
+                                    "sample": "barcode01.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 2598.9,
+                                        "Mean read quality_fastq": 13.3,
+                                        "Median read length_fastq": 1402.0,
+                                        "Median read quality_fastq": 15.6,
+                                        "Number of reads_fastq": 8.807,
+                                        "Read length N50_fastq": 5355.0,
+                                        "Total bases_fastq": 22.888489
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "2,599",
+                                        "Mean read quality_fastq": "13.3",
+                                        "Median read length_fastq": "1,402",
+                                        "Median read quality_fastq": "15.6",
+                                        "Number of reads_fastq": "8.8",
+                                        "Read length N50_fastq": "5,355",
+                                        "Total bases_fastq": "22.9"
+                                    }
+                                }
+                            ],
+                            "barcode24.NanoStats": [
+                                {
+                                    "sample": "barcode24.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 3166.3,
+                                        "Mean read quality_fastq": 12.4,
+                                        "Median read length_fastq": 1457.0,
+                                        "Median read quality_fastq": 14.8,
+                                        "Number of reads_fastq": 3.0340000000000003,
+                                        "Read length N50_fastq": 7589.0,
+                                        "Total bases_fastq": 9.606655
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "3,166",
+                                        "Mean read quality_fastq": "12.4",
+                                        "Median read length_fastq": "1,457",
+                                        "Median read quality_fastq": "14.8",
+                                        "Number of reads_fastq": "3.0",
+                                        "Read length N50_fastq": "7,589",
+                                        "Total bases_fastq": "9.6"
+                                    }
+                                }
+                            ],
+                            "barcode18.NanoStats": [
+                                {
+                                    "sample": "barcode18.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 1373.4,
+                                        "Mean read quality_fastq": 11.2,
+                                        "Median read length_fastq": 415.0,
+                                        "Median read quality_fastq": 13.0,
+                                        "Number of reads_fastq": 5.4990000000000006,
+                                        "Read length N50_fastq": 4927.0,
+                                        "Total bases_fastq": 7.552079999999999
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "1,373",
+                                        "Mean read quality_fastq": "11.2",
+                                        "Median read length_fastq": "415",
+                                        "Median read quality_fastq": "13.0",
+                                        "Number of reads_fastq": "5.5",
+                                        "Read length N50_fastq": "4,927",
+                                        "Total bases_fastq": "7.6"
+                                    }
+                                }
+                            ],
+                            "barcode02.NanoStats": [
+                                {
+                                    "sample": "barcode02.NanoStats",
+                                    "raw_data": {
+                                        "Mean read length_fastq": 480.5,
+                                        "Mean read quality_fastq": 9.7,
+                                        "Median read length_fastq": 166.5,
+                                        "Median read quality_fastq": 11.1,
+                                        "Number of reads_fastq": 0.008,
+                                        "Read length N50_fastq": 2085.0,
+                                        "Total bases_fastq": 0.0038439999999999998
+                                    },
+                                    "formatted_data": {
+                                        "Mean read length_fastq": "480",
+                                        "Mean read quality_fastq": "9.7",
+                                        "Median read length_fastq": "166",
+                                        "Median read quality_fastq": "11.1",
+                                        "Number of reads_fastq": "0.0",
+                                        "Read length N50_fastq": "2,085",
+                                        "Total bases_fastq": "0.0"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "headers_in_order": {
+                    "1000.0": [
+                        [
+                            0,
+                            "Median read length_fastq"
+                        ],
+                        [
+                            0,
+                            "Mean read length_fastq"
+                        ],
+                        [
+                            0,
+                            "Read length N50_fastq"
+                        ],
+                        [
+                            0,
+                            "Median read quality_fastq"
+                        ],
+                        [
+                            0,
+                            "Mean read quality_fastq"
+                        ],
+                        [
+                            0,
+                            "Number of reads_fastq"
+                        ],
+                        [
+                            0,
+                            "Total bases_fastq"
+                        ]
+                    ]
+                }
+            }
+        },
+        "nanostat_quality_dist": {
+            "id": "nanostat_quality_dist",
+            "anchor": "nanostat_quality_dist",
+            "plot_type": "bar_graph",
+            "layout": {
+                "autosize": true,
+                "colorway": [
+                    "#7cb5ec",
+                    "#434348",
+                    "#90ed7d",
+                    "#f7a35c",
+                    "#8085e9",
+                    "#f15c80",
+                    "#e4d354",
+                    "#2b908f",
+                    "#f45b5b",
+                    "#91e8e1"
+                ],
+                "font": {
+                    "family": "'Lucida Grande', 'Open Sans', verdana, arial, sans-serif"
+                },
+                "height": 565,
+                "hoverlabel": {
+                    "namelength": -1,
+                    "bgcolor": "rgba(255, 255, 255, 0.8)",
+                    "font": {
+                        "color": "black"
+                    }
+                },
+                "margin": {
+                    "b": 65,
+                    "l": 60,
+                    "pad": 5,
+                    "r": 15,
+                    "t": 50
+                },
+                "modebar": {
+                    "activecolor": "rgba(0, 0, 0, 1)",
+                    "bgcolor": "rgba(0, 0, 0, 0)",
+                    "color": "rgba(0, 0, 0, 0.5)"
+                },
+                "paper_bgcolor": "white",
+                "plot_bgcolor": "white",
+                "showlegend": true,
+                "title": {
+                    "font": {
+                        "size": 20
+                    },
+                    "text": "NanoStat: Reads by quality",
+                    "x": 0.5,
+                    "xanchor": "center"
+                },
+                "xaxis": {
+                    "automargin": true,
+                    "color": "rgba(0,0,0,0.3)",
+                    "gridcolor": "rgba(0,0,0,0.05)",
+                    "tickfont": {
+                        "color": "rgba(0,0,0,1)",
+                        "size": 10
+                    },
+                    "zerolinecolor": "rgba(0,0,0,0.05)"
+                },
+                "yaxis": {
+                    "automargin": true,
+                    "color": "rgba(0,0,0,0.3)",
+                    "gridcolor": "rgba(0,0,0,0.05)",
+                    "tickfont": {
+                        "color": "rgba(0,0,0,1)",
+                        "size": 10
+                    },
+                    "zerolinecolor": "rgba(0,0,0,0.05)",
+                    "showgrid": false,
+                    "categoryorder": "trace",
+                    "type": "category"
+                },
+                "barmode": "relative",
+                "bargroupgap": 0,
+                "bargap": 0.2,
+                "legend": {
+                    "tracegroupgap": 0,
+                    "traceorder": "normal"
+                },
+                "hovermode": "y unified"
+            },
+            "datasets": [
+                {
+                    "plot_id": "nanostat_quality_dist",
+                    "label": "1",
+                    "uid": "nanostat_quality_dist",
+                    "dconfig": {
+                        "title": "NanoStat: Reads by quality<br><sup>17 samples</sup>"
+                    },
+                    "layout": {
+                        "title": {
+                            "text": "NanoStat: Reads by quality<br><sup>17 samples</sup>"
+                        },
+                        "xaxis": {
+                            "title": {
+                                "text": "# Reads"
+                            },
+                            "hoverformat": ",.2f",
+                            "ticksuffix": "",
+                            "autorangeoptions": {
+                                "minallowed": 0,
+                                "maxallowed": 8807.0
+                            }
+                        },
+                        "yaxis": {
+                            "title": null,
+                            "hoverformat": null,
+                            "ticksuffix": ""
+                        },
+                        "showlegend": true
+                    },
+                    "trace_params": {
+                        "hovertemplate": "<b></b>%{meta}: <b>%{x}</b><extra></extra>",
+                        "orientation": "h",
+                        "marker": {
+                            "line": {
+                                "width": 0
+                            }
+                        },
+                        "textposition": "inside",
+                        "insidetextanchor": "start"
+                    },
+                    "pct_range": {
+                        "xaxis": {
+                            "min": 0,
+                            "max": 100
+                        },
+                        "yaxis": {
+                            "min": 0,
+                            "max": 100
+                        }
+                    },
+                    "n_samples": 17,
+                    "cats": [
+                        {
+                            "name": "Reads >Q30",
+                            "color": "0,104,55",
+                            "data": [
+                                25.0,
+                                41.0,
+                                34.0,
+                                32.0,
+                                32.0,
+                                30.0,
+                                13.0,
+                                0.0,
+                                1.0,
+                                0.0,
+                                2.0,
+                                0.0,
+                                2.0,
+                                1.0,
+                                0.0,
+                                0.0,
+                                66.0
+                            ],
+                            "data_pct": [
+                                0.8239947264337508,
+                                0.6890756302521008,
+                                0.776255707762557,
+                                0.4623609305013726,
+                                0.5203252032520325,
+                                0.793860809738026,
+                                0.2364066193853428,
+                                0.0,
+                                0.24154589371980675,
+                                0.0,
+                                0.625,
+                                0.0,
+                                1.5037593984962405,
+                                1.0869565217391304,
+                                0.0,
+                                0.0,
+                                0.7494038832746679
+                            ]
+                        },
+                        {
+                            "name": "Reads Q25-30",
+                            "color": "77,177,93",
+                            "data": [
+                                65.0,
+                                125.0,
+                                86.0,
+                                161.0,
+                                154.0,
+                                105.0,
+                                78.0,
+                                0.0,
+                                8.0,
+                                0.0,
+                                9.0,
+                                3.0,
+                                2.0,
+                                0.0,
+                                0.0,
+                                0.0,
+                                250.0
+                            ],
+                            "data_pct": [
+                                2.142386288727752,
+                                2.100840336134454,
+                                1.9634703196347032,
+                                2.3262534315850307,
+                                2.5040650406504064,
+                                2.7785128340830907,
+                                1.4184397163120568,
+                                0.0,
+                                1.932367149758454,
+                                0.0,
+                                2.8125,
+                                2.3622047244094486,
+                                1.5037593984962405,
+                                0.0,
+                                0.0,
+                                0.0,
+                                2.8386510730101056
+                            ]
+                        },
+                        {
+                            "name": "Reads Q20-25",
+                            "color": "183,224,117",
+                            "data": [
+                                356.0,
+                                755.0,
+                                539.0,
+                                821.0,
+                                937.0,
+                                531.0,
+                                346.0,
+                                4.0,
+                                27.0,
+                                11.0,
+                                22.0,
+                                9.0,
+                                5.0,
+                                4.0,
+                                0.0,
+                                0.0,
+                                1205.0
+                            ],
+                            "data_pct": [
+                                11.733684904416613,
+                                12.6890756302521,
+                                12.30593607305936,
+                                11.862447623175841,
+                                15.235772357723576,
+                                14.051336332363059,
+                                6.29205310056374,
+                                3.8095238095238098,
+                                6.521739130434782,
+                                7.534246575342466,
+                                6.875000000000001,
+                                7.086614173228346,
+                                3.7593984962406015,
+                                4.3478260869565215,
+                                0.0,
+                                0.0,
+                                13.682298171908707
+                            ]
+                        },
+                        {
+                            "name": "Reads Q15-20",
+                            "color": "256,256,191",
+                            "data": [
+                                1021.0,
+                                2155.0,
+                                1478.0,
+                                2521.0,
+                                2324.0,
+                                1334.0,
+                                1422.0,
+                                14.0,
+                                80.0,
+                                19.0,
+                                53.0,
+                                26.0,
+                                31.0,
+                                22.0,
+                                1.0,
+                                2.0,
+                                3352.0
+                            ],
+                            "data_pct": [
+                                33.65194462755438,
+                                36.21848739495798,
+                                33.74429223744293,
+                                36.42537205606126,
+                                37.78861788617886,
+                                35.30034400635088,
+                                25.85924713584288,
+                                13.333333333333334,
+                                19.32367149758454,
+                                13.013698630136986,
+                                16.5625,
+                                20.47244094488189,
+                                23.308270676691727,
+                                23.91304347826087,
+                                33.33333333333333,
+                                25.0,
+                                38.060633586919494
+                            ]
+                        },
+                        {
+                            "name": "Reads Q10-15",
+                            "color": "253,191,111",
+                            "data": [
+                                1009.0,
+                                2011.0,
+                                1470.0,
+                                2367.0,
+                                1930.0,
+                                1234.0,
+                                2221.0,
+                                46.0,
+                                172.0,
+                                72.0,
+                                141.0,
+                                56.0,
+                                43.0,
+                                30.0,
+                                1.0,
+                                3.0,
+                                2886.0
+                            ],
+                            "data_pct": [
+                                33.25642715886618,
+                                33.79831932773109,
+                                33.56164383561644,
+                                34.20026007802341,
+                                31.382113821138212,
+                                32.65414130722413,
+                                40.38916166575741,
+                                43.80952380952381,
+                                41.54589371980676,
+                                49.31506849315068,
+                                44.0625,
+                                44.09448818897638,
+                                32.33082706766917,
+                                32.608695652173914,
+                                33.33333333333333,
+                                37.5,
+                                32.769387986828654
+                            ]
+                        },
+                        {
+                            "name": "Reads <Q10",
+                            "color": "234,89,58",
+                            "data": [
+                                558.0,
+                                863.0,
+                                773.0,
+                                1019.0,
+                                773.0,
+                                545.0,
+                                1419.0,
+                                41.0,
+                                126.0,
+                                44.0,
+                                93.0,
+                                33.0,
+                                50.0,
+                                35.0,
+                                1.0,
+                                3.0,
+                                1048.0
+                            ],
+                            "data_pct": [
+                                18.391562294001318,
+                                14.504201680672269,
+                                17.64840182648402,
+                                14.723305880653085,
+                                12.569105691056912,
+                                14.421804710240805,
+                                25.80469176213857,
+                                39.04761904761905,
+                                30.434782608695656,
+                                30.136986301369863,
+                                29.062500000000004,
+                                25.984251968503933,
+                                37.59398496240601,
+                                38.04347826086957,
+                                33.33333333333333,
+                                37.5,
+                                11.899625298058362
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "barcode24.NanoStats",
+                        "barcode23.NanoStats",
+                        "barcode22.NanoStats",
+                        "barcode21.NanoStats",
+                        "barcode20.NanoStats",
+                        "barcode19.NanoStats",
+                        "barcode18.NanoStats",
+                        "barcode17.NanoStats",
+                        "barcode16.NanoStats",
+                        "barcode15.NanoStats",
+                        "barcode14.NanoStats",
+                        "barcode13.NanoStats",
+                        "barcode12.NanoStats",
+                        "barcode11.NanoStats",
+                        "barcode09.NanoStats",
+                        "barcode02.NanoStats",
+                        "barcode01.NanoStats"
+                    ]
+                }
+            ],
+            "pconfig": {
+                "id": "nanostat_quality_dist",
+                "title": "NanoStat: Reads by quality",
+                "anchor": null,
+                "table_title": null,
+                "height": null,
+                "width": null,
+                "square": false,
+                "logswitch": false,
+                "logswitch_active": false,
+                "logswitch_label": "Log10",
+                "cpswitch": true,
+                "cpswitch_c_active": true,
+                "cpswitch_counts_label": "Number of Reads",
+                "cpswitch_percent_label": "Percentages",
+                "xLog": null,
+                "yLog": null,
+                "xlog": false,
+                "ylog": false,
+                "data_labels": [],
+                "xTitle": null,
+                "yTitle": null,
+                "xlab": null,
+                "ylab": "# Reads",
+                "xsuffix": null,
+                "ysuffix": null,
+                "tt_suffix": null,
+                "xLabFormat": null,
+                "yLabFormat": null,
+                "xLabelFormat": null,
+                "yLabelFormat": null,
+                "xlab_format": null,
+                "ylab_format": null,
+                "tt_label": null,
+                "xDecimals": null,
+                "yDecimals": null,
+                "decimalPlaces": null,
+                "x_decimals": null,
+                "y_decimals": null,
+                "tt_decimals": null,
+                "xmin": null,
+                "xmax": null,
+                "ymin": null,
+                "ymax": null,
+                "xFloor": null,
+                "xCeiling": null,
+                "yFloor": null,
+                "yCeiling": null,
+                "x_clipmin": null,
+                "x_clipmax": null,
+                "y_clipmin": null,
+                "y_clipmax": null,
+                "save_data_file": true,
+                "showlegend": null,
+                "xMinRange": null,
+                "yMinRange": null,
+                "x_minrange": null,
+                "y_minrange": null,
+                "xPlotBands": null,
+                "yPlotBands": null,
+                "xPlotLines": null,
+                "yPlotLines": null,
+                "x_bands": null,
+                "y_bands": null,
+                "x_lines": null,
+                "y_lines": null,
+                "stacking": "relative",
+                "hide_zero_cats": true,
+                "sort_samples": true,
+                "use_legend": true,
+                "suffix": null,
+                "lab_format": null
+            },
+            "add_log_tab": false,
+            "add_pct_tab": true,
+            "l_active": false,
+            "p_active": false,
+            "pct_axis_update": {
+                "ticksuffix": "%",
+                "hoverformat": ".1f"
+            },
+            "axis_controlled_by_switches": [
+                "xaxis"
+            ],
+            "square": false,
+            "flat": false,
+            "defer_render": false
+        }
+    },
+    "report_saved_raw_data": {
+        "multiqc_nanostat": {
+            "barcode22.NanoStats": {
+                "Mean read length_fastq": 2480.8,
+                "Mean read quality_fastq": 12.3,
+                "Median read length_fastq": 1059.5,
+                "Median read quality_fastq": 14.9,
+                "Number of reads_fastq": 4380.0,
+                "Read length N50_fastq": 6124.0,
+                "STDEV read length_fastq": 3827.1,
+                "Total bases_fastq": 10866000.0,
+                ">Q10_fastq": 3607.0,
+                ">Q15_fastq": 2137.0,
+                ">Q20_fastq": 659.0,
+                ">Q25_fastq": 120.0,
+                ">Q30_fastq": 34.0
+            },
+            "barcode11.NanoStats": {
+                "Mean read length_fastq": 235.7,
+                "Mean read quality_fastq": 10.5,
+                "Median read length_fastq": 143.0,
+                "Median read quality_fastq": 11.5,
+                "Number of reads_fastq": 92.0,
+                "Read length N50_fastq": 357.0,
+                "STDEV read length_fastq": 372.1,
+                "Total bases_fastq": 21682.0,
+                ">Q10_fastq": 57.0,
+                ">Q15_fastq": 27.0,
+                ">Q20_fastq": 5.0,
+                ">Q25_fastq": 1.0,
+                ">Q30_fastq": 1.0
+            },
+            "barcode13.NanoStats": {
+                "Mean read length_fastq": 273.3,
+                "Mean read quality_fastq": 11.3,
+                "Median read length_fastq": 180.0,
+                "Median read quality_fastq": 12.4,
+                "Number of reads_fastq": 127.0,
+                "Read length N50_fastq": 395.0,
+                "STDEV read length_fastq": 291.1,
+                "Total bases_fastq": 34714.0,
+                ">Q10_fastq": 94.0,
+                ">Q15_fastq": 38.0,
+                ">Q20_fastq": 12.0,
+                ">Q25_fastq": 3.0,
+                ">Q30_fastq": 0.0
+            },
+            "barcode21.NanoStats": {
+                "Mean read length_fastq": 3114.1,
+                "Mean read quality_fastq": 12.9,
+                "Median read length_fastq": 1385.0,
+                "Median read quality_fastq": 15.1,
+                "Number of reads_fastq": 6921.0,
+                "Read length N50_fastq": 7374.0,
+                "STDEV read length_fastq": 4754.5,
+                "Total bases_fastq": 21552715.0,
+                ">Q10_fastq": 5902.0,
+                ">Q15_fastq": 3535.0,
+                ">Q20_fastq": 1014.0,
+                ">Q25_fastq": 193.0,
+                ">Q30_fastq": 32.0
+            },
+            "barcode19.NanoStats": {
+                "Mean read length_fastq": 3848.9,
+                "Mean read quality_fastq": 13.0,
+                "Median read length_fastq": 1767.0,
+                "Median read quality_fastq": 15.4,
+                "Number of reads_fastq": 3779.0,
+                "Read length N50_fastq": 9260.0,
+                "STDEV read length_fastq": 5674.5,
+                "Total bases_fastq": 14544960.0,
+                ">Q10_fastq": 3234.0,
+                ">Q15_fastq": 2000.0,
+                ">Q20_fastq": 666.0,
+                ">Q25_fastq": 135.0,
+                ">Q30_fastq": 30.0
+            },
+            "barcode12.NanoStats": {
+                "Mean read length_fastq": 224.3,
+                "Mean read quality_fastq": 10.4,
+                "Median read length_fastq": 188.0,
+                "Median read quality_fastq": 11.7,
+                "Number of reads_fastq": 133.0,
+                "Read length N50_fastq": 333.0,
+                "STDEV read length_fastq": 187.1,
+                "Total bases_fastq": 29830.0,
+                ">Q10_fastq": 83.0,
+                ">Q15_fastq": 40.0,
+                ">Q20_fastq": 9.0,
+                ">Q25_fastq": 4.0,
+                ">Q30_fastq": 2.0
+            },
+            "barcode16.NanoStats": {
+                "Mean read length_fastq": 241.2,
+                "Mean read quality_fastq": 10.7,
+                "Median read length_fastq": 185.0,
+                "Median read quality_fastq": 12.2,
+                "Number of reads_fastq": 414.0,
+                "Read length N50_fastq": 308.0,
+                "STDEV read length_fastq": 243.8,
+                "Total bases_fastq": 99877.0,
+                ">Q10_fastq": 288.0,
+                ">Q15_fastq": 116.0,
+                ">Q20_fastq": 36.0,
+                ">Q25_fastq": 9.0,
+                ">Q30_fastq": 1.0
+            },
+            "barcode17.NanoStats": {
+                "Mean read length_fastq": 258.4,
+                "Mean read quality_fastq": 9.6,
+                "Median read length_fastq": 170.0,
+                "Median read quality_fastq": 11.1,
+                "Number of reads_fastq": 105.0,
+                "Read length N50_fastq": 418.0,
+                "STDEV read length_fastq": 405.6,
+                "Total bases_fastq": 27132.0,
+                ">Q10_fastq": 64.0,
+                ">Q15_fastq": 18.0,
+                ">Q20_fastq": 4.0,
+                ">Q25_fastq": 0.0,
+                ">Q30_fastq": 0.0
+            },
+            "barcode20.NanoStats": {
+                "Mean read length_fastq": 2926.2,
+                "Mean read quality_fastq": 13.3,
+                "Median read length_fastq": 1464.0,
+                "Median read quality_fastq": 15.7,
+                "Number of reads_fastq": 6150.0,
+                "Read length N50_fastq": 6511.0,
+                "STDEV read length_fastq": 4301.2,
+                "Total bases_fastq": 17996316.0,
+                ">Q10_fastq": 5377.0,
+                ">Q15_fastq": 3447.0,
+                ">Q20_fastq": 1123.0,
+                ">Q25_fastq": 186.0,
+                ">Q30_fastq": 32.0
+            },
+            "barcode09.NanoStats": {
+                "Mean read length_fastq": 408.3,
+                "Mean read quality_fastq": 12.1,
+                "Median read length_fastq": 252.0,
+                "Median read quality_fastq": 14.9,
+                "Number of reads_fastq": 3.0,
+                "Read length N50_fastq": 843.0,
+                "STDEV read length_fastq": 311.4,
+                "Total bases_fastq": 1225.0,
+                ">Q10_fastq": 2.0,
+                ">Q15_fastq": 1.0,
+                ">Q20_fastq": 0.0,
+                ">Q25_fastq": 0.0,
+                ">Q30_fastq": 0.0
+            },
+            "barcode23.NanoStats": {
+                "Mean read length_fastq": 3126.5,
+                "Mean read quality_fastq": 12.9,
+                "Median read length_fastq": 1568.0,
+                "Median read quality_fastq": 15.2,
+                "Number of reads_fastq": 5950.0,
+                "Read length N50_fastq": 6844.0,
+                "STDEV read length_fastq": 4268.9,
+                "Total bases_fastq": 18602955.0,
+                ">Q10_fastq": 5087.0,
+                ">Q15_fastq": 3076.0,
+                ">Q20_fastq": 921.0,
+                ">Q25_fastq": 166.0,
+                ">Q30_fastq": 41.0
+            },
+            "barcode15.NanoStats": {
+                "Mean read length_fastq": 243.9,
+                "Mean read quality_fastq": 10.5,
+                "Median read length_fastq": 143.0,
+                "Median read quality_fastq": 11.7,
+                "Number of reads_fastq": 146.0,
+                "Read length N50_fastq": 344.0,
+                "STDEV read length_fastq": 630.3,
+                "Total bases_fastq": 35608.0,
+                ">Q10_fastq": 102.0,
+                ">Q15_fastq": 30.0,
+                ">Q20_fastq": 11.0,
+                ">Q25_fastq": 0.0,
+                ">Q30_fastq": 0.0
+            },
+            "barcode14.NanoStats": {
+                "Mean read length_fastq": 222.2,
+                "Mean read quality_fastq": 10.8,
+                "Median read length_fastq": 173.5,
+                "Median read quality_fastq": 12.0,
+                "Number of reads_fastq": 320.0,
+                "Read length N50_fastq": 297.0,
+                "STDEV read length_fastq": 168.5,
+                "Total bases_fastq": 71104.0,
+                ">Q10_fastq": 227.0,
+                ">Q15_fastq": 86.0,
+                ">Q20_fastq": 33.0,
+                ">Q25_fastq": 11.0,
+                ">Q30_fastq": 2.0
+            },
+            "barcode01.NanoStats": {
+                "Mean read length_fastq": 2598.9,
+                "Mean read quality_fastq": 13.3,
+                "Median read length_fastq": 1402.0,
+                "Median read quality_fastq": 15.6,
+                "Number of reads_fastq": 8807.0,
+                "Read length N50_fastq": 5355.0,
+                "STDEV read length_fastq": 3529.7,
+                "Total bases_fastq": 22888489.0,
+                ">Q10_fastq": 7759.0,
+                ">Q15_fastq": 4873.0,
+                ">Q20_fastq": 1521.0,
+                ">Q25_fastq": 316.0,
+                ">Q30_fastq": 66.0
+            },
+            "barcode24.NanoStats": {
+                "Mean read length_fastq": 3166.3,
+                "Mean read quality_fastq": 12.4,
+                "Median read length_fastq": 1457.0,
+                "Median read quality_fastq": 14.8,
+                "Number of reads_fastq": 3034.0,
+                "Read length N50_fastq": 7589.0,
+                "STDEV read length_fastq": 4441.1,
+                "Total bases_fastq": 9606655.0,
+                ">Q10_fastq": 2476.0,
+                ">Q15_fastq": 1467.0,
+                ">Q20_fastq": 446.0,
+                ">Q25_fastq": 90.0,
+                ">Q30_fastq": 25.0
+            },
+            "barcode18.NanoStats": {
+                "Mean read length_fastq": 1373.4,
+                "Mean read quality_fastq": 11.2,
+                "Median read length_fastq": 415.0,
+                "Median read quality_fastq": 13.0,
+                "Number of reads_fastq": 5499.0,
+                "Read length N50_fastq": 4927.0,
+                "STDEV read length_fastq": 3002.6,
+                "Total bases_fastq": 7552080.0,
+                ">Q10_fastq": 4080.0,
+                ">Q15_fastq": 1859.0,
+                ">Q20_fastq": 437.0,
+                ">Q25_fastq": 91.0,
+                ">Q30_fastq": 13.0
+            },
+            "barcode02.NanoStats": {
+                "Mean read length_fastq": 480.5,
+                "Mean read quality_fastq": 9.7,
+                "Median read length_fastq": 166.5,
+                "Median read quality_fastq": 11.1,
+                "Number of reads_fastq": 8.0,
+                "Read length N50_fastq": 2085.0,
+                "STDEV read length_fastq": 633.8,
+                "Total bases_fastq": 3844.0,
+                ">Q10_fastq": 5.0,
+                ">Q15_fastq": 2.0,
+                ">Q20_fastq": 0.0,
+                ">Q25_fastq": 0.0,
+                ">Q30_fastq": 0.0
+            }
+        }
+    },
+    "config_analysis_dir_abs": [
+        "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b"
+    ],
+    "config_analysis_dir": [
+        "."
+    ],
+    "config_creation_date": "2026-08-30, 20:44 +07",
+    "config_git_hash": null,
+    "config_intro_text": null,
+    "config_report_comment": null,
+    "config_report_header_info": null,
+    "config_script_path": "/home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/lib/python3.11/site-packages/multiqc",
+    "config_short_version": "1.25.1",
+    "config_subtitle": null,
+    "config_title": null,
+    "config_version": "1.25.1",
+    "config_output_dir": "/home/surj/Workspace/metagenomics-pipeline/work/3c/961a9390e098005d2f5e2f097e620b"
+}

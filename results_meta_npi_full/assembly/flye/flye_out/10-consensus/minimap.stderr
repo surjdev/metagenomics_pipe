@@ -1,0 +1,12 @@
+[samfaipath] build FASTA index...
+[M::mm_idx_gen::0.015*1.06] collected minimizers
+[M::mm_idx_gen::0.022*1.72] sorted minimizers
+[M::main::0.022*1.72] loaded/built the index for 75 target sequence(s)
+[M::mm_mapopt_update::0.025*1.64] mid_occ = 40
+[M::mm_idx_stat] kmer size: 17; skip: 10; is_hpc: 0; #seq: 75
+[M::mm_idx_stat::0.027*1.59] distinct minimizers: 108549 (91.20% are singletons); average occurrences: 1.220; average spacing: 5.462; total length: 723390
+[M::worker_pipeline::17.583*3.94] mapped 4681 sequences
+[M::main] Version: 2.24-r1155-dirty
+[M::main] CMD: flye-minimap2 -x map-ont -t 4 -k 17 -a -p 0.5 -N 10 --sam-hit-only -L -K 1G -z 1000 -Q --secondary-seq -I 64G /home/surj/Workspace/metagenomics-pipeline/work/35/7d54905cced22ccffc877f1282a146/flye_out/00-assembly/draft_assembly.fasta /home/surj/Workspace/metagenomics-pipeline/work/35/7d54905cced22ccffc877f1282a146/barcode23_nonhost.fastq.gz
+[M::main] Real time: 17.586 sec; CPU: 69.226 sec; Peak RSS: 0.853 GB
+[bam_sort_core] merging from 0 files and 4 in-memory blocks...

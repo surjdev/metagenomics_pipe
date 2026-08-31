@@ -1,0 +1,3 @@
+Module	Section	Sample Name	Source
+NanoStat	all_sections	barcode16.NanoStats	/home/surj/Workspace/metagenomics-pipeline/work/6c/5aa6f1e131e76bb18c702be5b6720c/barcode16.NanoStats.txt
+NanoStat	all_sections	barcode14.NanoStats	/home/surj/Workspace/metagenomics-pipeline/work/6c/5aa6f1e131e76bb18c702be5b6720c/barcode14.NanoStats.txt

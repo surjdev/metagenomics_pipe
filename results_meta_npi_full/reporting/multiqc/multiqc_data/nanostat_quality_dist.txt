@@ -1,0 +1,18 @@
+Sample	Reads >Q30	Reads Q25-30	Reads Q20-25	Reads Q15-20	Reads Q10-15	Reads <Q10
+barcode01.NanoStats	66.0	250.0	1205.0	3352.0	2886.0	1048.0
+barcode02.NanoStats	0.0	0.0	0.0	2.0	3.0	3.0
+barcode09.NanoStats	0.0	0.0	0.0	1.0	1.0	1.0
+barcode11.NanoStats	1.0	0.0	4.0	22.0	30.0	35.0
+barcode12.NanoStats	2.0	2.0	5.0	31.0	43.0	50.0
+barcode13.NanoStats	0.0	3.0	9.0	26.0	56.0	33.0
+barcode14.NanoStats	2.0	9.0	22.0	53.0	141.0	93.0
+barcode15.NanoStats	0.0	0.0	11.0	19.0	72.0	44.0
+barcode16.NanoStats	1.0	8.0	27.0	80.0	172.0	126.0
+barcode17.NanoStats	0.0	0.0	4.0	14.0	46.0	41.0
+barcode18.NanoStats	13.0	78.0	346.0	1422.0	2221.0	1419.0
+barcode19.NanoStats	30.0	105.0	531.0	1334.0	1234.0	545.0
+barcode20.NanoStats	32.0	154.0	937.0	2324.0	1930.0	773.0
+barcode21.NanoStats	32.0	161.0	821.0	2521.0	2367.0	1019.0
+barcode22.NanoStats	34.0	86.0	539.0	1478.0	1470.0	773.0
+barcode23.NanoStats	41.0	125.0	755.0	2155.0	2011.0	863.0
+barcode24.NanoStats	25.0	65.0	356.0	1021.0	1009.0	558.0

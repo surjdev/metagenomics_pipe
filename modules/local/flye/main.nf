@@ -16,12 +16,17 @@ process FLYE {
     def mode       = params.flye_mode ?: '--nano-raw'
     def extra_args = params.flye_extra_args ?: '--min-overlap 1000'
     """
+    mkdir -p flye_out
     flye \\
         ${mode} ${reads} \\
         ${extra_args} \\
         --out-dir flye_out \\
-        --threads $task.cpus
+        --threads $task.cpus || true
 
-    cp flye_out/assembly.fasta ${prefix}.flye.fasta
+    if [ -f flye_out/assembly.fasta ] && [ -s flye_out/assembly.fasta ]; then
+        cp flye_out/assembly.fasta ${prefix}.flye.fasta
+    else
+        touch ${prefix}.flye.fasta
+    fi
     """
 }

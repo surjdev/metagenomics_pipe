@@ -1,0 +1,8 @@
+contigName	contigLen	totalAvgDepth	barcode24_long.sorted	barcode24_long.sorted-var
+contig_1	7495	0	0	0
+contig_10	8934	0.0747951	0.0747951	0.0692286
+contig_2	2117	1.06762	1.06762	0.609366
+contig_6	1451	8.93467	8.93467	1.31956
+contig_7	707	2.39497	2.39497	0.2394
+contig_8	8090	1.20705	1.20705	1.69397
+contig_9	3647	0.526165	0.526165	2.60161

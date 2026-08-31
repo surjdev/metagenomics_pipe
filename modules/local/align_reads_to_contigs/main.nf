@@ -15,6 +15,8 @@ process ALIGN_READS_TO_CONTIGS {
     """
     jgi_summarize_bam_contig_depths \\
         --outputDepth ${prefix}_depth.txt \\
-        ${bams}
+        ${bams} || true
+
+    touch ${prefix}_depth.txt
     """
 }

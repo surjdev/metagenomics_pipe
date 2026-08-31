@@ -1,0 +1,61 @@
+/home/surj/Workspace/metagenomics-pipeline/.pixi/envs/default/bin/quast.py barcode23.flye.fasta -o quast_out -t 4
+
+Version: 5.3.0
+
+System information:
+  OS: Linux-6.8.0-138-generic-x86_64-with-glibc2.35 (linux_64)
+  Python version: 3.11.15
+  CPUs number: 12
+
+Started: 2026-08-30 20:44:32
+
+Logging to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/quast.log
+
+CWD: /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d
+Main parameters: 
+  MODE: default, threads: 4, min contig length: 500, min alignment length: 65, min alignment IDY: 95.0, \
+  ambiguity: one, min local misassembly length: 200, min extensive misassembly length: 1000
+
+Contigs:
+  Pre-processing...
+  barcode23.flye.fasta ==> barcode23.flye
+
+2026-08-30 20:44:32
+Running Basic statistics processor...
+  Contig files: 
+    barcode23.flye
+  Calculating N50 and L50...
+    barcode23.flye, N50 = 2860, L50 = 4, auN = 3015.0, Total length = 28098, GC % = 39.91, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/basic_stats/GC_content_plot.pdf
+  Drawing barcode23.flye GC content plot...
+    saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/basic_stats/barcode23.flye_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2026-08-30 20:44:33
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating PDF with all tables and plots...
+  2 of 2: Creating Icarus viewers...
+Done
+
+2026-08-30 20:44:33
+RESULTS:
+  Text versions of total report are saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/report.html
+  PDF version (tables and plots) is saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/report.pdf
+  Icarus (contig browser) is saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/icarus.html
+  Log is saved to /home/surj/Workspace/metagenomics-pipeline/work/6a/78912d49914450d77fe06eb2cf152d/quast_out/quast.log
+
+Finished: 2026-08-30 20:44:33
+Elapsed time: 0:00:00.965539
+NOTICEs: 1; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!

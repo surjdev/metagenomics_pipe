@@ -1,0 +1,3 @@
+sample,long_reads
+barcode01,/home/surj/Workspace/metagenomics-pipeline/Meta_NPI/1_basecalled_fastq/barcode01/PBG11387_pass_barcode01_877e2cf7_59b28c65_0.fastq
+barcode21,/home/surj/Workspace/metagenomics-pipeline/Meta_NPI/1_basecalled_fastq/barcode21/PBG11387_pass_barcode21_877e2cf7_59b28c65_0.fastq

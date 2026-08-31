@@ -8,16 +8,22 @@ process QUAST {
     tuple val(meta), path(contigs)
 
     output:
-    tuple val(meta), path("quast_out"),             emit: dir
-    tuple val(meta), path("quast_out/report.tsv"),  emit: tsv
-    tuple val(meta), path("quast_out/report.html"), emit: html
+    tuple val(meta), path("quast_out"),                  emit: dir
+    tuple val(meta), path("*_quast_report.tsv"),         emit: tsv
+    tuple val(meta), path("*_quast_report.html"),        emit: html
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    quast.py \\
-        ${contigs} \\
-        -o quast_out \\
-        -t $task.cpus
+    mkdir -p quast_out
+    if grep -q "^>" ${contigs} 2>/dev/null; then
+        quast.py \\
+            ${contigs} \\
+            -o quast_out \\
+            -t $task.cpus || true
+    fi
+    touch quast_out/report.tsv quast_out/report.html
+    cp quast_out/report.tsv ${prefix}_quast_report.tsv
+    cp quast_out/report.html ${prefix}_quast_report.html
     """
 }

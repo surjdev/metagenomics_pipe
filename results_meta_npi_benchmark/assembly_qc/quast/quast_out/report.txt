@@ -1,0 +1,25 @@
+All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
+
+Assembly                    barcode21.flye
+# contigs (>= 0 bp)         9             
+# contigs (>= 1000 bp)      9             
+# contigs (>= 5000 bp)      4             
+# contigs (>= 10000 bp)     3             
+# contigs (>= 25000 bp)     1             
+# contigs (>= 50000 bp)     0             
+Total length (>= 0 bp)      98965         
+Total length (>= 1000 bp)   98965         
+Total length (>= 5000 bp)   82617         
+Total length (>= 10000 bp)  76499         
+Total length (>= 25000 bp)  45158         
+Total length (>= 50000 bp)  0             
+# contigs                   9             
+Largest contig              45158         
+Total length                98965         
+GC (%)                      48.94         
+N50                         16575         
+N90                         4321          
+auN                         26553.7       
+L50                         2             
+L90                         6             
+# N's per 100 kbp           0.00          
