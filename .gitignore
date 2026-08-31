@@ -1,38 +1,84 @@
 # ==============================================================================
-# .gitignore — Hybrid Metagenomics Nextflow DSL2 Pipeline
+# .gitignore — Hybrid Metagenomics Nextflow DSL2 Framework
 # ==============================================================================
 
-# === Nextflow Runtime & Working Directories ===
+# === 1. Nextflow Engine Caches & Logs ===
 .nextflow/
 .nextflow.*
+.nextflow.log*
 work/
-results/
-pipeline_info/
 .checkpoints/
 
-# === Container Caches & Images ===
-*.sif
-*.img
-singularity_cache/
+# === 2. Pipeline Results & Output Directories ===
+results/
+results_*/
+pipeline_info/
 
-# === Large Reference Databases ===
+# === 3. Raw Sequencing Data & Large Datasets ===
+Meta_NPI/
+data/
+raw_data/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.pod5
+*.fast5
+
+# === 4. Genomic Assemblies, Alignments & Intermediate Binary Files ===
+*.fasta
+*.fa
+*.fna
+*.faa
+*.gfa
+*.gff
+*.gff3
+*.gtf
+*.bam
+*.bai
+*.sam
+*.paf
+*.cram
+*.crai
+*.bcf
+*.vcf
+*.vcf.gz
+
+# === 5. Large Reference Databases & Indexes ===
 databases/*
 !databases/README.md
 !databases/download.sh
+*.bt2
+*.bt2l
+*.dmnd
+*.k2d
+*.msh
+*.tax
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.gz
+*.bz2
 
-# === Python & Environment Files ===
-__pycache__/
-*.py[cod]
-*$py.class
-.pytest_cache/
+# === 6. Container Images & Virtual Environments ===
+*.sif
+*.simg
+*.img
+singularity_cache/
+.pixi/
 .venv/
 venv/
 env/
 ENV/
 pyvenv.cfg
-.pixi/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
 
-# === OS & Editor Artifacts ===
+# === 7. IDE, OS & Agent System Files ===
 .DS_Store
 Thumbs.db
 .vscode/
@@ -40,25 +86,14 @@ Thumbs.db
 .gemini/
 *.swp
 *~
+*.log
+*.tmp
+*.temp
 
-# === General Large Sequencing & Database Data ===
-*.fastq
-*.fastq.gz
-*.fq
-*.fq.gz
-*.fasta
-*.fa
-*.fna
-*.faa
-*.bam
-*.bai
-*.sam
-*.paf
-*.bt2
-*.dmnd
-*.k2d
-
-# === Explicit Whitelist for Synthetic Test Data & Manifests ===
-# (Allows out-of-the-box CI/CD and test profile execution)
+# === 8. Explicit Whitelist for Small Test Assets & Templates ===
+# (Ensure CI/CD synthetic tiny databases and config examples remain tracked)
 !test/data/**
+!test/data/tiny_databases/**
+!templates/**
 !samples.csv
+!samplesheet*.csv
