@@ -90,10 +90,11 @@ Thumbs.db
 *.tmp
 *.temp
 
+samplesheet*.csv
+
 # === 8. Explicit Whitelist for Small Test Assets & Templates ===
 # (Ensure CI/CD synthetic tiny databases and config examples remain tracked)
 !test/data/**
 !test/data/tiny_databases/**
 !templates/**
 !samples.csv
-!samplesheet*.csv

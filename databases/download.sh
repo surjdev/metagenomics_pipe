@@ -8,8 +8,8 @@ set -euo pipefail
 
 # Print help message
 usage() {
-    cat << EOF
-Usage: $(basename "$0") [OPTIONS] TARGET_DIR
+    cat <<EOF
+Usage: $(basename "$0") [OPTIONS] [TARGET_DIR]
 
 Options:
   --host       Download and index Human Host reference (GRCh38)
@@ -22,8 +22,11 @@ Options:
   --all        Download all reference databases
   -h, --help   Show this help message
 
-Example:
-  $(basename "$0") --kraken2 /data/databases/kraken2
+TARGET_DIR is optional and defaults to: ./databases
+
+Examples:
+  $(basename "$0") --gtdbtk                    # downloads into ./databases/gtdbtk
+  $(basename "$0") --kraken2 /data/databases   # downloads into /data/databases/kraken2
   $(basename "$0") --all /data/databases
 EOF
     exit 0
@@ -51,10 +54,25 @@ if [[ $# -eq 0 ]]; then
     usage
 fi
 
-TARGET_DIR="${@: -1}"
+# Parse arguments: separate the flag from the optional TARGET_DIR positional arg.
+# TARGET_DIR defaults to ./databases if not provided.
+FLAG=""
+TARGET_DIR="./databases"
+
+for arg in "$@"; do
+    case "$arg" in
+        --*|-h)
+            FLAG="$arg"
+            ;;
+        *)
+            TARGET_DIR="$arg"
+            ;;
+    esac
+done
+
 mkdir -p "$TARGET_DIR"
 
-case "$1" in
+case "$FLAG" in
     --host)
         echo "==> Downloading Human Host Genome (GRCh38)..."
         HOST_DIR="${TARGET_DIR}/host"
