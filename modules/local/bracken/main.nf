@@ -18,13 +18,21 @@ process BRACKEN {
     def level = params.bracken_level ?: 'S'
     def threshold = params.bracken_threshold ?: 10
     """
-    bracken \\
-        -d ${db} \\
-        -i ${kraken_report} \\
-        -o ${prefix}_bracken_species.tsv \\
-        -w ${prefix}_bracken_report.txt \\
-        -r ${read_len} \\
-        -l ${level} \\
-        -t ${threshold}
+    # Check if report has classified reads before running bracken
+    classified_reads=\$(awk -F'\t' '\$4 == "U" {next} {sum += \$2} END {print sum+0}' ${kraken_report})
+
+    if [ "\${classified_reads}" -gt 0 ]; then
+        bracken \\
+            -d ${db} \\
+            -i ${kraken_report} \\
+            -o ${prefix}_bracken_species.tsv \\
+            -w ${prefix}_bracken_report.txt \\
+            -r ${read_len} \\
+            -l ${level} \\
+            -t ${threshold} || true
+    fi
+
+    # Ensure output files exist even for empty/zero-read samples
+    touch ${prefix}_bracken_species.tsv ${prefix}_bracken_report.txt
     """
 }

@@ -22,24 +22,31 @@ workflow assembly_free {
     ch_humann_pathabundance= Channel.empty()
 
     // ── 1. Kraken2 Taxonomic Classification ───────────────────────────────────
-    if (params.run_kraken2 && params.kraken2_db) {
+    def run_kraken      = (params.run_kraken2 != false && params.run_kraken2 != 'false')
+    def has_kraken_db   = (params.kraken2_db && params.kraken2_db != 'null')
+    def run_bracken     = (params.run_bracken == true || params.run_bracken == 'true')
+    def run_krona       = (params.run_krona != false && params.run_krona != 'false')
+    def run_kraken_biom = (params.run_kraken_biom != false && params.run_kraken_biom != 'false')
+    def run_humann3     = (params.run_humann3 == true || params.run_humann3 == 'true')
+
+    if (run_kraken && has_kraken_db) {
         KRAKEN2( ch_reads, file(params.kraken2_db) )
         ch_kraken_report = KRAKEN2.out.report
 
-        // ── 2. Bracken Abundance Estimation ───────────────────────────────────
-        if (params.run_bracken) {
+        // ── 2. Bracken Abundance Estimation (Optional, typically for Illumina) ──
+        if (run_bracken) {
             BRACKEN( KRAKEN2.out.report, file(params.kraken2_db) )
             ch_bracken_report = BRACKEN.out.report
         }
 
         // ── 3. Krona Visualization ────────────────────────────────────────────
-        if (params.run_krona) {
+        if (run_krona) {
             KRONA( KRAKEN2.out.report )
             ch_krona_html = KRONA.out.html
         }
 
         // ── 4. BIOM Conversion ────────────────────────────────────────────────
-        if (params.run_kraken_biom) {
+        if (run_kraken_biom) {
             KRAKEN_BIOM( KRAKEN2.out.report )
             ch_biom = KRAKEN_BIOM.out.biom
         }
