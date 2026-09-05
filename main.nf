@@ -26,31 +26,39 @@ workflow {
     log.info Utils.headerBanner()
     Validation.run(params)
 
-    // ── Input Channels from Samplesheet ───────────────────────────────────────
+    // ── Platform Routing & Input Channels ─────────────────────────────────────
+    def plat = (params.platform ?: 'auto').toLowerCase()
+    def include_short = (plat in ['auto', 'short', 'illumina', 'hybrid'])
+    def include_long  = (plat in ['auto', 'long', 'nanopore', 'ont', 'hybrid'])
+
     ch_samplesheet = Channel
         .fromPath( params.input )
         .splitCsv( header: true )
         .map { row -> Samplesheet.parseRow(row) }
 
-    ch_short_reads = ch_samplesheet
-        .filter { row -> row.fastq_1 && row.fastq_2 }
-        .map { row ->
-            def meta = [ id: row.sample, single_end: false, platform: 'illumina' ]
-            [ meta, [ file(row.fastq_1), file(row.fastq_2) ] ]
-        }
+    ch_short_reads = include_short
+        ? ch_samplesheet
+            .filter { row -> row.fastq_1 && row.fastq_2 }
+            .map { row ->
+                def meta = [ id: row.sample, single_end: false, platform: 'illumina' ]
+                [ meta, [ file(row.fastq_1), file(row.fastq_2) ] ]
+            }
+        : Channel.empty()
 
-    ch_long_reads = ch_samplesheet
-        .filter { row -> row.long_fastq || row.long_reads }
-        .map { row ->
-            def meta = [ id: row.sample, single_end: true, platform: 'nanopore' ]
-            def fq = row.long_fastq ?: row.long_reads
-            [ meta, file(fq) ]
-        }
+    ch_long_reads = include_long
+        ? ch_samplesheet
+            .filter { row -> row.long_fastq || row.long_reads }
+            .map { row ->
+                def meta = [ id: row.sample, single_end: true, platform: 'nanopore' ]
+                def fq = row.long_fastq ?: row.long_reads
+                [ meta, file(fq) ]
+            }
+        : Channel.empty()
 
-    // ── 1. Preprocessing ──────────────────────────────────────────────────────
+    // ── 1. Quality Control & Preprocessing ────────────────────────────────────
     preprocessing( ch_short_reads, ch_long_reads )
 
-    // ── 2. Host Removal ───────────────────────────────────────────────────────
+    // ── 2. Host Removal (Optional) ────────────────────────────────────────────
     host_removal(
         preprocessing.out.short_reads,
         preprocessing.out.long_reads
@@ -58,55 +66,72 @@ workflow {
 
     ch_clean_short = host_removal.out.short_reads
     ch_clean_long  = host_removal.out.long_reads
+    ch_qc_reports  = preprocessing.out.qc_reports
 
-    // ── 3. Assembly ───────────────────────────────────────────────────────────
-    assembly( ch_clean_short, ch_clean_long )
+    // ── 3. Mode Dispatcher ────────────────────────────────────────────────────
+    def mode = (params.mode ?: 'assembly_free').toLowerCase()
 
-    // ── 4. Polishing ──────────────────────────────────────────────────────────
-    // Polisher selects either long or short reads depending on params.polisher
-    ch_polishing_reads = (params.polisher == 'nextpolish') ? ch_clean_short : ch_clean_long
+    if (mode in ['assembly_free', 'profile', 'abundance', 'taxonomic_profiling']) {
+        // ── MODE A: Assembly-Free Taxonomic & Functional Abundance Profiling ──
+        log.info "🔬 Running Pipeline in [ASSEMBLY_FREE] mode (Taxonomic abundance & Kraken2 profiling)"
 
-    polishing(
-        assembly.out.contigs,
-        ch_polishing_reads
-    )
+        ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
+        assembly_free( ch_profiling_reads )
 
-    // ── 5. Assembly QC ────────────────────────────────────────────────────────
-    assembly_qc( polishing.out.contigs )
+        reporting(
+            ch_qc_reports,
+            Channel.empty(),
+            Channel.empty(),
+            assembly_free.out.kraken_report
+        )
 
-    // ── 6. Read Mapping & Contig Coverage ─────────────────────────────────────
-    mapping(
-        polishing.out.contigs,
-        ch_clean_short,
-        ch_clean_long
-    )
+    } else if (mode in ['assembly', 'mag', 'mag_recovery', 'full']) {
+        // ── MODE B: De Novo Metagenome Assembly & MAG Recovery ────────────────
+        log.info "🧬 Running Pipeline in [ASSEMBLY] mode (De novo contig assembly & MAG recovery)"
 
-    // ── 7. MAG Reconstruction / Binning ───────────────────────────────────────
-    binning(
-        polishing.out.contigs,
-        mapping.out.bam,
-        mapping.out.bai,
-        mapping.out.depth
-    )
+        assembly( ch_clean_short, ch_clean_long )
 
-    // ── 8. MAG Quality Control & Taxonomy ─────────────────────────────────────
-    mag_qc( binning.out.bins_dir )
+        ch_polishing_reads = (params.polisher == 'nextpolish') ? ch_clean_short : ch_clean_long
+        polishing(
+            assembly.out.contigs,
+            ch_polishing_reads
+        )
 
-    // ── 9. Read-Based Taxonomic & Functional Profiling ────────────────────────
-    ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
-    assembly_free( ch_profiling_reads )
+        assembly_qc( polishing.out.contigs )
 
-    // ── 10. Functional & Structural Annotation ────────────────────────────────
-    annotation( polishing.out.contigs )
+        mapping(
+            polishing.out.contigs,
+            ch_clean_short,
+            ch_clean_long
+        )
 
-    // ── 11. Quality Aggregation & Reporting ───────────────────────────────────
-    ch_qc_reports = preprocessing.out.qc_reports
-        .mix( assembly_qc.out.tsv.map { meta, rep -> rep } )
+        binning(
+            polishing.out.contigs,
+            mapping.out.bam,
+            mapping.out.bai,
+            mapping.out.depth
+        )
 
-    reporting(
-        ch_qc_reports,
-        assembly_qc.out.tsv,
-        binning.out.summary,
-        assembly_free.out.kraken_report
-    )
+        mag_qc( binning.out.bins_dir )
+
+        annotation( polishing.out.contigs )
+
+        ch_kraken_rep = Channel.empty()
+        if (params.run_kraken2) {
+            ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
+            assembly_free( ch_profiling_reads )
+            ch_kraken_rep = assembly_free.out.kraken_report
+        }
+
+        ch_all_qc = ch_qc_reports.mix( assembly_qc.out.tsv.map { meta, rep -> rep } )
+        reporting(
+            ch_all_qc,
+            assembly_qc.out.tsv,
+            binning.out.summary,
+            ch_kraken_rep
+        )
+
+    } else {
+        error "Unknown pipeline mode: '${params.mode}'. Supported modes: 'assembly_free' (read-based profiling) or 'assembly' (de novo MAG recovery)."
+    }
 }
