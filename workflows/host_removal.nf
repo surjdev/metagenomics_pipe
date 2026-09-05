@@ -12,7 +12,10 @@ workflow host_removal {
     ch_micro_short = ch_clean_short
     ch_micro_long  = ch_clean_long
 
-    if (params.host_genome) {
+    def run_removal = (params.run_host_removal != false && params.run_host_removal != 'false')
+    def has_genome  = params.host_genome && params.host_genome != 'null' && params.host_genome != ''
+
+    if (run_removal && has_genome) {
         // Build a value channel for the genome file only when the param is set.
         // Using Channel.value() here avoids calling file(null) at DAG construction
         // time, which is the root cause of "Argument of file() cannot be null".
