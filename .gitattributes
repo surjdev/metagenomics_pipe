@@ -1,0 +1,80 @@
+# =============================================================================
+# .gitattributes — Metagenomics Nextflow Pipeline
+# Enforce LF line endings for all script/config files.
+# This prevents Windows CRLF from breaking shell/Nextflow execution on Linux/HPC.
+# =============================================================================
+
+# ---------------------------------------------------------------------------
+# Default: treat all text files as LF
+# ---------------------------------------------------------------------------
+* text=auto eol=lf
+
+# ---------------------------------------------------------------------------
+# Nextflow files
+# ---------------------------------------------------------------------------
+*.nf        text eol=lf
+*.config    text eol=lf
+*.groovy    text eol=lf
+
+# ---------------------------------------------------------------------------
+# Shell scripts
+# ---------------------------------------------------------------------------
+*.sh        text eol=lf
+
+# ---------------------------------------------------------------------------
+# Python & R scripts
+# ---------------------------------------------------------------------------
+*.py        text eol=lf
+*.r         text eol=lf
+*.R         text eol=lf
+
+# ---------------------------------------------------------------------------
+# Configuration & parameter files
+# ---------------------------------------------------------------------------
+*.yaml      text eol=lf
+*.yml       text eol=lf
+*.toml      text eol=lf
+*.json      text eol=lf
+*.ini       text eol=lf
+*.cfg       text eol=lf
+*.conf      text eol=lf
+
+# ---------------------------------------------------------------------------
+# Documentation & markup
+# ---------------------------------------------------------------------------
+*.md        text eol=lf
+*.rst       text eol=lf
+*.txt       text eol=lf
+*.csv       text eol=lf
+
+# ---------------------------------------------------------------------------
+# Web / template files
+# ---------------------------------------------------------------------------
+*.html      text eol=lf
+*.css       text eol=lf
+*.js        text eol=lf
+*.j2        text eol=lf
+
+# ---------------------------------------------------------------------------
+# Binary files — do NOT touch line endings
+# ---------------------------------------------------------------------------
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.svg       binary
+*.ico       binary
+*.pdf       binary
+*.gz        binary
+*.tar       binary
+*.zip       binary
+*.bz2       binary
+*.xz        binary
+*.fq        binary
+*.fastq     binary
+*.bam       binary
+*.sam       binary
+*.cram      binary
+*.db        binary
+*.sqlite    binary
+pixi.lock   binary
