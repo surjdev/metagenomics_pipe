@@ -11,6 +11,7 @@ process GENOMAD {
     output:
     tuple val(meta), path("genomad_out/*_summary"), emit: summary, optional: true
     tuple val(meta), path("genomad_out"),          emit: dir
+    tuple val(meta), path("*.log"),                 emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -22,5 +23,7 @@ process GENOMAD {
         ${db} \\
         --threads $task.cpus \\
         --cleanup || true
+
+    cp genomad_out/*.log ${prefix}.genomad.log 2>/dev/null || touch ${prefix}.genomad.log
     """
 }

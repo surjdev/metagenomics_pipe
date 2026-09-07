@@ -11,6 +11,7 @@ process GUNC {
     output:
     tuple val(meta), path("gunc_out/*maxCSS_level.tsv"), emit: report, optional: true
     tuple val(meta), path("gunc_out"),                  emit: dir
+    tuple val(meta), path("*.log"),                     emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -24,7 +25,9 @@ process GUNC {
             --file_suffix .fa \\
             -r ${db} \\
             --out_dir gunc_out \\
-            --threads $task.cpus || true
+            --threads $task.cpus \\
+            2> ${prefix}.gunc.log || true
     fi
+    touch ${prefix}.gunc.log
     """
 }

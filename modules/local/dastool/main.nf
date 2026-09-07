@@ -11,6 +11,7 @@ process DASTOOL {
     tuple val(meta), path("dastool_bins/*.fa"), emit: bins, optional: true
     tuple val(meta), path("dastool_bins"),      emit: dir
     tuple val(meta), path("dastool_out/*_DASTool_summary.tsv"), emit: summary, optional: true
+    tuple val(meta), path("*.log"),                             emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -48,5 +49,6 @@ process DASTOOL {
             cp dastool_out/${prefix}_DASTool_bins/*.fa dastool_bins/ 2>/dev/null || true
         fi
     fi
+    cp dastool_out/${prefix}_DASTool.log ${prefix}.dastool.log 2>/dev/null || touch ${prefix}.dastool.log
     """
 }

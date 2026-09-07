@@ -11,6 +11,7 @@ process METABAT2 {
     tuple val(meta), path("metabat2_bins/*.fa"), emit: bins, optional: true
     tuple val(meta), path("metabat2_bins"),      emit: dir
     tuple val(meta), path("*.metabat2.tsv"),     emit: scaffolds2bin, optional: true
+    tuple val(meta), path("*.log"),              emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -25,9 +26,10 @@ process METABAT2 {
         -m ${min_len} \\
         -t $task.cpus \\
         --saveCls \\
-        --unbinned || true
+        --unbinned \\
+        2> ${prefix}.metabat2.log || true
 
-    touch ${prefix}.metabat2.tsv
+    touch ${prefix}.metabat2.log ${prefix}.metabat2.tsv
     for bin_file in metabat2_bins/${prefix}_bin.*.fa; do
         if [ -f "\$bin_file" ]; then
             bname=\$(basename "\$bin_file" .fa)

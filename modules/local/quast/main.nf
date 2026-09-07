@@ -11,6 +11,7 @@ process QUAST {
     tuple val(meta), path("quast_out"),                  emit: dir
     tuple val(meta), path("*_quast_report.tsv"),         emit: tsv
     tuple val(meta), path("*_quast_report.html"),        emit: html
+    tuple val(meta), path("*.log"),                      emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -25,5 +26,6 @@ process QUAST {
     touch quast_out/report.tsv quast_out/report.html
     cp quast_out/report.tsv ${prefix}_quast_report.tsv
     cp quast_out/report.html ${prefix}_quast_report.html
+    cp quast_out/quast.log ${prefix}_quast.log 2>/dev/null || touch ${prefix}_quast.log
     """
 }

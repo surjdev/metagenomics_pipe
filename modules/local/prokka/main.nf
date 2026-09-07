@@ -13,6 +13,7 @@ process PROKKA {
     tuple val(meta), path("prokka_out/*.fna"), emit: fna
     tuple val(meta), path("prokka_out/*.tsv"), emit: tsv
     tuple val(meta), path("prokka_out"),       emit: dir
+    tuple val(meta), path("*.log"),            emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -28,5 +29,6 @@ process PROKKA {
             ${fasta} || true
     fi
     touch prokka_out/${prefix}.gff prokka_out/${prefix}.faa prokka_out/${prefix}.fna prokka_out/${prefix}.tsv
+    cp prokka_out/${prefix}.log ${prefix}.prokka.log 2>/dev/null || touch ${prefix}.prokka.log
     """
 }

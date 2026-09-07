@@ -14,6 +14,7 @@ process HUMANN3 {
     tuple val(meta), path("*_pathcoverage.tsv"),  emit: pathcoverage
     tuple val(meta), path("*_pathabundance.tsv"), emit: pathabundance
     tuple val(meta), path("humann3_out"),         emit: dir
+    tuple val(meta), path("*.log"),               emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -38,5 +39,6 @@ process HUMANN3 {
     cp humann3_out/${prefix}_genefamilies.tsv . 2>/dev/null || touch ${prefix}_genefamilies.tsv
     cp humann3_out/${prefix}_pathcoverage.tsv . 2>/dev/null || touch ${prefix}_pathcoverage.tsv
     cp humann3_out/${prefix}_pathabundance.tsv . 2>/dev/null || touch ${prefix}_pathabundance.tsv
+    cp humann3_out/${prefix}.log ${prefix}.humann3.log 2>/dev/null || touch ${prefix}.humann3.log
     """
 }

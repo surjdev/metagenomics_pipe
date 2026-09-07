@@ -11,6 +11,7 @@ process CONCOCT {
     tuple val(meta), path("concoct_bins/*.fa"), emit: bins, optional: true
     tuple val(meta), path("concoct_bins"),      emit: dir
     tuple val(meta), path("*.concoct.tsv"),     emit: scaffolds2bin, optional: true
+    tuple val(meta), path("*.log"),             emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -26,7 +27,10 @@ process CONCOCT {
         --coverage_file coverage_table.tsv \\
         -b concoct_out/ \\
         -t $task.cpus \\
-        -l ${min_len} || true
+        -l ${min_len} \\
+        2> ${prefix}.concoct.log || true
+
+    touch ${prefix}.concoct.log
 
     if [ -f concoct_out/clustering_gt${min_len}.csv ]; then
         merge_cut_up_clustering.py concoct_out/clustering_gt${min_len}.csv > concoct_out/clustering_merged.csv

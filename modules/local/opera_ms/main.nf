@@ -10,6 +10,7 @@ process OPERA_MS {
     output:
     tuple val(meta), path("*.operams.fasta"), emit: contigs
     tuple val(meta), path("opera_out"),       emit: dir
+    tuple val(meta), path("*.log"),           emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -22,5 +23,6 @@ process OPERA_MS {
         --out-prefix ${prefix}
 
     cp opera_out/megahit/${prefix}.contigs.fa ${prefix}.operams.fasta
+    cp opera_out/megahit/${prefix}.log ${prefix}.operams.log 2>/dev/null || touch ${prefix}.operams.log
     """
 }

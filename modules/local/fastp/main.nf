@@ -11,6 +11,7 @@ process FASTP {
     tuple val(meta), path("*.fastp.fastq.gz"), emit: reads
     tuple val(meta), path("*.fastp.json"),     emit: json
     tuple val(meta), path("*.fastp.html"),     emit: html
+    tuple val(meta), path("*.log"),            emit: log, optional: true
 
     script:
     def prefix    = task.ext.prefix ?: "${meta.id}"
@@ -28,6 +29,7 @@ process FASTP {
         --html ${prefix}.fastp.html \\
         --thread $task.cpus \\
         --qualified_quality_phred ${params.min_quality} \\
-        --length_required ${params.min_length}
+        --length_required ${params.min_length} \\
+        2> ${prefix}.fastp.log
     """
 }

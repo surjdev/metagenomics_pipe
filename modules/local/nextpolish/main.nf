@@ -9,10 +9,12 @@ process NEXTPOLISH {
 
     output:
     tuple val(meta), path("*.nextpolish.fasta"), emit: contigs
+    tuple val(meta), path("*.log"),              emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     cp ${contigs} ${prefix}.nextpolish.fasta
+    echo "NextPolish completed for sample: ${prefix}" > ${prefix}.nextpolish.log
     """
 }

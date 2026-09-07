@@ -11,9 +11,13 @@ process KRAKEN2 {
     output:
     tuple val(meta), path("*_kraken2_report.txt"), emit: report
     tuple val(meta), path("*_kraken2_output.txt"), emit: output, optional: true
+    tuple val(meta), path("*.log"),                emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
+    def confidence = (params.kraken2_confidence && (params.kraken2_confidence as float) > 0.0)
+        ? "--confidence ${params.kraken2_confidence}"
+        : ""
     def input_reads = meta.single_end
         ? "${reads}"
         : "--paired ${reads[0]} ${reads[1]}"
@@ -21,8 +25,10 @@ process KRAKEN2 {
     kraken2 \\
         --db ${db} \\
         --threads $task.cpus \\
+        ${confidence} \\
         --report ${prefix}_kraken2_report.txt \\
         --output ${prefix}_kraken2_output.txt \\
-        ${input_reads}
+        ${input_reads} \\
+        2> ${prefix}.kraken2.log
     """
 }

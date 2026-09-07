@@ -11,6 +11,7 @@ process GTDBTK {
     output:
     tuple val(meta), path("gtdbtk_out/gtdbtk.*.summary.tsv"), emit: summary, optional: true
     tuple val(meta), path("gtdbtk_out"),                     emit: dir
+    tuple val(meta), path("*.log"),                          emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -26,5 +27,6 @@ process GTDBTK {
             --cpus $task.cpus \\
             --extension fa || true
     fi
+    cp gtdbtk_out/gtdbtk.log ${prefix}.gtdbtk.log 2>/dev/null || touch ${prefix}.gtdbtk.log
     """
 }

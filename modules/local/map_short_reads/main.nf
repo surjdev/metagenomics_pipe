@@ -12,6 +12,7 @@ process MAP_SHORT_READS {
     tuple val(meta), path("*.sorted.bam"), path("*.sorted.bam.bai"), emit: bam_bai
     tuple val(meta), path("*.sorted.bam"),                          emit: bam
     tuple val(meta), path("*.flagstat"),                            emit: stats
+    tuple val(meta), path("*.bowtie2_align.log"),                   emit: log
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"

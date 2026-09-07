@@ -10,9 +10,9 @@
 
 ## Current Project State
 
-**Stage**: Phase 1, Phase 2, Phase 3, and Phase 4 complete and fully verified. Core preprocessing, host removal, assembly, polishing, assembly QC, read mapping, contig coverage/depth, multi-binner MAG reconstruction, DAS Tool dereplication, CAT_BINS standardization, MAG QC, Kraken2 taxonomic profiling, Bracken abundance estimation, Krona visualization, BIOM export, and HUMAnN3 functional profiling workflows implemented.
+**Stage**: Complete end-to-end logging enabled across all tools and workflows. Core preprocessing, host removal, assembly, polishing, assembly QC, read mapping, contig coverage/depth, multi-binner MAG reconstruction, DAS Tool dereplication, CAT_BINS standardization, MAG QC, Kraken2 taxonomic profiling, Bracken abundance estimation, Krona visualization, BIOM export, HUMAnN3 functional profiling, and reporting workflows implemented and unified.
 
-**Last action**: Implemented all Phase 4 Read-Based Analysis modules (`kraken2`, `bracken`, `kraken_biom`, `krona`, `humann3`), script helper (`bin/kraken_to_biom.py`), and workflow (`workflows/assembly_free.nf`). Tested & verified Phase 4 execution with `test/test_phase4.nf` under Docker profile. All taxonomic classifications, Krona charts, and BIOM tables generated successfully.
+**Last action**: Built dedicated evaluation pipeline `main_eval_host.nf` (completely separate from `main.nf`), `conf/eval_host.config`, `bin/eval_host_summary.py`, `modules/local/eval_host_summary/`, and runner `run_eval_host.sh` for side-by-side benchmarking of Host Removal & Krona visualization under Oxford Nanopore EPI2ME standards.
 
 ---
 

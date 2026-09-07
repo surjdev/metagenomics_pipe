@@ -12,6 +12,7 @@ process MAP_LONG_READS {
     tuple val(meta), path("*.sorted.bam"), path("*.sorted.bam.bai"), emit: bam_bai
     tuple val(meta), path("*.sorted.bam"),                          emit: bam
     tuple val(meta), path("*.flagstat"),                            emit: stats
+    tuple val(meta), path("*.minimap2_align.log"),                  emit: log
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -31,8 +32,8 @@ process MAP_LONG_READS {
         printf "@HD\\tVN:1.6\\tSO:coordinate\\n@SQ\\tSN:dummy\\tLN:100\\n" > sam_header.sam
         samtools view -h -b -o ${prefix}_long.sorted.bam sam_header.sam
         samtools index ${prefix}_long.sorted.bam || true
-        touch ${prefix}_long.flagstat
+        touch ${prefix}_long.flagstat ${prefix}.minimap2_align.log
     fi
-    touch ${prefix}_long.sorted.bam.bai
+    touch ${prefix}_long.sorted.bam.bai ${prefix}.minimap2_align.log
     """
 }

@@ -9,6 +9,7 @@ process RACON_MEDAKA {
 
     output:
     tuple val(meta), path("*.racon.fasta"), emit: contigs
+    tuple val(meta), path("*.log"),         emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -18,6 +19,8 @@ process RACON_MEDAKA {
         $reads \\
         $reads \\
         $contigs \\
-        > ${prefix}.racon.fasta || cp $contigs ${prefix}.racon.fasta
+        > ${prefix}.racon.fasta \\
+        2> ${prefix}.racon.log || cp $contigs ${prefix}.racon.fasta
+    touch ${prefix}.racon.log
     """
 }

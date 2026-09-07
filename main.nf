@@ -67,6 +67,8 @@ workflow {
     ch_clean_short = host_removal.out.short_reads
     ch_clean_long  = host_removal.out.long_reads
     ch_qc_reports  = preprocessing.out.qc_reports
+        .mix( host_removal.out.host_stats.map { meta, stats -> stats } )
+        .mix( host_removal.out.host_logs.map { meta, log -> log } )
 
     // ── 3. Mode Dispatcher ────────────────────────────────────────────────────
     def mode = (params.mode ?: 'assembly_free').toLowerCase()

@@ -11,6 +11,7 @@ process SEMIBIN2 {
     tuple val(meta), path("semibin2_bins/output_bins/*.fa"), emit: bins, optional: true
     tuple val(meta), path("semibin2_bins"),                 emit: dir
     tuple val(meta), path("*.semibin2.tsv"),                emit: scaffolds2bin, optional: true
+    tuple val(meta), path("*.log"),                         emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -25,9 +26,10 @@ process SEMIBIN2 {
         -o semibin2_bins \\
         -t $task.cpus \\
         --environment ${env} \\
-        --min-len ${min_len} || true
+        --min-len ${min_len} \\
+        2> ${prefix}.semibin2.log || true
 
-    touch ${prefix}.semibin2.tsv
+    touch ${prefix}.semibin2.log ${prefix}.semibin2.tsv
     for bin_file in semibin2_bins/output_bins/*.fa; do
         if [ -f "\$bin_file" ]; then
             bname=\$(basename "\$bin_file" .fa)

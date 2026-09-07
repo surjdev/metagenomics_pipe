@@ -11,6 +11,7 @@ process BRACKEN {
     output:
     tuple val(meta), path("*_bracken_report.txt"), emit: report
     tuple val(meta), path("*_bracken_species.tsv"), emit: species
+    tuple val(meta), path("*.log"),                emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -29,10 +30,11 @@ process BRACKEN {
             -w ${prefix}_bracken_report.txt \\
             -r ${read_len} \\
             -l ${level} \\
-            -t ${threshold} || true
+            -t ${threshold} \\
+            2> ${prefix}.bracken.log || true
     fi
 
     # Ensure output files exist even for empty/zero-read samples
-    touch ${prefix}_bracken_species.tsv ${prefix}_bracken_report.txt
+    touch ${prefix}_bracken_species.tsv ${prefix}_bracken_report.txt ${prefix}.bracken.log
     """
 }

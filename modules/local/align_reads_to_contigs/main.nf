@@ -9,14 +9,16 @@ process ALIGN_READS_TO_CONTIGS {
 
     output:
     tuple val(meta), path("*_depth.txt"), emit: depth
+    tuple val(meta), path("*.log"),       emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
     jgi_summarize_bam_contig_depths \\
         --outputDepth ${prefix}_depth.txt \\
-        ${bams} || true
+        ${bams} \\
+        2> ${prefix}_depth.log || true
 
-    touch ${prefix}_depth.txt
+    touch ${prefix}_depth.txt ${prefix}_depth.log
     """
 }

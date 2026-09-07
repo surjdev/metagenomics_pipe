@@ -1,0 +1,5 @@
+sample,long_reads
+barcode02,/home/koraop/nob_dir/metagenomics/Meta_NPI/1_basecalled_fastq/barcode02/PBG11387_pass_barcode02_877e2cf7_59b28c65_0.fastq
+barcode15,/home/koraop/nob_dir/metagenomics/Meta_NPI/1_basecalled_fastq/barcode15/PBG11387_pass_barcode15_877e2cf7_59b28c65_0.fastq
+barcode16,/home/koraop/nob_dir/metagenomics/Meta_NPI/1_basecalled_fastq/barcode16/PBG11387_pass_barcode16_877e2cf7_59b28c65_0.fastq
+barcode17,/home/koraop/nob_dir/metagenomics/Meta_NPI/1_basecalled_fastq/barcode17/PBG11387_pass_barcode17_877e2cf7_59b28c65_0.fastq

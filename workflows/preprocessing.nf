@@ -50,6 +50,7 @@ workflow preprocessing {
     if ( params.run_filtlong ) {
         FILTLONG ( ch_trimmed_long )
         ch_clean_long = FILTLONG.out.reads
+        ch_qc_reports = ch_qc_reports.mix( FILTLONG.out.log.map { meta, log -> log } )
     } else {
         ch_clean_long = ch_trimmed_long
     }

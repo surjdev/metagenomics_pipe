@@ -12,6 +12,7 @@ process BOWTIE2_HOST_REMOVAL {
     output:
     tuple val(meta), path("*_nonhost_R{1,2}.fastq.gz"), emit: reads
     tuple val(meta), path("*.flagstat"),                 emit: stats
+    tuple val(meta), path("*.bowtie2.log"),              emit: log
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"

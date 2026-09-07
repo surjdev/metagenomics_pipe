@@ -98,3 +98,7 @@ samplesheet*.csv
 !test/data/tiny_databases/**
 !templates/**
 !samples.csv
+!samplesheet_meta_npi_smoke.csv
+!samplesheet_meta_npi_benchmark.csv
+!samplesheet_meta_npi_full.csv
+!samplesheet_meta_npi_subset.csv

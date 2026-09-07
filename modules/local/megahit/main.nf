@@ -10,6 +10,7 @@ process MEGAHIT {
     output:
     tuple val(meta), path("*.contigs.fa"), emit: contigs
     tuple val(meta), path("megahit_out"),  emit: dir
+    tuple val(meta), path("*.log"),        emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -24,5 +25,6 @@ process MEGAHIT {
         --out-prefix ${prefix}
 
     mv megahit_out/${prefix}.contigs.fa .
+    cp megahit_out/${prefix}.log ${prefix}.megahit.log 2>/dev/null || touch ${prefix}.megahit.log
     """
 }

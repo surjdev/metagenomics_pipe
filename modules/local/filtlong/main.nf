@@ -9,6 +9,7 @@ process FILTLONG {
 
     output:
     tuple val(meta), path("*.filtlong.fastq.gz"), emit: reads
+    tuple val(meta), path("*.filtlong.log"),      emit: log
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -17,6 +18,7 @@ process FILTLONG {
         --min_length ${params.min_length_long} \\
         --min_mean_q ${params.min_quality_long} \\
         $reads \\
+        2> ${prefix}.filtlong.log \\
         | gzip -c > ${prefix}.filtlong.fastq.gz
     """
 }

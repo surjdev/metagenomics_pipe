@@ -11,6 +11,7 @@ process MAXBIN2 {
     tuple val(meta), path("maxbin2_bins/*.fasta"), emit: bins, optional: true
     tuple val(meta), path("maxbin2_bins"),         emit: dir
     tuple val(meta), path("*.maxbin2.tsv"),        emit: scaffolds2bin, optional: true
+    tuple val(meta), path("*.log"),                emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -28,6 +29,7 @@ process MAXBIN2 {
         -thread $task.cpus \\
         -min_contig_length ${min_len} || true
 
+    cp maxbin2_bins/${prefix}_maxbin.log ${prefix}.maxbin2.log 2>/dev/null || touch ${prefix}.maxbin2.log
     touch ${prefix}.maxbin2.tsv
     for bin_file in maxbin2_bins/*.fasta; do
         if [ -f "\$bin_file" ]; then

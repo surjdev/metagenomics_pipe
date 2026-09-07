@@ -10,6 +10,7 @@ process FLYE {
     output:
     tuple val(meta), path("*.flye.fasta"), emit: contigs
     tuple val(meta), path("flye_out"),     emit: dir
+    tuple val(meta), path("*.log"),        emit: log, optional: true
 
     script:
     def prefix     = task.ext.prefix ?: "${meta.id}"
@@ -28,5 +29,6 @@ process FLYE {
     else
         touch ${prefix}.flye.fasta
     fi
+    cp flye_out/flye.log ${prefix}.flye.log 2>/dev/null || touch ${prefix}.flye.log
     """
 }

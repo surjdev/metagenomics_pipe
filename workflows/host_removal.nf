@@ -9,6 +9,7 @@ workflow host_removal {
 
     main:
     ch_host_stats  = Channel.empty()
+    ch_host_logs   = Channel.empty()
     ch_micro_short = ch_clean_short
     ch_micro_long  = ch_clean_long
 
@@ -28,6 +29,7 @@ workflow host_removal {
         )
         ch_micro_short = BOWTIE2_HOST_REMOVAL.out.reads
         ch_host_stats  = ch_host_stats.mix( BOWTIE2_HOST_REMOVAL.out.stats )
+        ch_host_logs   = ch_host_logs.mix( BOWTIE2_HOST_REMOVAL.out.log )
 
         // ── Long reads → Minimap2 ────────────────────────────────────────────────
         MINIMAP2_HOST_REMOVAL (
@@ -36,10 +38,12 @@ workflow host_removal {
         )
         ch_micro_long = MINIMAP2_HOST_REMOVAL.out.reads
         ch_host_stats = ch_host_stats.mix( MINIMAP2_HOST_REMOVAL.out.stats )
+        ch_host_logs  = ch_host_logs.mix( MINIMAP2_HOST_REMOVAL.out.log )
     }
 
     emit:
     short_reads  = ch_micro_short        // [ meta, [ fq1, fq2 ] ] — microbial only
     long_reads   = ch_micro_long         // [ meta, fastq ] — microbial only
     host_stats   = ch_host_stats
+    host_logs    = ch_host_logs
 }

@@ -11,6 +11,7 @@ process CHECKM2 {
     output:
     tuple val(meta), path("checkm2_out/quality_report.tsv"), emit: report, optional: true
     tuple val(meta), path("checkm2_out"),                   emit: dir
+    tuple val(meta), path("*.log"),                         emit: log, optional: true
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -27,5 +28,6 @@ process CHECKM2 {
             --output-directory checkm2_out \\
             --database_path ${db} || true
     fi
+    cp checkm2_out/checkm2.log ${prefix}.checkm2.log 2>/dev/null || touch ${prefix}.checkm2.log
     """
 }

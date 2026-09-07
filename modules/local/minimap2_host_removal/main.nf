@@ -12,6 +12,7 @@ process MINIMAP2_HOST_REMOVAL {
     output:
     tuple val(meta), path("*_nonhost.fastq.gz"), emit: reads
     tuple val(meta), path("*.flagstat"),          emit: stats
+    tuple val(meta), path("*.minimap2.log"),       emit: log
 
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
@@ -22,6 +23,7 @@ process MINIMAP2_HOST_REMOVAL {
         -t $task.cpus \\
         ${reference} \\
         ${reads} \\
+        2> ${prefix}.minimap2.log \\
         | samtools sort -@ $task.cpus -o ${prefix}.host.bam
 
     samtools flagstat \\

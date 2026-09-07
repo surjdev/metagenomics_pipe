@@ -10,12 +10,15 @@ process FASTQC {
     output:
     tuple val(meta), path("*.html"), emit: html
     tuple val(meta), path("*.zip"),  emit: zip
+    tuple val(meta), path("*.log"),  emit: log, optional: true
 
     script:
+    def prefix = task.ext.prefix ?: "${meta.id}"
     """
     fastqc \\
         --threads $task.cpus \\
         --outdir . \\
-        $reads
+        $reads \\
+        2> ${prefix}.fastqc.log
     """
 }
