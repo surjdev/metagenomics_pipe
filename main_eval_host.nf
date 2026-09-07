@@ -16,9 +16,6 @@
 
 nextflow.enable.dsl = 2
 
-// ── Include Script Helpers ───────────────────────────────────────────────────
-include { Samplesheet } from './lib/Samplesheet.groovy'
-
 // ── Include Modules with DSL2 Aliases ─────────────────────────────────────────
 include { NANOPLOT as NANOPLOT_RAW   } from './modules/local/nanoplot/main.nf'
 include { FILTLONG                   } from './modules/local/filtlong/main.nf'
