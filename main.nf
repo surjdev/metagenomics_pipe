@@ -87,9 +87,9 @@ workflow {
             assembly_free.out.kraken_report
         )
 
-    } else if (mode in ['assembly', 'mag', 'mag_recovery', 'full']) {
+    } else if (mode in ['assembly', 'mag', 'mag_recovery', 'full', 'hybrid']) {
         // ── MODE B: De Novo Metagenome Assembly & MAG Recovery ────────────────
-        log.info "🧬 Running Pipeline in [ASSEMBLY] mode (De novo contig assembly & MAG recovery)"
+        log.info "🧬 Running Pipeline in [ASSEMBLY / HYBRID] mode (De novo contig assembly & MAG recovery)"
 
         assembly( ch_clean_short, ch_clean_long )
 
@@ -134,6 +134,6 @@ workflow {
         )
 
     } else {
-        error "Unknown pipeline mode: '${params.mode}'. Supported modes: 'assembly_free' (read-based profiling) or 'assembly' (de novo MAG recovery)."
+        error "Unknown pipeline mode: '${params.mode}'. Supported modes: 'assembly_free' (read-based profiling) or 'assembly' / 'hybrid' (de novo MAG recovery)."
     }
 }

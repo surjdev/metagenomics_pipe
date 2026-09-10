@@ -1,4 +1,8 @@
 # params/hybrid.yaml — Hybrid Short + Long Read Preset
+mode: assembly
+platform: hybrid
+
+# Preprocessing & QC
 min_quality: 20
 min_length: 50
 min_quality_long: 10
@@ -6,14 +10,35 @@ min_length_long: 1000
 run_basecalling: false
 run_porechop: true
 run_filtlong: true
-assembler: opera_ms
-run_polishing: true
+
+# Host Removal
+run_host_removal: true
+
+# Assembly & Polishing
+run_assembly: true
+assembler: metaspades
+run_quast: true
+run_polishing: false
 polisher: nextpolish
+
+# MAG Reconstruction & Binning
 min_contig_len_binning: 1500
 run_metabat2: true
 run_maxbin2: true
 run_semibin2: true
 semibin_environment: global
-run_concoct: true
+run_concoct: false
 run_dastool: true
 dastool_threshold: 0.5
+
+# MAG QC & Taxonomy
+run_checkm2: false
+run_gunc: false
+run_gtdbtk: false
+
+# Read-Based Profiling & Reporting
+run_kraken2: true
+run_krona: true
+run_multiqc: true
+run_custom_report: true
+

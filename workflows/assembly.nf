@@ -3,9 +3,10 @@
  * Selects MEGAHIT, Flye, or Opera-MS based on params.assembler
  */
 
-include { MEGAHIT  } from '../modules/local/megahit/main.nf'
-include { FLYE     } from '../modules/local/flye/main.nf'
-include { OPERA_MS } from '../modules/local/opera_ms/main.nf'
+include { MEGAHIT    } from '../modules/local/megahit/main.nf'
+include { FLYE       } from '../modules/local/flye/main.nf'
+include { OPERA_MS   } from '../modules/local/opera_ms/main.nf'
+include { METASPADES } from '../modules/local/metaspades/main.nf'
 
 workflow assembly {
     take:
@@ -30,6 +31,14 @@ workflow assembly {
 
         OPERA_MS( ch_hybrid )
         ch_contigs = OPERA_MS.out.contigs
+    }
+    else if (params.assembler == 'metaspades' || params.assembler == 'spades') {
+        ch_hybrid = ch_short_reads
+            .join( ch_long_reads, by: 0 )
+            .map { meta, short_r, long_r -> [ meta, short_r, long_r ] }
+
+        METASPADES( ch_hybrid )
+        ch_contigs = METASPADES.out.contigs
     }
 
     emit:

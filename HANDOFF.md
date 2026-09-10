@@ -50,9 +50,9 @@ workflows/
   assembly_free.nf               ← Kraken2/Bracken/Krona/BIOM/HUMAnN3 ✅
   reporting.nf                   ← Final report
 
-modules/local/ (35 tools)
+modules/local/ (36 tools)
   Phase 1: fastqc ✅  fastp ✅  dorado_basecall ✅  nanoplot ✅  porechop_abi ✅  filtlong ✅  bowtie2_host_removal ✅  minimap2_host_removal ✅
-  Phase 2: megahit ✅  flye ✅  opera_ms ✅  racon_medaka ✅  nextpolish ✅  quast ✅
+  Phase 2: megahit ✅  flye ✅  opera_ms ✅  metaspades ✅  racon_medaka ✅  nextpolish ✅  quast ✅
   Phase 3: map_short_reads ✅  map_long_reads ✅  align_reads_to_contigs ✅  metabat2 ✅  maxbin2 ✅  semibin2 ✅  concoct ✅  dastool ✅  cat_bins ✅  checkm2 ✅  gunc ✅  gtdbtk ✅
   Phase 4: kraken2 ✅  bracken ✅  kraken_biom ✅  krona ✅  humann3 ✅
   Phase 5: multiqc  generate_reports
@@ -201,3 +201,4 @@ databases/
 | 2026-08-17 | Antigravity | Phase 5 implemented & verified: 4 modules (multiqc, generate_reports, prokka, genomad) + bin/generate_report.py + templates + annotation.nf, reporting.nf (test/test_phase5.nf) |
 | 2026-08-17 | Antigravity | Complete pipeline application layer implemented: lib/Utils.groovy, lib/Samplesheet.groovy, lib/Validation.groovy + main.nf orchestrating all 11 workflows end-to-end (verified with test profile) |
 | 2026-08-26 | Antigravity | Initiated Meta_NPI Nanopore testing: Built Phase 1 & 2 (PLAN_TEST_Meta_NPI.md, MEMORY_HANDOFF_TEST_Meta_NPI.md, bin/generate_samplesheet_meta_npi.py, conf/meta_npi.config, samplesheet_meta_npi_smoke.csv, samplesheet_meta_npi_full.csv, main.nf long-read profiling routing, DAG preview verified) |
+| 2026-09-10 | Antigravity | Integrated MetaSPAdes hybrid assembler (modules/local/metaspades/main.nf), wired into workflows/assembly.nf, updated lib/Samplesheet.groovy for flexible column headers, created samplesheet_hybrid.csv (CD35 & TD35 on compute02), updated params/hybrid.yaml, added main.nf hybrid mode, and created run_hybrid.sh |

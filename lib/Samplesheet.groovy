@@ -20,9 +20,17 @@ class Samplesheet {
         if (!row.sample && row.sample_id) {
             row.sample = row.sample_id
         }
-        // Normalize fastq column names if needed
-        if (!row.fastq_1 && row.short_r1) row.fastq_1 = row.short_r1
-        if (!row.fastq_2 && row.short_r2) row.fastq_2 = row.short_r2
+        // Normalize short read FASTQ column names
+        if (!row.fastq_1) {
+            row.fastq_1 = row.illumina_r1 ?: row.short_r1 ?: row.read1 ?: row.r1
+        }
+        if (!row.fastq_2) {
+            row.fastq_2 = row.illumina_r2 ?: row.short_r2 ?: row.read2 ?: row.r2
+        }
+        // Normalize long read FASTQ column names
+        if (!row.long_fastq) {
+            row.long_fastq = row.ont_fastq ?: row.long_reads ?: row.nanopore_fastq ?: row.ont
+        }
         return row
     }
 }
