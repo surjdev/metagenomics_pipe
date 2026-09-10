@@ -8,7 +8,7 @@ min_length: 50
 min_quality_long: 10
 min_length_long: 1000
 run_basecalling: false
-run_porechop: true
+run_porechop: false
 run_filtlong: true
 
 # Host Removal
