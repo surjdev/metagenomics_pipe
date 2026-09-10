@@ -37,7 +37,18 @@ NC='\033[0m' # No Color
 # ตัวแปรพื้นฐาน
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 MODE="${1:-smoke}"
-PROFILE="${2:-docker}"
+
+# ตรวจสอบ argument: หากระบุ profile ให้ใช้ค่านั้น หากระบุ option (--flag) ให้ใช้ docker เป็น default
+if [[ "$2" =~ ^(docker|singularity|conda|slurm|test|local)$ ]]; then
+    PROFILE="$2"
+    EXTRA_ARGS=("${@:3}")
+elif [[ "$2" == -* ]]; then
+    PROFILE="docker"
+    EXTRA_ARGS=("${@:2}")
+else
+    PROFILE="${2:-docker}"
+    EXTRA_ARGS=("${@:3}")
+fi
 RESUME_FLAG="-resume"
 
 # รวมสภาพแวดล้อม Pixi เข้ากับ PATH หากมีอยู่
@@ -194,7 +205,7 @@ nextflow run "${PROJECT_DIR}/main.nf" \
     -with-timeline "${TIMELINE_HTML}" \
     -with-trace "${TRACE_TXT}" \
     -with-dag "${DAG_SVG}" \
-    "${@:3}"
+    "${EXTRA_ARGS[@]}"
 
 echo -e "\n${GREEN}==============================================================================${NC}"
 echo -e "${BOLD}${GREEN} 🎉 การประมวลผล Pipeline เสร็จสมบูรณ์! (Completed Successfully) 🎉 ${NC}"

@@ -15,7 +15,19 @@
 set -eo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROFILE="${1:-docker}"
+
+# ตรวจสอบ argument: หากระบุ profile ให้ใช้ค่านั้น หากระบุ option ให้ใช้ docker เป็น default
+if [[ "$1" =~ ^(conda|singularity|docker|slurm|test|local)$ ]]; then
+    PROFILE="$1"
+    EXTRA_ARGS=("${@:2}")
+elif [[ "$1" == -* ]]; then
+    PROFILE="docker"
+    EXTRA_ARGS=("$@")
+else
+    PROFILE="${1:-docker}"
+    EXTRA_ARGS=("${@:2}")
+fi
+
 SAMPLESHEET="${PROJECT_DIR}/samplesheet_short_reads.csv"
 OUTDIR="${PROJECT_DIR}/results_short_reads"
 
@@ -67,7 +79,7 @@ nextflow run "${PROJECT_DIR}/main.nf" \
     -with-timeline "${TIMELINE_HTML}" \
     -with-trace "${TRACE_TXT}" \
     -with-dag "${DAG_SVG}" \
-    "${@:2}"
+    "${EXTRA_ARGS[@]}"
 
 echo -e "\n\033[0;32m==============================================================================\033[0m"
 echo -e "\033[1;32m 🎉 การประมวลผล Pipeline เสร็จสมบูรณ์! (Finished Successfully) 🎉 \033[0m"
