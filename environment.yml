@@ -13,4 +13,9 @@ dependencies:
   - kraken2=2.1.*
   - bracken=2.9.*
   - megahit=1.2.*
+  - spades=3.15.*
+  - minimap2=2.26.*
+  - filtlong=0.2.*
+  - porechop=0.2.*
+  - quast=5.2.*
   - multiqc=1.19.*

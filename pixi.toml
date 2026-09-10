@@ -41,6 +41,7 @@ bedtools = ">=2.31"
 
 # --- Phase 2: Assembly, Polishing & Assembly QC ---
 megahit = ">=1.2"
+spades = ">=3.15"
 flye = ">=2.9"
 racon = ">=1.5"
 quast = ">=5.2"

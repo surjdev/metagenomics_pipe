@@ -16,7 +16,7 @@
 set -eo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROFILE="${1:-singularity}"
+PROFILE="${1:-conda}"
 SAMPLESHEET="${PROJECT_DIR}/samplesheet_hybrid.csv"
 OUTDIR="${PROJECT_DIR}/results_hybrid"
 PARAMS_FILE="${PROJECT_DIR}/params/hybrid.yaml"

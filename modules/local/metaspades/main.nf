@@ -17,7 +17,15 @@ process METASPADES {
     def max_mem = task.memory ? task.memory.toGiga() : (params.max_memory ? params.max_memory.toString().replaceAll(/[^0-9]/, '') : 64)
     def ont_arg = (long_reads && long_reads.name != 'NO_FILE' && file(long_reads).exists() && file(long_reads).size() > 0) ? "--nanopore ${long_reads}" : ""
     """
-    metaspades.py \\
+    if command -v metaspades.py &> /dev/null; then
+        SPADES_CMD="metaspades.py"
+    elif command -v spades.py &> /dev/null; then
+        SPADES_CMD="spades.py --meta"
+    else
+        SPADES_CMD="metaspades.py"
+    fi
+
+    \$SPADES_CMD \\
         -1 ${short_reads[0]} -2 ${short_reads[1]} \\
         ${ont_arg} \\
         -o spades_out \\

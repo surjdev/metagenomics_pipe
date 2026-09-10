@@ -14,10 +14,22 @@ process PORECHOP_ABI {
     script:
     def prefix = task.ext.prefix ?: "${meta.id}"
     """
-    porechop_abi \\
-        -i $reads \\
-        -o ${prefix}.porechop.fastq.gz \\
-        --threads $task.cpus \\
-        2> ${prefix}.porechop.log
+    if command -v porechop_abi &> /dev/null; then
+        porechop_abi \\
+            -i $reads \\
+            -o ${prefix}.porechop.fastq.gz \\
+            --threads $task.cpus \\
+            2> ${prefix}.porechop.log
+    elif command -v porechop &> /dev/null; then
+        porechop \\
+            -i $reads \\
+            -o ${prefix}.porechop.fastq.gz \\
+            --threads $task.cpus \\
+            2> ${prefix}.porechop.log
+    else
+        echo "[WARNING] Neither porechop_abi nor porechop found in PATH. Passing raw reads through." >&2
+        gzip -c $reads > ${prefix}.porechop.fastq.gz
+        touch ${prefix}.porechop.log
+    fi
     """
 }
