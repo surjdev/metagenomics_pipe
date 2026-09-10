@@ -27,7 +27,8 @@ workflow preprocessing {
 
     // ── Long reads ───────────────────────────────────────────────────────────
     // Optional basecalling (only when starting from raw POD5/FAST5)
-    if ( params.run_basecalling ) {
+    def do_basecalling = params.run_basecalling in [true, 'true', 'True', 1, '1']
+    if ( do_basecalling ) {
         DORADO_BASECALL ( ch_long_reads )
         ch_basecalled = DORADO_BASECALL.out.reads
     } else {
@@ -39,7 +40,8 @@ workflow preprocessing {
     ch_qc_reports = ch_qc_reports.mix( NANOPLOT.out.txt.map { meta, txt -> txt } )
 
     // Optional adapter trimming for long reads
-    if ( params.run_porechop ) {
+    def do_porechop = params.run_porechop in [true, 'true', 'True', 1, '1']
+    if ( do_porechop ) {
         PORECHOP_ABI ( ch_basecalled )
         ch_trimmed_long = PORECHOP_ABI.out.reads
     } else {
@@ -47,7 +49,8 @@ workflow preprocessing {
     }
 
     // Optional quality/length filtering for long reads
-    if ( params.run_filtlong ) {
+    def do_filtlong = params.run_filtlong in [true, 'true', 'True', 1, '1']
+    if ( do_filtlong ) {
         FILTLONG ( ch_trimmed_long )
         ch_clean_long = FILTLONG.out.reads
         ch_qc_reports = ch_qc_reports.mix( FILTLONG.out.log.map { meta, log -> log } )

@@ -42,3 +42,6 @@ run_krona: true
 run_multiqc: true
 run_custom_report: true
 
+# Resource limits (adjusted for compute node capacity)
+max_cpus: 4
+
