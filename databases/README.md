@@ -49,20 +49,37 @@ This directory documents the external reference databases utilized across the 11
 
 ---
 
-## Automated Download Script
+---
 
-You can download reference databases using the included script `download.sh`:
+## Automated Download Scripts
+
+### 1. Hybrid Pipeline Automated Downloader (`download_databases_hybrid.sh`)
+Specifically designed for `run_hybrid.sh` with automatic `params/databases.yaml` configuration:
+
+```bash
+# Make script executable
+chmod +x databases/download_databases_hybrid.sh
+
+# Download essential reference databases for run_hybrid.sh (Host GRCh38 + Kraken2 8GB)
+./databases/download_databases_hybrid.sh --essential
+
+# Or download individual databases
+./databases/download_databases_hybrid.sh --host
+./databases/download_databases_hybrid.sh --kraken2        # Standard 8GB
+./databases/download_databases_hybrid.sh --kraken2-16gb   # Standard 16GB
+./databases/download_databases_hybrid.sh --checkm2
+./databases/download_databases_hybrid.sh --all
+```
+
+### 2. General Reference Downloader (`download.sh`)
 
 ```bash
 # Make script executable
 chmod +x databases/download.sh
 
-# Download specific databases
+# Download specific databases to custom directory
 ./databases/download.sh --host /path/to/databases/host
 ./databases/download.sh --kraken2 /path/to/databases/kraken2
 ./databases/download.sh --checkm2 /path/to/databases/checkm2
-./databases/download.sh --genomad /path/to/databases/genomad
-
-# Download all databases
 ./databases/download.sh --all /path/to/databases
 ```

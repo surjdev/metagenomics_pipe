@@ -47,7 +47,18 @@ fi
 # ตรวจสอบไฟล์ Samplesheet
 if [ ! -f "${SAMPLESHEET}" ]; then
     echo -e "\033[0;31m[ERROR] ไม่พบไฟล์ Samplesheet ที่: ${SAMPLESHEET}\033[0m"
+    echo -e "\033[1;33m💡 คำแนะนำ:\033[0m คุณสามารถดึงข้อมูลตัวอย่างทดสอบ 2 คน (Short + Long) และสร้าง Samplesheet อัตโนมัติได้ด้วยคำสั่ง:"
+    echo -e "   \033[1;32m./bin/pull_hybrid_test_data.sh smoke\033[0m   (โหมดทดสอบเร็ว ~5 นาที)"
+    echo -e " หรือ:"
+    echo -e "   \033[1;32m./bin/pull_hybrid_test_data.sh full\033[0m    (โหมดข้อมูลเต็ม)\n"
     exit 1
+fi
+
+# ตรวจสอบไฟล์ Database Params Preset
+DB_PARAMS_FILE="${PROJECT_DIR}/params/databases.yaml"
+DB_PARAMS_ARG=()
+if [ -f "${DB_PARAMS_FILE}" ]; then
+    DB_PARAMS_ARG=("-params-file" "${DB_PARAMS_FILE}")
 fi
 
 echo -e "\033[0;36m==============================================================================\033[0m"
@@ -56,6 +67,7 @@ echo -e "\033[0;36m=============================================================
 echo -e " 📂 Project Directory : ${PROJECT_DIR}"
 echo -e " 📋 Samplesheet       : ${SAMPLESHEET}"
 echo -e " ⚙️  Params Preset     : ${PARAMS_FILE}"
+[ -f "${DB_PARAMS_FILE}" ] && echo -e " 🗄️  Database Config   : ${DB_PARAMS_FILE}"
 echo -e " 📁 Output Directory  : ${OUTDIR}"
 echo -e " 🧩 Assembler         : \033[1;32mmetaSPAdes (Hybrid)\033[0m"
 echo -e " 🐳 Runtime Profile   : \033[1;33m${PROFILE}\033[0m"
@@ -74,6 +86,7 @@ DAG_SVG="${OUTDIR}/pipeline_info/pipeline_dag_${TIMESTAMP}.html"
 nextflow run "${PROJECT_DIR}/main.nf" \
     -profile "${PROFILE}" \
     -params-file "${PARAMS_FILE}" \
+    "${DB_PARAMS_ARG[@]}" \
     --input "${SAMPLESHEET}" \
     --outdir "${OUTDIR}" \
     --platform "hybrid" \
