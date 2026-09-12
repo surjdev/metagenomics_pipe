@@ -24,7 +24,7 @@ process MINIMAP2_HOST_REMOVAL {
         touch dummy.fastq
         gzip -c dummy.fastq > ${prefix}_nonhost.fastq.gz
         rm -f dummy.fastq
-        touch ${prefix}.flagstat ${prefix}.minimap2.log
+        touch ${prefix}_minimap2.flagstat ${prefix}.minimap2.log
     else
         # 2. Map long reads to host reference (supports .fa / .fasta / .mmi)
         # Note: -I 1G and --split-prefix are used for raw FASTA to split human genome indexing
@@ -53,7 +53,7 @@ process MINIMAP2_HOST_REMOVAL {
         samtools flagstat \\
             --threads $task.cpus \\
             ${prefix}.host.bam \\
-            > ${prefix}.flagstat
+            > ${prefix}_minimap2.flagstat
 
         # 3. Extract unmapped reads (flag 4 = read unmapped)
         samtools view -f 4 -b ${prefix}.host.bam \\

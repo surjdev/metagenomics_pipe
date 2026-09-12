@@ -39,7 +39,7 @@ process BOWTIE2_HOST_REMOVAL {
     samtools flagstat \\
         --threads $task.cpus \\
         ${prefix}.host.sam \\
-        > ${prefix}.flagstat
+        > ${prefix}_bowtie2.flagstat
 
     rm ${prefix}.host.sam
     """

@@ -205,5 +205,6 @@ databases/
 | 2026-09-10 | Antigravity | Resolved CPU limit (req: 8; avail: 4) on compute02 via dynamic CPU capping in nextflow.config & params/hybrid.yaml; fixed Groovy boolean string coercion in workflows/preprocessing.nf; made runner scripts resilient to CLI flags. |
 | 2026-09-12 | Antigravity | Hardened modules/local/minimap2_host_removal/main.nf: handled empty read files (0 reads after filtlong), swapped memory-heavy samtools sort with samtools view -b, added `-I 1G --split-prefix` for raw FASTA host genome mapping to cap peak RAM at ~3.5 GB (preventing OOM Killed on compute nodes), and surfaced minimap2.log to stderr on pipe failure. |
 | 2026-09-12 | Antigravity | Created `submit_hybrid.sbatch` for SLURM batch execution on HPC (16 CPUs, 128 GB RAM, partition cpu) and resolved Nextflow CLI error 'Can only specify option -params-file once' by removing duplicate database params file in `run_hybrid.sh`. |
+| 2026-09-12 | Antigravity | Fixed MultiQC input file name collision in hybrid mode: renamed host removal flagstat outputs to `${prefix}_bowtie2.flagstat` and `${prefix}_minimap2.flagstat` (preventing Nextflow staging collision when both short and long read flagstats share sample ID); initialized default `kraken2_confidence = 0.0`. |
 
 
