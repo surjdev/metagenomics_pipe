@@ -3,14 +3,14 @@
 # submit_hybrid.sbatch — SLURM Job Script for Hybrid Metagenomics Pipeline
 # ==============================================================================
 #SBATCH --job-name=hybrid_meta
-#SBATCH --output=logs_slurm/job_%j.out
-#SBATCH --error=logs_slurm/job_%j.err
+#SBATCH --output=slurm-%j.out
+#SBATCH --error=slurm-%j.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=128G
 #SBATCH --time=48:00:00
-# #SBATCH --partition=compute      # ปลด comment และเปลี่ยนชื่อ partition ให้ตรงกับ HPC ของคุณ
+#SBATCH --partition=cpu
 # #SBATCH --account=your_project   # ปลด comment หาก HPC บังคับระบุชื่อ account/project
 
 set -eo pipefail

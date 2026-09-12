@@ -204,5 +204,6 @@ databases/
 | 2026-09-10 | Antigravity | Integrated MetaSPAdes hybrid assembler (modules/local/metaspades/main.nf), wired into workflows/assembly.nf, updated lib/Samplesheet.groovy for flexible column headers, created samplesheet_hybrid.csv (CD35 & TD35 on compute02), updated params/hybrid.yaml, added main.nf hybrid mode, and created run_hybrid.sh |
 | 2026-09-10 | Antigravity | Resolved CPU limit (req: 8; avail: 4) on compute02 via dynamic CPU capping in nextflow.config & params/hybrid.yaml; fixed Groovy boolean string coercion in workflows/preprocessing.nf; made runner scripts resilient to CLI flags. |
 | 2026-09-12 | Antigravity | Hardened modules/local/minimap2_host_removal/main.nf: handled empty read files (0 reads after filtlong), swapped memory-heavy samtools sort with samtools view -b, added `-I 1G --split-prefix` for raw FASTA host genome mapping to cap peak RAM at ~3.5 GB (preventing OOM Killed on compute nodes), and surfaced minimap2.log to stderr on pipe failure. |
+| 2026-09-12 | Antigravity | Created `submit_hybrid.sbatch` for SLURM batch execution on HPC (16 CPUs, 128 GB RAM, partition cpu) and resolved Nextflow CLI error 'Can only specify option -params-file once' by removing duplicate database params file in `run_hybrid.sh`. |
 
 
