@@ -29,7 +29,7 @@ else
     EXTRA_ARGS=("${@:2}")
 fi
 
-SAMPLESHEET="${PROJECT_DIR}/samplesheet_hybrid.csv"
+SAMPLESHEET="${SAMPLESHEET:-${PROJECT_DIR}/samplesheet_hybrid.csv}"
 OUTDIR="${PROJECT_DIR}/results_hybrid"
 PARAMS_FILE="${PROJECT_DIR}/params/hybrid.yaml"
 

@@ -56,17 +56,27 @@ workflow {
         : Channel.empty()
 
     // ── 1. Quality Control & Preprocessing ────────────────────────────────────
-    preprocessing( ch_short_reads, ch_long_reads )
+    def run_preproc = (params.run_preprocessing != false && params.run_preprocessing != 'false')
+    def ch_preproc_short = ch_short_reads
+    def ch_preproc_long  = ch_long_reads
+    def ch_qc_preproc    = Channel.empty()
+
+    if (run_preproc) {
+        preprocessing( ch_short_reads, ch_long_reads )
+        ch_preproc_short = preprocessing.out.short_reads
+        ch_preproc_long  = preprocessing.out.long_reads
+        ch_qc_preproc    = preprocessing.out.qc_reports
+    }
 
     // ── 2. Host Removal (Optional) ────────────────────────────────────────────
     host_removal(
-        preprocessing.out.short_reads,
-        preprocessing.out.long_reads
+        ch_preproc_short,
+        ch_preproc_long
     )
 
     ch_clean_short = host_removal.out.short_reads
     ch_clean_long  = host_removal.out.long_reads
-    ch_qc_reports  = preprocessing.out.qc_reports
+    ch_qc_reports  = ch_qc_preproc
         .mix( host_removal.out.host_stats.map { meta, stats -> stats } )
         .mix( host_removal.out.host_logs.map { meta, log -> log } )
 

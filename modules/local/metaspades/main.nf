@@ -9,7 +9,6 @@ process METASPADES {
 
     output:
     tuple val(meta), path("*.metaspades.fasta"), emit: contigs
-    tuple val(meta), path("spades_out"),         emit: dir
     tuple val(meta), path("*.log"),              emit: log, optional: true
 
     script:
@@ -28,6 +27,7 @@ process METASPADES {
     \$SPADES_CMD \\
         -1 ${short_reads[0]} -2 ${short_reads[1]} \\
         ${ont_arg} \\
+        --only-assembler \\
         -o spades_out \\
         -t $task.cpus \\
         -m ${max_mem}

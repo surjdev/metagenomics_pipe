@@ -9,7 +9,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=128G
-#SBATCH --time=48:00:00
+#SBATCH --time=04:00:00
 #SBATCH --partition=cpu
 # #SBATCH --account=your_project   # ปลด comment หาก HPC บังคับระบุชื่อ account/project
 
@@ -60,12 +60,18 @@ fi
 export NXF_ANSI_LOG=false
 
 # 3. สั่งรัน Pipeline ผ่าน run_hybrid.sh
-# - run_hybrid.sh มีคำสั่ง -resume อยู่แล้ว จึงจะหยิบ cache ที่รันเสร็จแล้ว (เช่น Bowtie2) มาใช้ต่ออัตโนมัติ
-# - ส่ง --max_cpus และ --max_memory เพื่อให้ Nextflow จัดสรรทรัพยากรเต็มที่ตามที่ขอจาก SLURM
+# - รันต่อจาก Clean Reads (ที่กรอง Host และตัดแต่งเสร็จแล้ว)
+# - ข้าม preprocessing และ host removal เพื่อประหยัดเวลาและดิสก์
+# - ส่งตรงเข้า metaSPAdes (--only-assembler) -> QUAST -> Mapping -> MAG Binning
 echo "🚀 Submitting Nextflow Hybrid Pipeline via run_hybrid.sh..."
 chmod +x ./run_hybrid.sh
 
+export SAMPLESHEET="${WORK_DIR}/samplesheet_hybrid_clean.csv"
+
 ./run_hybrid.sh conda \
+    --input "${SAMPLESHEET}" \
+    --run_preprocessing false \
+    --run_host_removal false \
     --max_cpus "${SLURM_CPUS_PER_TASK:-16}" \
     --max_memory "128.GB"
 

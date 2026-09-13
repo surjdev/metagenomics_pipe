@@ -21,13 +21,16 @@ process KRAKEN2 {
     def input_reads = meta.single_end
         ? "${reads}"
         : "--paired ${reads[0]} ${reads[1]}"
+    def out_arg = (params.save_kraken_output in [true, 'true', 1, '1'])
+        ? "--output ${prefix}_kraken2_output.txt"
+        : ""
     """
     kraken2 \\
         --db ${db} \\
         --threads $task.cpus \\
         ${confidence} \\
         --report ${prefix}_kraken2_report.txt \\
-        --output ${prefix}_kraken2_output.txt \\
+        ${out_arg} \\
         ${input_reads} \\
         2> ${prefix}.kraken2.log
     """
