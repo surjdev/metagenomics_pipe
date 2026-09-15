@@ -87,7 +87,15 @@ workflow {
         // ── MODE A: Assembly-Free Taxonomic & Functional Abundance Profiling ──
         log.info "🔬 Running Pipeline in [ASSEMBLY_FREE] mode (Taxonomic abundance & Kraken2 profiling)"
 
-        ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
+        def has_both = include_short && include_long
+        ch_prof_short = has_both
+            ? ch_clean_short.map { meta, reads -> [ meta + [ id: "${meta.id}_short" ], reads ] }
+            : ch_clean_short
+        ch_prof_long  = has_both
+            ? ch_clean_long.map { meta, reads -> [ meta + [ id: "${meta.id}_long" ], reads ] }
+            : ch_clean_long
+
+        ch_profiling_reads = ch_prof_short.mix( ch_prof_long )
         assembly_free( ch_profiling_reads )
 
         reporting(
@@ -130,7 +138,14 @@ workflow {
 
         ch_kraken_rep = Channel.empty()
         if (params.run_kraken2) {
-            ch_profiling_reads = ch_clean_short.mix( ch_clean_long )
+            def has_both = include_short && include_long
+            def ch_prof_short = has_both
+                ? ch_clean_short.map { meta, reads -> [ meta + [ id: "${meta.id}_short" ], reads ] }
+                : ch_clean_short
+            def ch_prof_long  = has_both
+                ? ch_clean_long.map { meta, reads -> [ meta + [ id: "${meta.id}_long" ], reads ] }
+                : ch_clean_long
+            ch_profiling_reads = ch_prof_short.mix( ch_prof_long )
             assembly_free( ch_profiling_reads )
             ch_kraken_rep = assembly_free.out.kraken_report
         }

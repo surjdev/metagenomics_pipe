@@ -12,7 +12,7 @@
 
 **Stage**: Complete end-to-end logging enabled across all tools and workflows. Core preprocessing, host removal, assembly, polishing, assembly QC, read mapping, contig coverage/depth, multi-binner MAG reconstruction, DAS Tool dereplication, CAT_BINS standardization, MAG QC, Kraken2 taxonomic profiling, Bracken abundance estimation, Krona visualization, BIOM export, HUMAnN3 functional profiling, and reporting workflows implemented and unified.
 
-**Last action**: Built dedicated evaluation pipeline `main_eval_host.nf` (completely separate from `main.nf`), `conf/eval_host.config`, `bin/eval_host_summary.py`, `modules/local/eval_host_summary/`, and runner `run_eval_host.sh` for side-by-side benchmarking of Host Removal & Krona visualization under Oxford Nanopore EPI2ME standards.
+**Last action**: Built dedicated Short vs Long Read Assembly-Free Metagenomics Comparison Pipeline (`main_compare_assembly_free.nf`), configuration (`conf/compare_assembly_free.config`), statistical evaluation engine (`bin/compare_assembly_free.py`), Nextflow process (`modules/local/compare_assembly_free/main.nf`), runner (`run_compare_assembly_free.sh`), and SLURM submission script (`submit_compare_assembly_free.sbatch`) for benchmarking Illumina vs Nanopore taxonomic and abundance concordance.
 
 ---
 
@@ -208,5 +208,6 @@ databases/
 | 2026-09-12 | Antigravity | Fixed MultiQC input file name collision in hybrid mode: renamed host removal flagstat outputs to `${prefix}_bowtie2.flagstat` and `${prefix}_minimap2.flagstat` (preventing Nextflow staging collision when both short and long read flagstats share sample ID); initialized default `kraken2_confidence = 0.0`. |
 | 2026-09-13 | Antigravity | Optimized `modules/local/metaspades/main.nf`: added `--only-assembler` to bypass BayesHammer (`spades-hammer`) error-correction disk I/O crash ('Disk quota exceeded' Errno 122 / Exit code 66 on 58.9M reads) since reads are already pre-filtered by fastp/filtlong; omitted `spades_out` emission to prevent duplicating tens of GBs into `results/`. |
 | 2026-09-13 | Antigravity | Implemented Option B (Fast-forward from Clean Reads): created `samplesheet_hybrid_clean.csv`, added `run_preprocessing` toggle to `main.nf` and `nextflow.config`, made raw `kraken2_output.txt` per-read dump optional (saving 30-40 GB), made `SAMPLESHEET` overridable in `run_hybrid.sh`, and configured `submit_hybrid.sbatch` for 4h SLURM queue backfill execution starting directly at Assembly & Binning. |
+| 2026-09-15 | Antigravity | Built dedicated Short vs Long Assembly-Free Metagenomics Comparison Pipeline (`main_compare_assembly_free.nf`, `conf/compare_assembly_free.config`, `bin/compare_assembly_free.py`, `modules/local/compare_assembly_free/main.nf`, `run_compare_assembly_free.sh`, `submit_compare_assembly_free.sbatch`) enabling side-by-side Illumina vs Nanopore profiling, Jaccard/Pearson/Spearman statistical concordance, top taxa differential matrix, Krona charts, and interactive HTML/Markdown reporting. |
 
 
