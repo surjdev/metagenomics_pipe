@@ -28,6 +28,9 @@ include { KRAKEN2 as KRAKEN2_LONG  } from './modules/local/kraken2/main.nf'
 include { BRACKEN as BRACKEN_SHORT } from './modules/local/bracken/main.nf'
 include { KRONA as KRONA_SHORT     } from './modules/local/krona/main.nf'
 include { KRONA as KRONA_LONG      } from './modules/local/krona/main.nf'
+include { KRAKEN_BIOM as KRAKEN_BIOM_SHORT    } from './modules/local/kraken_biom/main.nf'
+include { KRAKEN_BIOM as KRAKEN_BIOM_LONG     } from './modules/local/kraken_biom/main.nf'
+include { KRAKEN_BIOM as KRAKEN_BIOM_COMBINED } from './modules/local/kraken_biom/main.nf'
 include { COMPARE_ASSEMBLY_FREE    } from './modules/local/compare_assembly_free/main.nf'
 include { MULTIQC                  } from './modules/local/multiqc/main.nf'
 
@@ -45,6 +48,7 @@ workflow {
      Kraken2 Confidence : ${params.kraken2_confidence ?: '0.0 (default)'}
      Run Bracken        : ${params.run_bracken}
      Run Krona          : ${params.run_krona}
+     Run BIOM Export    : ${params.run_kraken_biom}
     =============================================================================
     """.stripIndent()
 
@@ -131,6 +135,10 @@ workflow {
         KRONA_SHORT( KRAKEN2_SHORT.out.report )
     }
 
+    if (params.run_kraken_biom in [true, 'true']) {
+        KRAKEN_BIOM_SHORT( KRAKEN2_SHORT.out.report )
+    }
+
     // Branch B: Long Reads (Oxford Nanopore)
     KRAKEN2_LONG( ch_long_clean, ch_kraken2_db )
     ch_long_k2_reports = KRAKEN2_LONG.out.report
@@ -138,6 +146,20 @@ workflow {
 
     if (params.run_krona in [true, 'true']) {
         KRONA_LONG( KRAKEN2_LONG.out.report )
+    }
+
+    if (params.run_kraken_biom in [true, 'true']) {
+        KRAKEN_BIOM_LONG( KRAKEN2_LONG.out.report )
+
+        // Generate a consolidated multi-sample BIOM matrix containing all short & long samples
+        ch_all_reports_list = ch_short_k2_reports
+            .mix( ch_long_k2_reports )
+            .map { meta, rep -> rep }
+            .collect()
+        ch_combined_biom_in = ch_all_reports_list.map { reps ->
+            [ [ id: 'comparison_combined' ], reps ]
+        }
+        KRAKEN_BIOM_COMBINED( ch_combined_biom_in )
     }
 
     // ── 5. Stage 4: Comparative Benchmarking Analysis ─────────────────────────

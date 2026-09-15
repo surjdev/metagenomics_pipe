@@ -17,7 +17,7 @@ process KRAKEN_BIOM {
     if command -v kraken-biom >/dev/null 2>&1; then
         kraken-biom ${kraken_reports} --output_fp ${prefix}_taxonomy.biom --fmt json
     else
-        kraken_to_biom.py ${kraken_reports} -o ${prefix}_taxonomy.biom -t ${prefix}_taxonomy.tsv
+        python3 ${projectDir}/bin/kraken_to_biom.py ${kraken_reports} -o ${prefix}_taxonomy.biom -t ${prefix}_taxonomy.tsv
     fi
     """
 }
