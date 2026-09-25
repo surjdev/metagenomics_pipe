@@ -1,0 +1,334 @@
+<!--
+  ~ Copyright 2013-2026, Seqera Labs
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<html>
+<head>
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+</head>
+<body>
+<pre class="mermaid" style="text-align: center;">
+%%{
+  init: {
+    'theme': 'base',
+    'themeVariables': {
+      'primaryColor': '#B6ECE2',
+      'primaryTextColor': '#160F26',
+      'primaryBorderColor': '#065647',
+      'lineColor': '#545555',
+      'clusterBkg': '#BABCBD22',
+      'clusterBorder': '#DDDEDE',
+      'fontFamily': 'arial'
+    }
+  }
+}%%
+flowchart TB
+    subgraph " "
+    v0["channel.fromPath"]
+    v7["channel.empty"]
+    v9["channel.empty"]
+    v30["channel.empty"]
+    v31["channel.empty"]
+    v32["ch_host_genome"]
+    v43["channel.empty"]
+    v54["channel.empty"]
+    v56["channel.empty"]
+    v58["channel.empty"]
+    v64["channel.empty"]
+    v65["channel.empty"]
+    v102["channel.empty"]
+    v103["channel.empty"]
+    v122["channel.empty"]
+    v124["channel.empty"]
+    v126["channel.empty"]
+    v128["channel.empty"]
+    v130["channel.empty"]
+    v132["channel.empty"]
+    v134["channel.empty"]
+    v136["channel.empty"]
+    v145["channel.empty"]
+    v150["channel.empty"]
+    v152["channel.empty"]
+    v154["channel.empty"]
+    v156["channel.empty"]
+    v158["channel.empty"]
+    v160["channel.empty"]
+    v162["db"]
+    v173["channel.empty"]
+    v175["channel.empty"]
+    v177["channel.empty"]
+    v199["template_html"]
+    v200["template_md"]
+    end
+    subgraph " "
+    v8[" "]
+    v11[" "]
+    v12[" "]
+    v16[" "]
+    v17[" "]
+    v21[" "]
+    v22[" "]
+    v26[" "]
+    v44["ch_contigs"]
+    v46[" "]
+    v47[" "]
+    v53[" "]
+    v55["ch_html"]
+    v57["ch_tsv"]
+    v59["ch_dir"]
+    v61[" "]
+    v62["html"]
+    v63["dir"]
+    v71[" "]
+    v72[" "]
+    v73[" "]
+    v83[" "]
+    v84[" "]
+    v85[" "]
+    v97[" "]
+    v99["ch_bam"]
+    v101["ch_bai"]
+    v109[" "]
+    v110[" "]
+    v113["ch_tsvs_all"]
+    v120["ch_bins_dir"]
+    v121["bins"]
+    v123["checkm2_report"]
+    v125["gunc_report"]
+    v127["gtdbtk_summary"]
+    v129["ch_gff"]
+    v131["ch_faa"]
+    v133["ch_fna"]
+    v135["ch_tsv"]
+    v137["genomad_summary"]
+    v139[" "]
+    v140[" "]
+    v141["tsv"]
+    v142["fna"]
+    v143["faa"]
+    v144["gff"]
+    v146["ch_kraken_rep"]
+    v151["ch_kraken_report"]
+    v153["bracken_report"]
+    v155["ch_krona_html"]
+    v157["ch_biom"]
+    v159["humann_genefamilies"]
+    v161["humann_pathabundance"]
+    v164[" "]
+    v165[" "]
+    v167["krona_html"]
+    v169[" "]
+    v170["biom"]
+    v174["ch_multiqc_html"]
+    v176["ch_report_html"]
+    v178["ch_summary_md"]
+    v183[" "]
+    v184["multiqc_html"]
+    v202["summary_md"]
+    v203["report_html"]
+    end
+    subgraph "preprocessing [preprocessing]"
+    v10(["FASTQC"])
+    v15(["FASTP"])
+    v20(["NANOPLOT"])
+    v25(["PORECHOP_ABI"])
+    v27(["FILTLONG"])
+    v13(( ))
+    end
+    subgraph "host_removal [host_removal]"
+    v33(["BOWTIE2_HOST_REMOVAL"])
+    v36(["MINIMAP2_HOST_REMOVAL"])
+    v34(( ))
+    v35(( ))
+    end
+    subgraph "assembly [assembly]"
+    v45(["MEGAHIT"])
+    end
+    subgraph "polishing [polishing]"
+    v52(["RACON_MEDAKA"])
+    v48(( ))
+    end
+    subgraph "assembly_qc [assembly_qc]"
+    v60(["QUAST"])
+    end
+    subgraph "mapping [mapping]"
+    v70(["MAP_SHORT_READS"])
+    v82(["MAP_LONG_READS"])
+    v96(["ALIGN_READS_TO_CONTIGS"])
+    v66(( ))
+    v74(( ))
+    v78(( ))
+    end
+    subgraph "binning [binning]"
+    v108(["METABAT2"])
+    v119(["CAT_BINS"])
+    v104(( ))
+    v111(( ))
+    v112(( ))
+    end
+    subgraph "annotation [annotation]"
+    v138(["PROKKA"])
+    end
+    subgraph "assembly_free [assembly_free]"
+    v163(["KRAKEN2"])
+    v166(["KRONA"])
+    v168(["KRAKEN_BIOM"])
+    end
+    subgraph "reporting [reporting]"
+    v182(["MULTIQC"])
+    v201(["GENERATE_REPORTS"])
+    v179(( ))
+    v185(( ))
+    end
+    v1(( ))
+    v39(( ))
+    v147(( ))
+    v0 --> v1
+    v7 --> v8
+    v9 --> v13
+    v1 --> v10
+    v10 --> v12
+    v10 --> v11
+    v10 --> v13
+    v1 --> v15
+    v15 --> v33
+    v15 --> v17
+    v15 --> v16
+    v15 --> v13
+    v1 --> v20
+    v20 --> v22
+    v20 --> v21
+    v20 --> v13
+    v1 --> v25
+    v25 --> v27
+    v25 --> v26
+    v27 --> v36
+    v27 --> v13
+    v30 --> v34
+    v31 --> v35
+    v32 --> v33
+    v32 --> v36
+    v33 --> v45
+    v33 --> v34
+    v33 --> v35
+    v33 --> v66
+    v33 --> v147
+    v36 --> v34
+    v36 --> v35
+    v36 --> v48
+    v36 --> v78
+    v36 --> v147
+    v43 --> v44
+    v45 --> v47
+    v45 --> v46
+    v45 --> v48
+    v48 --> v52
+    v52 --> v60
+    v52 --> v53
+    v52 --> v138
+    v52 --> v66
+    v52 --> v78
+    v52 --> v104
+    v52 --> v111
+    v54 --> v55
+    v56 --> v57
+    v58 --> v59
+    v60 --> v63
+    v60 --> v62
+    v60 --> v61
+    v60 --> v39
+    v60 --> v185
+    v64 --> v74
+    v65 --> v74
+    v66 --> v70
+    v70 --> v73
+    v70 --> v72
+    v70 --> v71
+    v70 --> v74
+    v78 --> v82
+    v82 --> v85
+    v82 --> v84
+    v82 --> v83
+    v82 --> v74
+    v74 --> v96
+    v96 --> v97
+    v96 --> v104
+    v74 --> v99
+    v74 --> v101
+    v102 --> v111
+    v103 --> v112
+    v104 --> v108
+    v108 --> v110
+    v108 --> v109
+    v108 --> v111
+    v108 --> v112
+    v112 --> v113
+    v111 --> v119
+    v119 --> v121
+    v119 --> v120
+    v119 --> v185
+    v122 --> v123
+    v124 --> v125
+    v126 --> v127
+    v128 --> v129
+    v130 --> v131
+    v132 --> v133
+    v134 --> v135
+    v136 --> v137
+    v138 --> v144
+    v138 --> v143
+    v138 --> v142
+    v138 --> v141
+    v138 --> v140
+    v138 --> v139
+    v145 --> v146
+    v150 --> v151
+    v152 --> v153
+    v154 --> v155
+    v156 --> v157
+    v158 --> v159
+    v160 --> v161
+    v162 --> v163
+    v147 --> v163
+    v163 --> v166
+    v163 --> v165
+    v163 --> v164
+    v163 --> v168
+    v163 --> v185
+    v166 --> v167
+    v168 --> v170
+    v168 --> v169
+    v173 --> v174
+    v175 --> v176
+    v177 --> v178
+    v179 --> v182
+    v182 --> v184
+    v182 --> v183
+    v199 --> v201
+    v200 --> v201
+    v185 --> v201
+    v201 --> v203
+    v201 --> v202
+    v13 --> v39
+    v34 --> v39
+    v35 --> v39
+    v39 --> v179
+
+</pre>
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, maxTextSize: Number.MAX_SAFE_INTEGER, maxEdges: Number.MAX_SAFE_INTEGER });
+</script>
+</body>
+</html>

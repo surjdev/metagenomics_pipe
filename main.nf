@@ -88,10 +88,10 @@ workflow {
         log.info "🔬 Running Pipeline in [ASSEMBLY_FREE] mode (Taxonomic abundance & Kraken2 profiling)"
 
         def has_both = include_short && include_long
-        ch_prof_short = has_both
+        def ch_prof_short = has_both
             ? ch_clean_short.map { meta, reads -> [ meta + [ id: "${meta.id}_short" ], reads ] }
             : ch_clean_short
-        ch_prof_long  = has_both
+        def ch_prof_long  = has_both
             ? ch_clean_long.map { meta, reads -> [ meta + [ id: "${meta.id}_long" ], reads ] }
             : ch_clean_long
 

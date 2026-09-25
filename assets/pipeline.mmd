@@ -1,0 +1,125 @@
+%%metro title: Hybrid Metagenomics Pipeline
+%%metro style: dark
+%%metro line: illumina  | Illumina Short Reads  | #2196F3
+%%metro line: nanopore  | Nanopore Long Reads   | #FF9800
+%%metro line: assembly  | Assembly & Polishing  | #9C27B0
+%%metro line: mag       | MAG Reconstruction    | #4CAF50
+%%metro line: readbased | Read-Based Profiling  | #00BCD4
+%%metro line: report    | Annotation & Reporting| #F44336
+
+graph LR
+
+    subgraph INPUT ["Input"]
+        samplesheet([Samplesheet CSV])
+    end
+
+    subgraph PREPROCESS ["Phase 1 — Preprocessing & Host Removal"]
+        fastqc[FastQC]
+        fastp[Fastp]
+        dorado[Dorado Basecall]
+        nanoplot[NanoPlot]
+        porechop[Porechop-ABI]
+        filtlong[Filtlong]
+        bowtie2[Bowtie2]
+        minimap2[Minimap2]
+    end
+
+    subgraph ASSEMBLY ["Phase 2 — Assembly & Polishing"]
+        megahit[MEGAHIT]
+        metaspades[MetaSPAdes]
+        flye[Flye]
+        opera_ms[Opera-MS]
+        racon[Racon / Medaka]
+        nextpolish[NextPolish]
+        quast[QUAST]
+    end
+
+    subgraph BINNING ["Phase 3 — Mapping, Binning & MAG QC"]
+        map_short[Map Short Reads]
+        map_long[Map Long Reads]
+        align_contigs[Align to Contigs]
+        metabat2[MetaBAT2]
+        maxbin2[MaxBin2]
+        semibin2[SemiBin2]
+        concoct[CONCOCT]
+        dastool[DAS Tool]
+        cat_bins[CAT BINS]
+        checkm2[CheckM2]
+        gunc[GUNC]
+        gtdbtk[GTDB-Tk]
+    end
+
+    subgraph READBASED ["Phase 4 — Read-Based Profiling"]
+        kraken2[Kraken2]
+        bracken[Bracken]
+        kraken_biom[Kraken BIOM]
+        krona[Krona]
+        humann3[HUMAnN3]
+    end
+
+    subgraph REPORT ["Phase 5 — Annotation & Reporting"]
+        prokka[Prokka]
+        genomad[geNomad]
+        generate_reports[Generate Reports]
+        multiqc_final[MultiQC Final]
+    end
+
+    %% ── Illumina line ────────────────────────────────
+    samplesheet -->|illumina| fastqc
+    samplesheet -->|illumina| fastp
+    fastp       -->|illumina| bowtie2
+    bowtie2     -->|illumina| megahit
+    bowtie2     -->|illumina| metaspades
+    bowtie2     -->|illumina| map_short
+    bowtie2     -->|illumina| kraken2
+
+    %% ── Nanopore line ────────────────────────────────
+    samplesheet -->|nanopore| dorado
+    dorado      -->|nanopore| nanoplot
+    dorado      -->|nanopore| porechop
+    porechop    -->|nanopore| filtlong
+    filtlong    -->|nanopore| minimap2
+    minimap2    -->|nanopore| flye
+    minimap2    -->|nanopore| map_long
+
+    %% ── Assembly line ────────────────────────────────
+    megahit    -->|assembly| quast
+    metaspades -->|assembly| quast
+    flye       -->|assembly| racon
+    opera_ms   -->|assembly| racon
+    racon      -->|assembly| nextpolish
+    nextpolish -->|assembly| quast
+
+    %% ── MAG line ─────────────────────────────────────
+    map_short     -->|mag| align_contigs
+    map_long      -->|mag| align_contigs
+    quast         -->|mag| align_contigs
+    align_contigs -->|mag| metabat2
+    align_contigs -->|mag| maxbin2
+    align_contigs -->|mag| semibin2
+    align_contigs -->|mag| concoct
+    metabat2      -->|mag| dastool
+    maxbin2       -->|mag| dastool
+    semibin2      -->|mag| dastool
+    concoct       -->|mag| dastool
+    dastool       -->|mag| cat_bins
+    cat_bins      -->|mag| checkm2
+    checkm2       -->|mag| gunc
+    gunc          -->|mag| gtdbtk
+
+    %% ── Read-based line ──────────────────────────────
+    kraken2     -->|readbased| bracken
+    bracken     -->|readbased| kraken_biom
+    kraken_biom -->|readbased| krona
+    kraken2     -->|readbased| humann3
+
+    %% ── Report line ──────────────────────────────────
+    cat_bins         -->|report| prokka
+    cat_bins         -->|report| genomad
+    gtdbtk           -->|report| generate_reports
+    krona            -->|report| generate_reports
+    humann3          -->|report| generate_reports
+    prokka           -->|report| generate_reports
+    genomad          -->|report| generate_reports
+    quast            -->|report| multiqc_final
+    generate_reports -->|report| multiqc_final

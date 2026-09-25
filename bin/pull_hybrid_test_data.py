@@ -228,8 +228,10 @@ def main():
     )
     parser.add_argument("--metadata", "-m", default="short_long_metadata.csv",
                         help="Path to short_long_metadata.csv (default: short_long_metadata.csv)")
-    parser.add_argument("--subjects", "-s", nargs="*", default=["TD22", "TD3"],
-                        help="Subject IDs to pull (default: TD22 TD3 - the 2 smallest matched subjects)")
+    parser.add_argument("--subjects", "-s", nargs="*", default=["CD22", "CD3", "TD22", "TD3"],
+                        help="Subject IDs to pull (default: CD22 CD3 TD22 TD3 - skips CD35 and TD35 as already installed)")
+    parser.add_argument("--from-samplesheet", default=None,
+                        help="Path to an existing samplesheet CSV to extract subject IDs from")
     parser.add_argument("--outdir", "-o", default="test_data/hybrid_test",
                         help="Output directory for downloaded reads (default: test_data/hybrid_test)")
     parser.add_argument("--samplesheet", default="samplesheet_hybrid.csv",
@@ -250,12 +252,23 @@ def main():
     out_dir = os.path.abspath(args.outdir) if os.path.isabs(args.outdir) else os.path.join(project_dir, args.outdir)
     samplesheet_file = os.path.abspath(args.samplesheet) if os.path.isabs(args.samplesheet) else os.path.join(project_dir, args.samplesheet)
 
+    target_subjects = args.subjects
+    if args.from_samplesheet:
+        from_sheet_path = os.path.abspath(args.from_samplesheet) if os.path.isabs(args.from_samplesheet) else os.path.join(project_dir, args.from_samplesheet)
+        if not os.path.exists(from_sheet_path):
+            print(f"[ERROR] Samplesheet file not found: {from_sheet_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(from_sheet_path, "r", encoding="utf-8") as sf:
+            s_rows = list(csv.DictReader(sf))
+            target_subjects = [r.get("sample") or r.get("sample_id") for r in s_rows if r.get("sample") or r.get("sample_id")]
+        print(f"ℹ️ Loaded {len(target_subjects)} subjects from samplesheet: {from_sheet_path}")
+
     print("=" * 80)
     print("   🧬 Hybrid Test Data Downloader (Illumina + Nanopore) 🧬")
     print("=" * 80)
     print(f" 📂 Project Directory : {project_dir}")
     print(f" 📋 Metadata File     : {metadata_file}")
-    print(f" 🎯 Target Subjects   : {', '.join(args.subjects)}")
+    print(f" 🎯 Target Subjects   : {', '.join(target_subjects)}")
     print(f" ⚙️ Download Mode      : {args.mode.upper()} ({'Fast test subset' if args.mode == 'smoke' else 'Full files'})")
     print(f" 📁 Output Directory  : {out_dir}")
     print(f" 📄 Target Samplesheet: {samplesheet_file}")
@@ -268,7 +281,7 @@ def main():
 
     # Verify selected subjects exist
     selected = []
-    for sid in args.subjects:
+    for sid in target_subjects:
         if sid in matched_dict:
             selected.append(matched_dict[sid])
         else:
@@ -333,6 +346,8 @@ def main():
         else:
             download_full_file(il_r1_url, fq1_path)
             download_full_file(il_r2_url, fq2_path)
+            if ont_url:
+                download_full_file(ont_url, long_path)
         # Normalize path separators to forward slash for cross-platform and Nextflow container compatibility
         fq1_path = fq1_path.replace("\\", "/")
         fq2_path = fq2_path.replace("\\", "/")
