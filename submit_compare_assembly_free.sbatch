@@ -54,9 +54,10 @@ fi
 export NXF_ANSI_LOG=false
 chmod +x ./run_compare_assembly_free.sh
 
-# Run from clean reads by default (samplesheet_hybrid_clean.csv)
-echo "🚀 Submitting Assembly-Free Comparison via run_compare_assembly_free.sh..."
-./run_compare_assembly_free.sh clean conda \
+MODE="${1:-${COMPARE_MODE:-raw}}"
+
+echo "🚀 Submitting Assembly-Free Comparison via run_compare_assembly_free.sh (Mode: ${MODE})..."
+./run_compare_assembly_free.sh "${MODE}" conda \
     --max_cpus "${SLURM_CPUS_PER_TASK:-16}" \
     --max_memory "64.GB"
 
