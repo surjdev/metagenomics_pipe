@@ -8,6 +8,11 @@ set -e
 # พาธฐานข้อมูล Kraken2 (สามารถระบุหรือ override ได้)
 KRAKEN2_DB="${1:-/home/koraop/nob_dir/metagenomics/metagenomics_pipe/databases/Standard/kraken2}"
 
+if ! command -v nextflow >/dev/null 2>&1; then
+    echo "ERROR: nextflow is unavailable in the active Conda environment." >&2
+    exit 1
+fi
+
 nextflow run main.nf \
     --mode assembly_free \
     --platform nanopore \
@@ -22,5 +27,5 @@ nextflow run main.nf \
     --run_kraken_biom true \
     --run_preprocessing false \
     --run_host_removal false \
-    -profile singularity \
+    -profile local \
     -resume
