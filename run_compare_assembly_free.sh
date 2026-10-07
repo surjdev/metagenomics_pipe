@@ -47,6 +47,23 @@ if [ -d "${PROJECT_DIR}/.pixi/envs/default/bin" ]; then
     export PATH="${PROJECT_DIR}/.pixi/envs/default/bin:${PATH}"
 fi
 
+# Work Directory Configuration (/scratch preferred to prevent user quota exhaustion)
+if [ -z "${NXF_WORK_DIR}" ]; then
+    if [ -L "${PROJECT_DIR}/work" ]; then
+        NXF_WORK_DIR="${PROJECT_DIR}/work"
+    elif [ ! -e "${PROJECT_DIR}/work" ] && [ -d "/scratch" ]; then
+        SCRATCH_USER_DIR="/scratch/${USER:-koraop}/nextflow_work"
+        if mkdir -p "${SCRATCH_USER_DIR}" 2>/dev/null; then
+            ln -s "${SCRATCH_USER_DIR}" "${PROJECT_DIR}/work"
+            NXF_WORK_DIR="${PROJECT_DIR}/work"
+        fi
+    fi
+fi
+WORK_ARG=""
+if [ -n "${NXF_WORK_DIR}" ]; then
+    WORK_ARG="-w ${NXF_WORK_DIR}"
+fi
+
 echo -e "${CYAN}==============================================================================${NC}"
 echo -e "${BOLD}   🔬 Short vs Long Reads: Assembly-Free Comparison Pipeline Runner 🔬   ${NC}"
 echo -e "${CYAN}==============================================================================${NC}"
@@ -54,6 +71,7 @@ echo -e " ⚙️ Mode              : ${YELLOW}${MODE}${NC} (${PREPROC_ARGS})"
 echo -e " 📋 Samplesheet       : ${BLUE}${SAMPLESHEET}${NC}"
 echo -e " 🐳 Runtime Profile   : ${YELLOW}${PROFILE}${NC}"
 echo -e " 📂 Output Directory  : ${YELLOW}${OUTDIR}${NC}"
+echo -e " 💾 Work Directory    : ${YELLOW}${NXF_WORK_DIR:-${PROJECT_DIR}/work}${NC}"
 echo -e "${CYAN}==============================================================================${NC}\n"
 
 if [ ! -f "${SAMPLESHEET}" ]; then
@@ -64,6 +82,7 @@ fi
 nextflow run "${PROJECT_DIR}/main_compare_assembly_free.nf" \
     -profile "${PROFILE}" \
     -c "${PROJECT_DIR}/conf/compare_assembly_free.config" \
+    ${WORK_ARG} \
     --input "${SAMPLESHEET}" \
     --outdir "${OUTDIR}" \
     ${PREPROC_ARGS} \

@@ -27,20 +27,17 @@ process BOWTIE2_HOST_REMOVAL {
     fi
 
     # Map reads to host genome; write unmapped pairs to FASTQ
+    # Stream SAM output directly into samtools flagstat to avoid writing 40-60GB SAM file to disk
     bowtie2 \\
         -x \${idx_prefix} \\
         -1 ${reads[0]} \\
         -2 ${reads[1]} \\
         --threads $task.cpus \\
         --un-conc-gz ${prefix}_nonhost_R%.fastq.gz \\
-        -S ${prefix}.host.sam \\
-        2> ${prefix}.bowtie2.log
-
-    samtools flagstat \\
-        --threads $task.cpus \\
-        ${prefix}.host.sam \\
-        > ${prefix}_bowtie2.flagstat
-
-    rm ${prefix}.host.sam
+        2> ${prefix}.bowtie2.log \\
+        | samtools flagstat \\
+            --threads $task.cpus \\
+            - \\
+            > ${prefix}_bowtie2.flagstat
     """
 }
