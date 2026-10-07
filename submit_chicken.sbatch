@@ -30,11 +30,16 @@ if ! command -v conda >/dev/null 2>&1; then
     exit 1
 fi
 conda activate "${CHICKEN_CONDA_ENV:-metagenomics}"
+echo "Active Conda environment: ${CONDA_DEFAULT_ENV:-unknown} (${CONDA_PREFIX:-unknown})"
 
-if ! command -v nextflow >/dev/null 2>&1; then
-    echo "ERROR: nextflow is unavailable in the active Conda environment." >&2
+# Use the project environment created by Pixi, as the other run scripts do.
+PIXI_BIN="${PWD}/.pixi/envs/default/bin"
+if [ ! -x "${PIXI_BIN}/nextflow" ]; then
+    echo "ERROR: Pixi environment is missing at ${PIXI_BIN}; run 'pixi install' in the project directory before submitting." >&2
     exit 1
 fi
+export PATH="${PIXI_BIN}:${PATH}"
+echo "Using Pixi environment: ${PIXI_BIN}"
 
 # รันสคริปต์
 bash ./run_chicken.sh
